@@ -129,6 +129,10 @@ class User {
                     first_name AS "firstName",
                     last_name AS "lastName",
                     email,
+                    bio,
+                    user_location AS "userLocation",
+                    favorite_state AS "favoriteState",
+                    profile_photo AS "profilePhoto",
                     is_admin AS "isAdmin"
              FROM users
              WHERE username = $1`,
@@ -159,15 +163,17 @@ class User {
      */
   
     static async update(username, data) {
-      if (data.password) {
-        data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
-      }
+      // if (data.password) {
+      //   data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
+      // }
   
       const { setCols, values } = sqlForPartialUpdate(
           data,
           {
-            firstName: "first_name",
-            lastName: "last_name",
+            bio: "bio",
+            userLocation: "user_location",
+            favoriteState: "favorite_state",
+            profilePhoto: "profile_photo",
             isAdmin: "is_admin",
           });
       const usernameVarIdx = "$" + (values.length + 1);
@@ -176,16 +182,17 @@ class User {
                         SET ${setCols} 
                         WHERE username = ${usernameVarIdx} 
                         RETURNING username,
-                                  first_name AS "firstName",
-                                  last_name AS "lastName",
-                                  email,
+                                  bio AS "bio",
+                                  user_location AS "userLocation",
+                                  favorite_state AS "favoriteState",
+                                  profile_photo AS "profilePhoto",
                                   is_admin AS "isAdmin"`;
       const result = await db.query(querySql, [...values, username]);
       const user = result.rows[0];
   
       if (!user) throw new NotFoundError(`No user: ${username}`);
   
-      delete user.password;
+      // delete user.password;
       return user;
     }
   

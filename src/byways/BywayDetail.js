@@ -20,18 +20,20 @@ function BywayDetail() {
         async function getByway(name) {
             setByway(await BywayApi.getByway(name));
         }
+
+        // also call the get comments by byway api, then display in the jsx - see methods in routes and models in the back
         getByway(name);
     }, [name]);
 
     // if (!byway) return <LoadingSpinner />;
     // if (!byway) return <Alert />;
-    if (!byway) return <FourOhFour />
+    // if (!byway) return <FourOhFour />
     // when I try it with Alert I get nothing on the page
     // just erase this? - just a blank page when there's nothing here
 
     return (
         <div>
-            {byway.name === byway.name
+            {byway
                 ? (
                     <div>
                         <h1>{byway.name}</h1>
@@ -41,7 +43,8 @@ function BywayDetail() {
                         <p>Fees: {byway.fees}</p>
                         <p>Geographic features on this byway: {byway.geographicFeatures}</p>
                         <p>{byway.description}</p>
-                        <button><CommentForm /></button>
+                        <h4>Comment on {byway.name}</h4>
+                        <CommentForm name={byway.name}/>
 
                     </div>
                 ) : (

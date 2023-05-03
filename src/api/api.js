@@ -67,12 +67,17 @@ class BywayApi {
       return res;
     }
 
-    static async makeComment(comment) {
-      let res = await this.request(`byways/${ name }`, comment, "post");
+    static async makeComment(name, comment) {
+      let res = await this.request(`byways/${ name }`, {comment}, "post");
       return res;
     }
 
+    // getCommentsByByway - check back to see what might need to be passed in
 
+    static async saveProfile(username, data) {
+      let res = await this.request(`users/${username}`, data, "patch");
+      return res.user;
+    }
 
 
 

@@ -62,7 +62,7 @@ function Navigation({ logout }) {
   return (
       <nav>
         <Link to="/">
-          Jobly
+          Scenic Byways
         </Link>
         {currentUser ? loggedInNav() : loggedOutNav()}
       </nav>

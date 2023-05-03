@@ -24,7 +24,13 @@ router.get("/:name", ensureLoggedIn, async function (req, res, next) {
   });
 
 router.post("/:name", ensureLoggedIn, async function (req, res, next) {
-  const data = await bywayModel.makeComment();
+  console.log('user', res.locals.user)
+  const data = await bywayModel.makeComment(req.params.name, req.body.comment, res.locals.user.username);
+  return res.json(data);
+})
+
+router.get("/:name/comments", ensureLoggedIn, async function (req, res, next) {
+  const data = await bywayModel.getCommentsByByway(req.params.name);
   return res.json(data);
 })
   

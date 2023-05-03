@@ -62,21 +62,24 @@ class Byway {
 
     }
 
-    static async makeComment() {
+    static async getCommentsByByway(byway) {
+        // get all commentsby byway
+    }
+
+    static async makeComment(byway, comment, username) {
+        console.log(username)
         const result = await db.query(
-            `INSERT INTO comments(comment, username, byway, date)
-            VALUES ($1, $2, $3, $4)
-            RETURNING comment, username, byway, date`,
+            `INSERT INTO comments(comment, username, byway, create_at)
+            VALUES ($1, $2, $3, now())
+            RETURNING comment, username, byway, create_at`,
             [
                 comment,
                 username,
                 byway,
-                date,
             ],
         );
-        const comment = result.rows[0];
 
-        return comment;
+        return result.rows[0];
 
     }
 

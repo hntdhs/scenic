@@ -23,25 +23,16 @@ import useTimedMessage from "../hooks/useTimedMessage";
 function ProfileForm() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
-    firstName: currentUser.firstName,
-    lastName: currentUser.lastName,
-    email: currentUser.email,
-    username: currentUser.username,
-    password: "",
+    bio: currentUser.bio,
+    userLocation: currentUser.userLocation,
+    favoriteState: currentUser.favoriteState,
+    profilePhoto: currentUser.profilePhoto,
   });
   const [formErrors, setFormErrors] = useState([]);
 
   // switch to use our fancy limited-time-display message hook
   const [saveConfirmed, setSaveConfirmed] = useState(false);
   // const [saveConfirmed, setSaveConfirmed] = useTimedMessage()
-
-  console.debug(
-      "ProfileForm",
-      "currentUser=", currentUser,
-      "formData=", formData,
-      "formErrors=", formErrors,
-      "saveConfirmed=", saveConfirmed,
-  );
 
   /** on form submit:
    * - attempt save to backend & report any errors
@@ -55,13 +46,13 @@ function ProfileForm() {
     evt.preventDefault();
 
     let profileData = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      password: formData.password,
+      bio: formData.bio,
+      userLocation: formData.userLocation,
+      favoriteState: formData.favoriteState,
+      profilePhoto: formData.profilePhoto,
     };
 
-    let username = formData.username;
+    let username = currentUser.username;
     let updatedUser;
 
     try {
@@ -91,52 +82,50 @@ function ProfileForm() {
   }
 
   return (
-      <div className="profile">
+      <div>
         <h3>Profile</h3>
-        <div className="card">
-          <div className="card-body">
             <form>
-              <div className="form-group">
-                <label>Username</label>
-                <p className="form-control-plaintext">{formData.username}</p>
-              </div>
-              <div className="form-group">
-                <label>First Name</label>
+              <div>
+                <label>Bio</label>
                 <input
-                    name="firstName"
-                    className="form-control"
-                    value={formData.firstName}
+                    name="bio"
+                    value={formData.bio}
                     onChange={handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label>Last Name</label>
+              <div>
+                <label>Location</label>
                 <input
-                    name="lastName"
-                    className="form-control"
-                    value={formData.lastName}
+                    name="userLocation"
+                    value={formData.location}
                     onChange={handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label>Email</label>
+              <div>
+                <label>Favorite state to travel to</label>
                 <input
-                    name="email"
-                    className="form-control"
-                    value={formData.email}
+                    name="favoriteState"
+                    value={formData.favoriteState}
                     onChange={handleChange}
                 />
               </div>
-              <div className="form-group">
+              <div>
+                <label>Profile Photo</label>
+                <input
+                    name="profilePhoto"
+                    value={formData.profilePhoto}
+                    onChange={handleChange}
+                />
+              </div>
+              {/* <div>
                 <label>Confirm password to make changes:</label>
                 <input
                     type="password"
                     name="password"
-                    className="form-control"
                     value={formData.password}
                     onChange={handleChange}
                 />
-              </div>
+              </div> */}
 
               {formErrors.length
                   ? <Alert type="danger" messages={formErrors} />
@@ -154,8 +143,6 @@ function ProfileForm() {
                 Save Changes
               </button>
             </form>
-          </div>
-        </div>
       </div>
   );
 }
