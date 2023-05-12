@@ -67,16 +67,34 @@ class BywayApi {
       return res;
     }
 
+    static async getCommentsByByway(name) {
+      let res = await this.request(`byways/${ name }/comments`, );
+      return res;
+    }
+
     static async makeComment(name, comment) {
       let res = await this.request(`byways/${ name }`, {comment}, "post");
       return res;
     }
 
-    // getCommentsByByway - check back to see what might need to be passed in
+    static async favoriteAByway(username, byway) {
+      let res = await this.request(`users/${ username }/favorites`, {byway}, "post");
+      return res;
+    }
+
+    static async getUserFavorites(username) {
+      let res = await this.request(`users/${ username }/favorites`);
+      return res;
+    }
 
     static async saveProfile(username, data) {
       let res = await this.request(`users/${username}`, data, "patch");
       return res.user;
+    }
+
+    static async getRandomByway() {
+      let res = await this.request(`byways/random`, );
+      return res;
     }
 
 

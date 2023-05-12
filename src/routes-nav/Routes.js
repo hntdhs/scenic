@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import StateMenu from "../byways/StateMenu";
 import StateDetail from "../byways/StateDetail";
 import BywayDetail from "../byways/BywayDetail";
+import DisplayRandomByway from "../byways/RandomByway";
 
 
 
@@ -65,6 +66,10 @@ function Routes({ login, signup }) {
 
             <PrivateRoute exact path="/byways/:name">
               <BywayDetail />
+            </PrivateRoute>
+
+            <PrivateRoute exact path="/random">
+              <DisplayRandomByway />
             </PrivateRoute>
   
             <Redirect to="/" />

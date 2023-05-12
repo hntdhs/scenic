@@ -31,10 +31,19 @@ CREATE TABLE states (
   image TEXT NOT NULL
 );
 
+
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
-  username REFERENCES users ON DELETE CASCADE,
-  byway_name REFERENCES byways ON DELETE CASCADE, 
-  date_and_time TIMESTAMP NOT NULL,
-  comment TEXT NOT NULL
+  comment TEXT NOT NULL,
+  username VARCHAR(25) REFERENCES users ON DELETE CASCADE,
+  byway_id INTEGER REFERENCES byways ON DELETE CASCADE, 
+  create_at DATE NOT NULL
+);
+-- do byway id instead of byway and join byway and comments tables 
+-- will do JOIN sql stuff in comments model
+
+CREATE TABLE favorites (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(25) REFERENCES users ON DELETE CASCADE,
+  byway_id INTEGER REFERENCES byways ON DELETE CASCADE
 );

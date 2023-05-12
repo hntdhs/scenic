@@ -51,14 +51,14 @@ router.post("/", ensureAdmin, async function (req, res, next) {
  * Authorization required: admin
  **/
 
-router.get("/", ensureAdmin, async function (req, res, next) {
-  try {
-    const users = await User.findAll();
-    return res.json({ users });
-  } catch (err) {
-    return next(err);
-  }
-});
+// router.get("/", ensureAdmin, async function (req, res, next) {
+//   try {
+//     const users = await User.findAll();
+//     return res.json({ users });
+//   } catch (err) {
+//     return next(err);
+//   }
+// });
 
 
 /** GET /[username] => { user }
@@ -97,6 +97,27 @@ router.get("/:username", ensureCorrectUserOrAdmin, async function (req, res, nex
     }
 
     const user = await User.update(req.params.username, req.body);
+    return res.json({ user });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+// post favorite
+
+// do I need to pass something in for byway in addition in req.params.username?
+router.post("/:username/favorites", ensureCorrectUserOrAdmin, async function (req, res, next) {
+  try {
+    const user = await User.favoriteAByway(req.params.username);
+    return res.json({ user });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+router.get("/:username/favorites", ensureCorrectUserOrAdmin, async function (req, res, next) {
+  try {
+    const user = await User.getUserFavorites(req.params.username);
     return res.json({ user });
   } catch (err) {
     return next(err);

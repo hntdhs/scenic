@@ -15,24 +15,11 @@ function CommentForm({name}) {
     const [comment, setComment] = useState(false);
     // I think state is necessary because at first there is no comment, then comment exists
 
-    // useEffect(() => {  
-    //     async function submitComment() {
-    //         let comment = await BywayApi.makeComment(); 
-    //         // this api method will be for a post route
-    //         setComment(comment);
-    //     }
-    //     submitComment();
-    // }, []);
-
     async function handleSubmit(evt) {
         await BywayApi.makeComment(name, comment);
-        setComment('');
+        // setComment('');
+        setComment(comment);
     }
-
-// async function uses the Byway API method that I haven't written yet to send message to the API that current user has favorited this byway
-
-    // if (!user) return <LoadingSpinner />;
-    // doubt I need an equivalent of this
 
     return (
         <div>
@@ -43,8 +30,5 @@ function CommentForm({name}) {
         </div>
     )
 }
-// functionality for html button should be about the same as hitting apply on a job in jobly
 
 export default CommentForm;
-// would replies maybe be a second table? and they point to original comment that's over in the comments table? so when comment is made and it renders on the page it uses the Reply component to add a reply button?
-// one comment can have many replies, replies can have one comment. but couldn't replies also have replies, meaning they're really just comments? wouldn't have a reply to reply table.

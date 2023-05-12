@@ -13,11 +13,12 @@ function Homepage() {
 
           {currentUser
             ? <h2>
-                Hello {currentUser.username}!
-                <Link to="/profile">Create and edit your profile here!</Link>
+                Hello {currentUser.username}!<br></br>
+                <Link to="/profile">Create and edit your profile here!</Link><br></br>
                 {/* <Link to="/browse">Browse through every national byway, select favorites, plan a trip, and connect with other users here!</Link> */}
-                <Link to="/search">See all byways and search using filters here!</Link>
-                <Link to="/states">See byways by state here!</Link>
+                <Link to="/search">See all byways and search using filters here!</Link><br></br>
+                <Link to="/states">See byways by state here!</Link><br></br>
+                <Link to="/random">Or see a byway at random!</Link>
                 
             </h2>
             : (

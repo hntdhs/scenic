@@ -6,6 +6,7 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import Alert from "../common/Alert";
 import FourOhFour from "../common/404";
 import CommentForm from "./CommentForm";
+import FavoriteAByway from "./Favorite";
 
 // need comment form submission (form in a separate component) and comments display (call the API for all comments on this byway)
 // will call BywayAPI for info on a particular byway taking the name with params, then display 
@@ -15,13 +16,21 @@ function BywayDetail() {
     const { name } = useParams();
 
     const [byway, setByway] = useState(null);
+    const [comments, setComments] = useState(null);
 
     useEffect(() => {
         async function getByway(name) {
-            setByway(await BywayApi.getByway(name));
+            const b = await BywayApi.getByway(name)
+            setByway(b);
+            // setComments(await BywayApi.getCommentsByByway(b.id));
+            // setComments(await BywayApi.getCommentsByByway(name));
+            setComments(await BywayApi.getCommentsByByway(b));
         }
 
-        // also call the get comments by byway api, then display in the jsx - see methods in routes and models in the back
+        // async function getCommentsByByway(name) {
+
+        // }
+
         getByway(name);
     }, [name]);
 
@@ -43,10 +52,29 @@ function BywayDetail() {
                         <p>Fees: {byway.fees}</p>
                         <p>Geographic features on this byway: {byway.geographicFeatures}</p>
                         <p>{byway.description}</p>
+                        <FavoriteAByway />
                         <h4>Comment on {byway.name}</h4>
                         <CommentForm name={byway.name}/>
+                        <div>
+                            {comments
+                            ? (
+                                <div>
+                                    {comments.map(c => (
+                                        <div>
+                                            <h6>{c.username}</h6>
+                                            <h6>{c.create_at}</h6>
+                                            <p>{c.comment}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <p>no one has commented</p>
+                            )
+                            }
+                        </div>
 
                     </div>
+                    
                 ) : (
                     <h1>no byway by that name</h1>
                 )

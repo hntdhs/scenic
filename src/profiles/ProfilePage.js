@@ -1,39 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import BywayApi from "../api/api";
-import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
-
-// don't forget link to edit, plus a ternary operator that displays a 'you haven't created a profile' message if there's nothing to display - was I going to make a table for profile data as opposed to user data?
-// call api for user info, should be same as jobly
+import { NavLink } from "react-router-dom";
 
 function ShowUserProfile() {
     const { username } = useParams();
     const { currentUser } = useContext(UserContext);
+    const [isMe, setIsMe] = useState(false)
+    // probably don't need both of these but not sure if one is better
     const [profileInfo, setProfileInfo] = useState(null);
-    // not sure if there is a need for currentUser and setUser
 
     useEffect(() => {  
-        async function getUserInfo(username) {
+        async function getUserInfo() {
             let profileInfo = await BywayApi.getCurrentUser(username);
             setProfileInfo(profileInfo);
         }
         getUserInfo();
+
+        // need to call for favorites unless I'm going to add favorites to user info as a column in that table
     }, [username]);
-    
-    if (!user) return <LoadingSpinner />;
+
+    useEffect(() => {
+        if (currentUser && profileInfo) {
+            setIsMe(currentUser.username === profileInfo.username);
+        }
+    }, [profileInfo, currentUser])    
 
     return (
         <div>
-            {/* should be same format as byway card */}
+            {isMe ? <NavLink to={`/profile/`}>Edit your profile</NavLink> : ''}
             <h3>{currentUser.username}</h3>
-            <img src={profilePhoto} alt={"profile photo"} />
-            <h4>{userLocation}</h4>
-            <h5>Favorite State to Travel To: {favoriteState}</h5>
-            <p>{bio}</p>
+            <img src={currentUser.profilePhoto} alt={"profile photo"} />
+            <h4>{currentUser.userLocation}</h4>
+            <h5>Favorite State to Travel To: {currentUser.favoriteState}</h5>
+            <p>{currentUser.bio}</p>
         </div>
     )
-    // ternary shows profile or message
+    // currentUser wouldn't work right if someone is looking at a different user's profile?
+    // maybe instead of BywayApi.getCurrentUser(username), BywayApi.getProfileInfo(username from params?)
+    // need to create some profiles to have a better look
 }
 
 export default ShowUserProfile;

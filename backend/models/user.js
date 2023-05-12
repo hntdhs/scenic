@@ -210,6 +210,22 @@ class User {
   
       if (!user) throw new NotFoundError(`No user: ${username}`);
     }
+
+    static async favoriteAByway(username, byway) {
+      console.log(username)
+      const result = await db.query(
+          `INSERT INTO favorites(username, byway)
+          VALUES ($1, $2)
+          RETURNING username, byway`,
+          [
+              username,
+              byway,
+          ],
+      );
+
+      return result.rows[0];
+    }
+  }
   
     /** Apply for job: update db, returns undefined.
      *
@@ -239,7 +255,7 @@ class User {
     //          VALUES ($1, $2)`,
     //       [jobId, username]);
     // }
-  }
+  
   
   
   module.exports = User;

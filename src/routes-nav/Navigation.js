@@ -29,7 +29,7 @@ function Navigation({ logout }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/profile/:username">
+            <NavLink to={`/profile/${currentUser.username}`}>
               Profile
             </NavLink>
           </li>

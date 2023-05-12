@@ -17,6 +17,11 @@ router.get("/", ensureLoggedIn, async function (req, res, next) {
         
   });
 
+router.get("/random", ensureLoggedIn, async function (req, res, next) {
+  const data = await bywayModel.getRandomByway(req.params);
+  return res.json(data);
+})
+
 router.get("/:name", ensureLoggedIn, async function (req, res, next) {
     const data = await bywayModel.getByway(req.params.name)
     if (!data) res.sendStatus(404);
@@ -33,5 +38,7 @@ router.get("/:name/comments", ensureLoggedIn, async function (req, res, next) {
   const data = await bywayModel.getCommentsByByway(req.params.name);
   return res.json(data);
 })
+
+
   
   module.exports = router;

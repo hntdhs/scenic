@@ -26,7 +26,7 @@ function StateDetail() {
         getStateDetail(name);
     }, [name]);
 
-    if (stateByways.length === 0) return <LoadingSpinner />;
+    // if (stateByways.length === 0) return <LoadingSpinner />;
     // if I just link to the same 404 page that byway detail links to then it won't say 'this state doesn't have any byways'
 
     return (
@@ -45,7 +45,7 @@ function StateDetail() {
                     ))}
                 </div>
             ) : (
-                <h4>Sorry, no results found.</h4>
+                <h4>Sorry, {name} has no byways.</h4>
             )}
         </div>
     )
