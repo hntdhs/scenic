@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import FilterSearch from "../byways/FilterSearch";
 // import "./SearchForm.css";
+import GeographicFeaturesSearch from "../byways/geoFeaturesSearch";
 
 /** Search widget.
  *
@@ -13,10 +15,16 @@ import React, { useState } from "react";
  * { CompanyList, JobList } -> SearchForm
  */
 
-function SearchForm({ searchFor }) {
+function SearchForm({ searchFor, filterByways }) {
+  // searchFor and filterByways are defined in FilterSearch (searchFor as search); when that component calls this one, those become useable here
   console.debug("SearchForm", "searchFor=", typeof searchFor);
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [minLength, setMinLength] = useState(0);
+  const [maxLength, setMaxLength] = useState("");
+  const [geoFeaturesSelect, setGeoFeaturesSelect] = useState([]);
+  // added the geoFeaturesSelect useState, setGeoFeaturesSelect gets set in the onChange in GeographicFeaturesSearch (passed in when that component is called in the JSX below in this component)
+
 
   /** Tell parent to filter */
   function handleSubmit(evt) {
@@ -26,6 +34,13 @@ function SearchForm({ searchFor }) {
     setSearchTerm(searchTerm.trim());
   }
 
+  function handleSubmitFilter(e) {
+    e.preventDefault();
+    filterByways({minLength, maxLength, geoFeaturesSelect})
+  }
+  // handles submit for searches involving filters, i.e. not searching by name. sends filters for search over to FilterSearch, which is where filterByways is defined
+  // e comes from the onChange in min and max length's onChange; different from other filters because it's a value the user is typing in rather than a checkbox
+
   /** Update form fields */
   function handleChange(evt) {
     setSearchTerm(evt.target.value);
@@ -33,17 +48,49 @@ function SearchForm({ searchFor }) {
 
   return (
       <div>
-        <form className="form-inline" onSubmit={handleSubmit}>
-          <input
-              name="searchTerm"
-              placeholder="Enter search term.."
-              value={searchTerm}
-              onChange={handleChange}
-          />
-          <button type="submit">
-            Submit
-          </button>
-        </form>
+        <div className="all-searches">
+          <form className="byway-name-search" onSubmit={handleSubmit}>
+            <p>Search byways by name</p>
+            <label htmlFor="searchTerm">Byway Name:</label>
+            <input
+                name="searchTerm"
+                // through the handleSubmit and its searchFor, the input's name makes it over to the search function in FilterSearch
+                placeholder="Enter search term.."
+                onChange={handleChange}
+            />
+            <button type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
+        <div className="not-name-searches">
+          <form onSubmit={handleSubmitFilter}>
+            <p>Search byways by length</p>
+            <label htmlFor="minLength">Minimum Byway Length:</label>
+            <input
+                name="minLength"
+                placeholder="how many miles?"
+                value={minLength}
+                onChange={e => setMinLength(e.target.value)}
+            />
+            <label htmlFor="maxLength">Maximum Byway Length:</label>
+            <input
+                name="maxLength"
+                placeholder="how many miles?"
+                value={maxLength}
+                onChange={e => setMaxLength(e.target.value)}
+            />
+            <p>Search byways by geographic features</p>
+            <GeographicFeaturesSearch 
+              value={geoFeaturesSelect}
+              onChange={setGeoFeaturesSelect}
+            />
+            
+            <button type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
   );
 }

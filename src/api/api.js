@@ -21,7 +21,7 @@ class BywayApi {
       try {
         return (await axios({ url, method, data, params, headers })).data;
       } catch (err) {
-        console.error("API Error:", err.response);
+        console.error("API Error:", err);
         let message = err.response.data.error.message;
         throw Array.isArray(message) ? message : [message];
       }
@@ -59,7 +59,12 @@ class BywayApi {
 
     static async getAllByways(name) {
       let res = await this.request("byways", { name });
-      return res.byways;
+      return res;
+    }
+
+    static async search(params) {
+      let res = await this.request("byways/search", params);
+      return res;
     }
 
     static async getByway(name) {

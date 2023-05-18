@@ -31,7 +31,6 @@ CREATE TABLE states (
   image TEXT NOT NULL
 );
 
-
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   comment TEXT NOT NULL,

@@ -7,40 +7,108 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 class Byway {
 
     static async findAll(searchFilters = {}) {
-        let query = 'SELECT name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways';
+        let query = 'SELECT name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways ORDER BY name';
     
         let whereExpressions = [];
         let queryValues = [];
-
-        const { minLength, maxLength, name } = searchFilters;
-
-        if (minLength > maxLength) {
-            throw new BadRequestError("Minimum Length can't be greater than Maximum Length");
-        }
-
-        if (minLength != undefined) {
-            queryValues.push(minLength);
-            whereExpressions.push(`length >+ $${queryValues.length}`);
-        }
-
-        if (maxLength != undefined) {
-            queryValues.push(maxLength);
-            whereExpressions.push(`length >+ $${queryValues.length}`);
-        }
+        console.log(searchFilters)
+        const { name, minLength, maxLength, geoFeaturesSelect} = searchFilters;
 
         if (name) {
             queryValues.push(`%${name}%`);
             whereExpressions.push(`name ILIKE $${queryValues.length}`);
         }
-        // in front end, add text fields with name of minLength and maxLength? or 'for', not 'name'?
-// pass in what's coming from checkboxes via get query params / filters = 
 
-      
-        if (whereExpressions.length > 0) {
-        query += " WHERE " + whereExpressions.join(" AND ");
+        if (maxLength > 0 && minLength > maxLength) {
+            throw new BadRequestError("Minimum Length can't be greater than Maximum Length");
+        }
+        // want to be sure that a user can enter a number in minLength and not maxLength without causing an error
+
+        if (parseInt(minLength) > 0) {
+            queryValues.push(minLength);
+            whereExpressions.push(`length >= $${queryValues.length}`);
+        }
+        // length in the byways table was created as text, need to turn that string into an int with parseInt
+
+        if (parseInt(maxLength) > 0) {
+            queryValues.push(maxLength);
+            whereExpressions.push(`length <= $${queryValues.length}`);
         }
 
+        // if (canyon != undefined) {
+        //     queryValues.push(canyon);
+        //     whereExpressions.push(`length >+ $${queryValues.length}`);
+        // }
+
+        // if (coastline != undefined) {
+        //     queryValues.push(coastline);
+        //     whereExpressions.push(`length >+ $${queryValues.length}`);
+        // }
+
+        // if (desert != undefined) {
+        //     queryValues.push(desert);
+        //     whereExpressions.push(`length >+ $${queryValues.length}`);
+        // }
+
+        // if (forest != undefined) {
+        //     queryValues.push(forest);
+        //     whereExpressions.push(`length >+ $${queryValues.length}`);
+        // }
+
+        // if (grasslands != undefined) {
+        //     queryValues.push(grasslands);
+        //     whereExpressions.push(`length >+ $${queryValues.length}`);
+        // }
+
+        // if (lake != undefined) {
+        //     queryValues.push(lake);
+        //     whereExpressions.push(`length >+ $${queryValues.length}`);
+        // }
+
+        // if (mountains != undefined) {
+        //     queryValues.push(mountains);
+        //     whereExpressions.push(`length >+ $${queryValues.length}`);
+        // }
+
+        // if (swamp != undefined) {
+        //     queryValues.push(swamp);
+        //     whereExpressions.push(`length >+ $${queryValues.length}`);
+        // }
+
+        // if (river != undefined) {
+        //     queryValues.push(river);
+        //     whereExpressions.push(`length >+ $${queryValues.length}`);
+        // }
+
+        // if (urban != undefined) {
+        //     queryValues.push(urban);
+        //     whereExpressions.push(`length >+ $${queryValues.length}`);
+        // }
+
+        const orExpressions = [];
+
+        if(geoFeaturesSelect && geoFeaturesSelect.length > 0) {
+            console.log(geoFeaturesSelect)
+            geoFeaturesSelect.forEach(i => {
+                queryValues.push(`%${i}%`);
+                whereExpressions.push(`geographic_features ILIKE $${queryValues.length}`)
+                // pushes each selected geo feature to the where expressions array
+                // ILIKE is same as 'like' but doesn't pay attention to letter case
+            })
+            // this is a lot simpler than doing individual if statements for each geo feature, like if (urban != undefined) push urban to queryValues
+        }
+
+        console.log(orExpressions, geoFeaturesSelect,geoFeaturesSelect.length > 0)
+
+        if (orExpressions.length > 0) {
+           whereExpressions.push('(' + orExpressions.join(' OR ') + ')');
+        }
+        if (whereExpressions.length > 0) {
+            query += " WHERE " + whereExpressions.join(" AND ");
+            }
+
         query += " ORDER BY name";
+        console.log(query);
         const bywaysRes = await db.query(query, queryValues);
         return bywaysRes.rows;
 
@@ -60,19 +128,6 @@ class Byway {
 
         // if (!rows) throw new NotFoundError(`No results`);
     }
-
-    // for individual byway pages
-    // static async getByway(name) {
-    //     const bywayRes = await db.query(
-    //         'SELECT name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways WHERE name = $1', [name]
-    //     );
-
-    //     const byway = bywayRes.rows[0];
-    //     return byway.rows;
-
-    //     if (!byway) throw new NotFoundError(`No byway: ${name}`);
-
-    // }
 
     static async getByway(name) {
         let query = 'SELECT id, name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways WHERE name = $1';
@@ -95,8 +150,7 @@ class Byway {
 
     static async getCommentsByByway(byway) {
         // get all comments by byway
-        // let query = 'SELECT comment, username, byway_id, create_at FROM comments WHERE byway_id = $1';
-        let query = 'SELECT comment, username, byway, create_at FROM comments WHERE byway = $1';
+        let query = 'SELECT comment, username, byway_id, create_at FROM comments JOIN byways ON comments.byway_id = byway.id WHERE byway_id = $1';
 
         const response = await db.query(query, [byway])
         return response.rows
@@ -105,13 +159,13 @@ class Byway {
     static async makeComment(byway, comment, username) {
         console.log(username)
         const result = await db.query(
-            `INSERT INTO comments(comment, username, byway, create_at)
+            `INSERT INTO comments(comment, username, byway_id, create_at)
             VALUES ($1, $2, $3, now())
-            RETURNING comment, username, byway, create_at`,
+            RETURNING comment, username, byway_id, create_at`,
             [
                 comment,
                 username,
-                byway,
+                byway_id,
             ],
         );
 

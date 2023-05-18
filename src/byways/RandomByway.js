@@ -10,6 +10,7 @@ function DisplayRandomByway() {
         let byway = await BywayApi.getRandomByway();
         setByway(byway);
     }
+    // moved findOne function out of the useEffect so it's accessible to both the useEffect and handleSubmit
 
     useEffect(() => {
         
@@ -20,7 +21,6 @@ function DisplayRandomByway() {
     function handleSubmit(evt) {
         findOne();
     }
-    // routing for random, link on main page, api, routes, model?
 
     return (
         <div>

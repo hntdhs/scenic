@@ -22,9 +22,9 @@ function BywayDetail() {
         async function getByway(name) {
             const b = await BywayApi.getByway(name)
             setByway(b);
-            // setComments(await BywayApi.getCommentsByByway(b.id));
+            setComments(await BywayApi.getCommentsByByway(b.id));
             // setComments(await BywayApi.getCommentsByByway(name));
-            setComments(await BywayApi.getCommentsByByway(b));
+            // setComments(await BywayApi.getCommentsByByway(b));
         }
 
         // async function getCommentsByByway(name) {
@@ -48,7 +48,7 @@ function BywayDetail() {
                         <h1>{byway.name}</h1>
                         <img src={byway.image} alt={byway.name}></img>
                         <h2>{byway.state}</h2>
-                        <h3>{byway.length}</h3>
+                        <h3>{byway.length} / ({byway.length} * 1.60934) kilometres</h3>
                         <p>Fees: {byway.fees}</p>
                         <p>Geographic features on this byway: {byway.geographicFeatures}</p>
                         <p>{byway.description}</p>

@@ -17,6 +17,13 @@ router.get("/", ensureLoggedIn, async function (req, res, next) {
         
   });
 
+  router.get("/search", ensureLoggedIn, async function (req, res, next) {
+    console.log(req.query)
+    const data = await bywayModel.findAll(req.query)
+    return res.json(data);
+        
+  });
+
 router.get("/random", ensureLoggedIn, async function (req, res, next) {
   const data = await bywayModel.getRandomByway(req.params);
   return res.json(data);
@@ -39,6 +46,6 @@ router.get("/:name/comments", ensureLoggedIn, async function (req, res, next) {
   return res.json(data);
 })
 
-
+// search route tht calls findAll
   
   module.exports = router;

@@ -1,47 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Checkbox from "./Checkbox";
 
-function geographicFeaturesSearch() {
-    const categories = [ canyon, coastline, desert, forest, grasslands, lake, mountains, swamp, river, urban];
+function GeographicFeaturesSearch({ onChange }) {
+    const categories = [ 'canyon', 'coastline', 'desert', 'forest', 'grasslands', 'lake', 'mountains', 'swamp', 'river', 'urban'];
+    const [selected, setSelected] = useState([])
+    // didn't work properly without doing the useState and useEffect and changeHandler here and instead doing it in the SearchForm component where it's called
+        
+    useEffect(() => {
+        onChange(selected)
+    }, [selected]);
 
-    function updateFilters() {
-        // send anything user checks as query values; send via params?
-    }
-}
-
-return (
-    <div>
-        {categories.map(c => (
-            <input
-            type="checkbox"
-            // name = categories[ind]
-            onChange={(e) => updateFilters(e.target.checked)}
-          />
-        ))
-
+    const changeHandler = (props) => {
+        if (props.checked) {
+            const index = selected.indexOf(props.value)
+            if (index > -1) {
+                selected.splice(index, 1)
+                setSelected(selected)
+            } else {
+                selected.push(props.value);
+                setSelected(seleted)
+            }
+            // this is used in SearchForm so that's where the value prop is given - value={geoFeaturesSelect}
+            
         }
-    </div>
-)
-// don't need to submit search here
-// could also do checkbox search and send in categories as props?
-// function checkboxSearch() {
-//     const categories = props;
+    }
+    return (
+        <div>
+            {categories.map(c => (
+                <div className="single-checkbox">
+                    <label key={c} htmlFor={c}>{c}</label>
+                    <Checkbox onChange={changeHandler} name={c}/>
+                </div>
+            ))
+    
+            }
+        </div>
+    )
+}
+ 
 
-        // return (
-        //     <div>
-        //         {props.categories.map(category =>
-        //             <input type="checkbox"
-        //             name="{category}"
-        //             onChange={(e) => updateFilters(e.target.checked)}
-        //             />
-        //         )}
-        //     </div>
-        // )
-
-        // then in search form component...
-        // <CheckboxSearch categories = [etc, etc]
-        // does 'props' have to be imported anywhere?
-
-        // you put 'props' into the component, then when that component is used elsewhere, you'd add the specifics in there - <geoFeaturesSearch categories=[etc etc] />
-// }
-
-export default geographicFeaturesSearch;
+export default GeographicFeaturesSearch;
