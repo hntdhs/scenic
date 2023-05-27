@@ -18,7 +18,12 @@ router.get("/", ensureLoggedIn, async function (req, res, next) {
   });
 
   router.get("/search", ensureLoggedIn, async function (req, res, next) {
-    console.log(req.query)
+    console.log(req.query, req.params, req.body)
+    // can do the console.log like that if i'm confused about which it is
+    // ?id=123 -> req.query.id
+    // /search/?q=Tom -> req.query.q
+    // /search/:q -> req.params.q
+    // POST /search {q: 'my search term} -> req.body.q
     const data = await bywayModel.findAll(req.query)
     return res.json(data);
         
@@ -35,14 +40,14 @@ router.get("/:name", ensureLoggedIn, async function (req, res, next) {
     return res.json(data);
   });
 
-router.post("/:name", ensureLoggedIn, async function (req, res, next) {
+router.post("/:id/comments", ensureLoggedIn, async function (req, res, next) {
   console.log('user', res.locals.user)
-  const data = await bywayModel.makeComment(req.params.name, req.body.comment, res.locals.user.username);
+  const data = await bywayModel.makeComment(req.params.id, req.body.comment, res.locals.user.username);
   return res.json(data);
 })
 
-router.get("/:name/comments", ensureLoggedIn, async function (req, res, next) {
-  const data = await bywayModel.getCommentsByByway(req.params.name);
+router.get("/:id/comments", ensureLoggedIn, async function (req, res, next) {
+  const data = await bywayModel.getCommentsByByway(req.params.id);
   return res.json(data);
 })
 

@@ -6,6 +6,7 @@ import SignupForm from '../auth/SignupForm'
 import ProfileForm from "../profiles/ProfileForm";
 import ProfilePage from "../profiles/ProfilePage"
 import FilterSearch from "../byways/FilterSearch";
+import NoSearchResults from "../common/NoSearchResults"
 import PrivateRoute from "./PrivateRoute";
 import StateMenu from "../byways/StateMenu";
 import StateDetail from "../byways/StateDetail";
@@ -40,6 +41,10 @@ function Routes({ login, signup }) {
 {/* might just need to render the search form, see right above, not a filter search component */}
             <PrivateRoute exact path="/search">
               <FilterSearch />
+            </PrivateRoute>
+
+            <PrivateRoute exact path="/noresults">
+              <NoSearchResults />
             </PrivateRoute>
 
             <PrivateRoute exact path="/profile">

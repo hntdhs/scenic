@@ -7,7 +7,7 @@ import UserContext from "../auth/UserContext";
 // don't forget link to edit, plus a ternary operator that displays a 'you haven't created a profile' message if there's nothing to display - was I going to make a table for profile data as opposed to user data?
 // call api for user info, should be same as jobly
 
-function CommentForm({name}) {
+function CommentForm({id}) {
     const { byway } = useParams();
     // byway I think since that's what's in the URL
     const { currentUser } = useContext(UserContext);
@@ -16,9 +16,10 @@ function CommentForm({name}) {
     // I think state is necessary because at first there is no comment, then comment exists
 
     async function handleSubmit(evt) {
-        await BywayApi.makeComment(name, comment);
+        await BywayApi.makeComment(id, comment);
         // setComment('');
         setComment(comment);
+        // getCommentsByByway(byway);
     }
 
     return (

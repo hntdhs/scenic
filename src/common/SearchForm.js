@@ -65,7 +65,7 @@ function SearchForm({ searchFor, filterByways }) {
         </div>
         <div className="not-name-searches">
           <form onSubmit={handleSubmitFilter}>
-            <p>Search byways by length</p>
+            <p>Search byways by length. The longest of America's Byways&reg; is the Alaska Marine Highway at 3500 miles!</p>
             <label htmlFor="minLength">Minimum Byway Length:</label>
             <input
                 name="minLength"
@@ -80,7 +80,7 @@ function SearchForm({ searchFor, filterByways }) {
                 value={maxLength}
                 onChange={e => setMaxLength(e.target.value)}
             />
-            <p>Search byways by geographic features</p>
+            <p>Search byways by geographic features. You'll see byways that contain all entered criteria.</p>
             <GeographicFeaturesSearch 
               value={geoFeaturesSelect}
               onChange={setGeoFeaturesSelect}

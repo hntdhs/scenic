@@ -16,7 +16,7 @@ CREATE TABLE byways (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     state TEXT NOT NULL,
-    length TEXT NOT NULL,
+    length float NOT NULL,
     designation TEXT NOT NULL,
     fees TEXT NOT NULL,
     image TEXT NOT NULL,

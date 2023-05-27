@@ -105,10 +105,10 @@ router.get("/:username", ensureCorrectUserOrAdmin, async function (req, res, nex
 
 // post favorite
 
-// do I need to pass something in for byway in addition in req.params.username?
-router.post("/:username/favorites", ensureCorrectUserOrAdmin, async function (req, res, next) {
+// changed id to be part of that url because the request was looking for id in params (req.params.id)
+router.post("/:username/favorites/:id", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
-    const user = await User.favoriteAByway(req.params.username);
+    const user = await User.favoriteAByway(req.params.username, req.params.id);
     return res.json({ user });
   } catch (err) {
     return next(err);

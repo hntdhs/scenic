@@ -4,7 +4,7 @@ import BywayApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 
-function FavoriteAByway() {
+function FavoriteAByway({id}) {
     const { byway } = useParams();
     const { currentUser } = useContext(UserContext);
 
@@ -23,8 +23,8 @@ function FavoriteAByway() {
     // }, []);
 
     async function handleSubmit(evt) {
-        await BywayApi.favoriteAByway(byway);
-        setFavorite(byway);
+        await BywayApi.favoriteAByway(currentUser.username, id);
+        setFavorite(id);
     }
 
     return (

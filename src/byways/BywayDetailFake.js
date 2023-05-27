@@ -8,7 +8,7 @@ import Alert from "../common/Alert";
 import FourOhFour from "../common/404";
 import CommentForm from "./CommentForm";
 import FavoriteAByway from "./FavoriteAByway";
-// import { getCommentsByByway } from "../../backend/models/byway";
+import { getCommentsByByway } from "../../backend/models/byway";
 
 // need comment form submission (form in a separate component) and comments display (call the API for all comments on this byway)
 // will call BywayAPI for info on a particular byway taking the name with params, then display 
@@ -26,15 +26,34 @@ function BywayDetail() {
         async function getByway(name) {
             const b = await BywayApi.getByway(name)
             setByway(b);
-            const c = await BywayApi.getCommentsByByway(b.id);
-            setComments(c);
+
+            async function getCommentsByByway(b) {
+                const c = (await BywayApi.getCommentsByByway(b.id));
+                setComments(c);
                 // 26 and 27 into function and call it here then pass it as property into comment form, call it in the handle submit
+                // take  the parenthesis off that await call
+                // try putting this in a separate useEffect, then outside of this useEffect just on its own, try it again in this useEffect but outside the getByway function. I know there's other useEffects that have two functions or more inside. 
+                // I do want to call it here as well as pass it over to comment form
+            }
+            getCommentsByByway(b);
         }    
 
         getByway(name);
     }, [name]);
 
+    function checkGeoFeatures(b) {
+        if (b.geographic_features.includes(",")) {
+            let featuresStatement = byway.geographicFeatures.replace(/("[^"]+"|\w+)$/, "and $1");
+        } else {
+            let featuresStatement = byway.geographicFeatures;
+        }
 
+        return featuresStatement;
+    }
+
+    function commasForBigNumbers() {
+
+    }
 
     // if (!byway) return <LoadingSpinner />;
     // if (!byway) return <Alert />;
@@ -54,12 +73,12 @@ function BywayDetail() {
                         <h3>{byway.length} miles / { Math.round((parseFloat(byway.length) * 1.60934)) } kilometres</h3>
                         <p><b>Fees:</b> {byway.fees}</p>
                         <p><b>Geographic features on this byway:</b><br></br> Wondering what kind of natural settings you'll see on {byway.name}? On your visit, you'll be enjoying { byway.geographicFeatures.replace(/("[^"]+"|\w+)$/, "and $1") }.</p>
-                        {/* <p><b>Geographic features on this byway:</b><br></br> Wondering what kind of natural settings you'll see on {byway.name}? On your visit, you'll be enjoying {featuresStatement}</p> */}
+                        <p><b>Geographic features on this byway:</b><br></br> Wondering what kind of natural settings you'll see on {byway.name}? On your visit, you'll be enjoying {featuresStatement}</p>
                         {/* <p>Geographic features on this byway: { byway.geographicFeatures.charAt(0).toUpperCase() + byway.geographicFeatures.slice(1) }</p> */}
                         <p><b>About {byway.name}</b><br></br>{byway.description}</p>
                         <FavoriteAByway id={byway.id} />
                         <h4>Comment on {byway.name}</h4>
-                        <CommentForm name={byway.name} id={byway.id}/>
+                        <CommentForm name={byway.name} id={byway.id} getCommentsByByway = {getCommentsByByway}/>
                         <div>
                             {comments
                             ? (

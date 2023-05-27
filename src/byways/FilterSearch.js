@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import BywayApi from "../api/api";
 import SearchForm from "../common/SearchForm";
 import BywayCard from "./BywayCard";
@@ -14,7 +15,9 @@ function FilterSearch() {
     const [currentPage, setCurrentPage] = useState(1);
     const [bywaysPerPage] = useState(10);
     
-    const [nPages, setNPages] = useState(0) 
+    const [nPages, setNPages] = useState(0); 
+
+    const history = useHistory();
     
     useEffect(() => {
         setNPages(Math.ceil(byways.length / bywaysPerPage))
@@ -37,11 +40,18 @@ function FilterSearch() {
     async function filterByways(filters) {
         let byways = await BywayApi.search(filters);
         setByways(byways);
+        if (!byways.length) {
+            history.push("/noresults");
+        }
     }
 
     async function search(name) {
         let byways = await BywayApi.search({name});
         setByways(byways);
+        if (!byways.length) {
+            history.push("/noresults");
+            // Alert type="success" messages={["Updated successfully."]} 
+        }
     }
 
     return (
@@ -57,7 +67,7 @@ function FilterSearch() {
                         <div>
                             {currentByWays.map(s => (
                                 <BywayCard
-                                    key={s.name}
+                                    key={s.name + s.state}
                                     name={s.name}
                                     image={s.image}
                                     designation={s.designation}

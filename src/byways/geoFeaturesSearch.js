@@ -18,7 +18,7 @@ function GeographicFeaturesSearch({ onChange }) {
                 setSelected(selected)
             } else {
                 selected.push(props.value);
-                setSelected(seleted)
+                setSelected(selected)
             }
             // this is used in SearchForm so that's where the value prop is given - value={geoFeaturesSelect}
             

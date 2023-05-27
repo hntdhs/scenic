@@ -211,51 +211,35 @@ class User {
       if (!user) throw new NotFoundError(`No user: ${username}`);
     }
 
-    static async favoriteAByway(username, byway) {
+    static async favoriteAByway(username, byway_id) {
       console.log(username)
       const result = await db.query(
-          `INSERT INTO favorites(username, byway)
+          `INSERT INTO favorites(username, byway_id)
           VALUES ($1, $2)
-          RETURNING username, byway`,
+          RETURNING username, byway_id`,
           [
               username,
-              byway,
+              byway_id,
           ],
       );
 
       return result.rows[0];
     }
+
+    // static async getUserFavorites(username, byway_id)
+    static async getUserFavorites(username) {
+      let query = 
+        `SELECT favorites.username, favorites.byway_id, byways.name, byways.image, byways.designation FROM favorites JOIN byways ON favorites.byway_id = byways.id WHERE byway_id = $1`;
+        // the problem could be that this function is expecting byway_id but it's not in any of the functions leading up to this in routes, api or profile page. nor could it be, I'm asking for byway_id's associated with this username in the favorites table and hopefully get byway information using those byway id's. profile page only knows about the user, so it can't send a byway id. I know you can SELECT things that aren't sent in as an argument, I do it all the time. but if that were the only problem, I think I'd be getting an error from models complaining about there being no byway id. 
+
+      // const response = await db.query(query, username, [byway_id])
+      const response = await db.query(query, username)
+      return response.rows;
+        // want to display byway cards which link to byway pages, which probably requires mapping on the profile page as in state detail
+      
+    }
   }
-  
-    /** Apply for job: update db, returns undefined.
-     *
-     * - username: username applying for job
-     * - jobId: job id
-     **/
-  
-    // static async applyToJob(username, jobId) {
-    //   const preCheck = await db.query(
-    //         `SELECT id
-    //          FROM jobs
-    //          WHERE id = $1`, [jobId]);
-    //   const job = preCheck.rows[0];
-  
-    //   if (!job) throw new NotFoundError(`No job: ${jobId}`);
-  
-    //   const preCheck2 = await db.query(
-    //         `SELECT username
-    //          FROM users
-    //          WHERE username = $1`, [username]);
-    //   const user = preCheck2.rows[0];
-  
-    //   if (!user) throw new NotFoundError(`No username: ${username}`);
-  
-    //   await db.query(
-    //         `INSERT INTO applications (job_id, username)
-    //          VALUES ($1, $2)`,
-    //       [jobId, username]);
-    // }
-  
+
   
   
   module.exports = User;

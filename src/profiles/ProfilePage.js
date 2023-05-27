@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import BywayApi from "../api/api";
 import UserContext from "../auth/UserContext";
 import { NavLink } from "react-router-dom";
+import BywayCard from "../byways/BywayCard";
 
 function ShowUserProfile() {
     const { username } = useParams();
     const { currentUser } = useContext(UserContext);
     const [isMe, setIsMe] = useState(false)
-    // probably don't need both of these but not sure if one is better
     const [profileInfo, setProfileInfo] = useState(null);
+    const [userFavorites, setUserFavorites] = useState(null);
 
     useEffect(() => {  
         async function getUserInfo() {
@@ -25,16 +26,35 @@ function ShowUserProfile() {
         if (currentUser && profileInfo) {
             setIsMe(currentUser.username === profileInfo.username);
         }
-    }, [profileInfo, currentUser])    
+    }, [profileInfo, currentUser])   
+    
+    useEffect(() => {
+        async function getUserFavorites() {
+            let userFavorites = await BywayApi.getUserFavorites(username);
+            setUserFavorites(userFavorites);
+        }
+        getUserFavorites();
+    })
 
     return (
         <div>
             {isMe ? <NavLink to={`/profile/`}>Edit your profile</NavLink> : ''}
-            <h3>{currentUser.username}</h3>
+            <h3>Welcome to the profile page of {currentUser.username}</h3>
             <img src={currentUser.profilePhoto} alt={"profile photo"} />
-            <h4>{currentUser.userLocation}</h4>
-            <h5>Favorite State to Travel To: {currentUser.favoriteState}</h5>
-            <p>{currentUser.bio}</p>
+            <h3>Location: {currentUser.userLocation}</h3>
+            <h3>Favorite State to Travel To: {currentUser.favoriteState}</h3>
+            <p>Bio: {currentUser.bio}</p>
+            <h1>USER FAVORITES</h1>
+            <div>
+                    {userFavorites.map(f => (
+                        <BywayCard
+                            key={f.name + f.state}
+                            name={f.name}
+                            image={f.image}
+                            designation={f.designation}
+                        />
+                    ))}
+                </div>
         </div>
     )
     // currentUser wouldn't work right if someone is looking at a different user's profile?

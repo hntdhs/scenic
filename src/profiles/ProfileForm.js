@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
 import BywayApi from "../api/api";
 import UserContext from "../auth/UserContext";
@@ -22,6 +23,7 @@ import useTimedMessage from "../hooks/useTimedMessage";
 
 function ProfileForm() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const history = useHistory();
   const [formData, setFormData] = useState({
     bio: currentUser.bio,
     userLocation: currentUser.userLocation,
@@ -69,6 +71,7 @@ function ProfileForm() {
 
     // trigger reloading of user information throughout the site
     setCurrentUser(updatedUser);
+    history.push("/profile");
   }
 
   /** Handle form data changing */
@@ -83,6 +86,7 @@ function ProfileForm() {
 
   return (
       <div>
+        <h2>Hi there, {currentUser.username}! This is where you create and edit your profile.</h2>
         <h3>Profile</h3>
             <form>
               <div>
@@ -134,6 +138,8 @@ function ProfileForm() {
               {saveConfirmed
                   ?
                   <Alert type="success" messages={["Updated successfully."]} />
+                  // redirect here?
+                  // {history.push("/profile")};
                   : null}
 
               <button

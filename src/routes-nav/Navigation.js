@@ -34,6 +34,11 @@ function Navigation({ logout }) {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/random">
+              See a Random Byway
+            </NavLink>
+          </li>
+          <li>
             <Link to="/" onClick={logout}>
               Log out {currentUser.first_name || currentUser.username}
             </Link>

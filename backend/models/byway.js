@@ -7,7 +7,7 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 class Byway {
 
     static async findAll(searchFilters = {}) {
-        let query = 'SELECT name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways ORDER BY name';
+        let query = 'SELECT name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways';
     
         let whereExpressions = [];
         let queryValues = [];
@@ -35,56 +35,6 @@ class Byway {
             whereExpressions.push(`length <= $${queryValues.length}`);
         }
 
-        // if (canyon != undefined) {
-        //     queryValues.push(canyon);
-        //     whereExpressions.push(`length >+ $${queryValues.length}`);
-        // }
-
-        // if (coastline != undefined) {
-        //     queryValues.push(coastline);
-        //     whereExpressions.push(`length >+ $${queryValues.length}`);
-        // }
-
-        // if (desert != undefined) {
-        //     queryValues.push(desert);
-        //     whereExpressions.push(`length >+ $${queryValues.length}`);
-        // }
-
-        // if (forest != undefined) {
-        //     queryValues.push(forest);
-        //     whereExpressions.push(`length >+ $${queryValues.length}`);
-        // }
-
-        // if (grasslands != undefined) {
-        //     queryValues.push(grasslands);
-        //     whereExpressions.push(`length >+ $${queryValues.length}`);
-        // }
-
-        // if (lake != undefined) {
-        //     queryValues.push(lake);
-        //     whereExpressions.push(`length >+ $${queryValues.length}`);
-        // }
-
-        // if (mountains != undefined) {
-        //     queryValues.push(mountains);
-        //     whereExpressions.push(`length >+ $${queryValues.length}`);
-        // }
-
-        // if (swamp != undefined) {
-        //     queryValues.push(swamp);
-        //     whereExpressions.push(`length >+ $${queryValues.length}`);
-        // }
-
-        // if (river != undefined) {
-        //     queryValues.push(river);
-        //     whereExpressions.push(`length >+ $${queryValues.length}`);
-        // }
-
-        // if (urban != undefined) {
-        //     queryValues.push(urban);
-        //     whereExpressions.push(`length >+ $${queryValues.length}`);
-        // }
-
         const orExpressions = [];
 
         if(geoFeaturesSelect && geoFeaturesSelect.length > 0) {
@@ -98,7 +48,7 @@ class Byway {
             // this is a lot simpler than doing individual if statements for each geo feature, like if (urban != undefined) push urban to queryValues
         }
 
-        console.log(orExpressions, geoFeaturesSelect,geoFeaturesSelect.length > 0)
+        // console.log(orExpressions, geoFeaturesSelect,geoFeaturesSelect.length > 0)
 
         if (orExpressions.length > 0) {
            whereExpressions.push('(' + orExpressions.join(' OR ') + ')');
@@ -148,15 +98,15 @@ class Byway {
 
     }
 
-    static async getCommentsByByway(byway) {
+    static async getCommentsByByway(byway_id) {
         // get all comments by byway
-        let query = 'SELECT comment, username, byway_id, create_at FROM comments JOIN byways ON comments.byway_id = byway.id WHERE byway_id = $1';
+        let query = 'SELECT comment, username, byway_id, create_at FROM comments JOIN byways ON comments.byway_id = byways.id WHERE byway_id = $1';
 
-        const response = await db.query(query, [byway])
+        const response = await db.query(query, [byway_id])
         return response.rows
     }
 
-    static async makeComment(byway, comment, username) {
+    static async makeComment(byway_id, comment, username) {
         console.log(username)
         const result = await db.query(
             `INSERT INTO comments(comment, username, byway_id, create_at)
