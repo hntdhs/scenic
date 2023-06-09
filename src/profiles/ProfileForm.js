@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
 import BywayApi from "../api/api";
 import UserContext from "../auth/UserContext";
+import LimitedTextArea from "../common/LimitedTextArea";
 
 // eslint-disable-next-line
 import useTimedMessage from "../hooks/useTimedMessage";
@@ -75,8 +76,9 @@ function ProfileForm() {
   }
 
   /** Handle form data changing */
-  function handleChange(evt) {
-    const { name, value } = evt.target;
+  function handleChange(name, value) {
+    // console.log(evt)
+    // const { name, value } = evt.target;
     setFormData(f => ({
       ...f,
       [name]: value,
@@ -91,35 +93,35 @@ function ProfileForm() {
             <form>
               <div>
                 <label>Bio</label>
-                <input
-                    name="bio"
-                    value={formData.bio}
-                    onChange={handleChange}
-                />
+                <LimitedTextArea value={formData.bio} limit={200} onChange={(newValue) => {return handleChange('bio', newValue)}} />
               </div>
               <div>
                 <label>Location</label>
-                <input
+                <LimitedTextArea value={formData.location} limit={100} onChange={(newValue) => {return handleChange('location', newValue)}} />
+                {/* <input
                     name="userLocation"
                     value={formData.location}
                     onChange={handleChange}
-                />
+                /> */}
+                {/* there's two different input types so might need two versions of handleChange */}
               </div>
               <div>
                 <label>Favorite state to travel to</label>
-                <input
+                <LimitedTextArea value={formData.favoriteState} limit={100} onChange={(newValue) => {return handleChange('favoriteState', newValue)}} />
+                {/* <input
                     name="favoriteState"
                     value={formData.favoriteState}
                     onChange={handleChange}
-                />
+                /> */}
               </div>
               <div>
                 <label>Profile Photo</label>
-                <input
+                <LimitedTextArea value={formData.profilePhoto} limit={1000} onChange={(newValue) => {return handleChange('profilePhoto', newValue)}} />
+                {/* <input
                     name="profilePhoto"
                     value={formData.profilePhoto}
                     onChange={handleChange}
-                />
+                /> */}
               </div>
               {/* <div>
                 <label>Confirm password to make changes:</label>
@@ -138,8 +140,6 @@ function ProfileForm() {
               {saveConfirmed
                   ?
                   <Alert type="success" messages={["Updated successfully."]} />
-                  // redirect here?
-                  // {history.push("/profile")};
                   : null}
 
               <button

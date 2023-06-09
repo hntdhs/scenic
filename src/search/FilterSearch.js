@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import BywayApi from "../api/api";
-import SearchForm from "../common/SearchForm";
-import BywayCard from "./BywayCard";
-import Pagination from "./Pagination";
+import SearchForm from "./SearchForm";
+import BywayCard from "../byways/BywayCard";
+import Pagination from "../common/Pagination";
 
 // search via filters, go to browse by state, go to display and search users
 
@@ -36,12 +36,17 @@ function FilterSearch() {
         }
         getBywaysForDisplay();
     }, []);
+    // display error to user - try/catch?
 
     async function filterByways(filters) {
-        let byways = await BywayApi.search(filters);
-        setByways(byways);
-        if (!byways.length) {
-            history.push("/noresults");
+        try {
+            let byways = await BywayApi.search(filters);
+            setByways(byways);
+            if (!byways.length) {
+                history.push("/noresults");
+            }
+        } catch (errors) {
+            return;
         }
     }
 

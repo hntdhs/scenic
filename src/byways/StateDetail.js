@@ -31,12 +31,13 @@ function StateDetail() {
 
     return (
         <div>
-            <h2>Check Out the Scenic Drives Available in {name}!</h2>
+            {/* <h2>Check Out the Scenic Drives Available in {name}!</h2> */}
             {/*  */}
             {stateByways.length
             // states.length > 0
             ? (
                 <div>
+                    <h2>Check Out the Scenic Drives Available in {name}!</h2>
                     {stateByways.map(s => (
                         <BywayCard
                             key={s.name}

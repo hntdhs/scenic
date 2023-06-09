@@ -43,6 +43,12 @@
       super(message, 403);
     }
   }
+
+  class BadSearchError extends ExpressError {
+    constructor(message = "There's a problem with what you searched for") {
+      super(message, 500);
+    }
+  }
   
   module.exports = {
     ExpressError,
@@ -50,4 +56,5 @@
     UnauthorizedError,
     BadRequestError,
     ForbiddenError,
+    BadSearchError,
   };

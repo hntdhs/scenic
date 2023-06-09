@@ -3,28 +3,30 @@ import { useParams } from "react-router-dom";
 import BywayApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner"; 
 import UserContext from "../auth/UserContext";
+import LimitedTextArea from "../common/LimitedTextArea";
 
 // don't forget link to edit, plus a ternary operator that displays a 'you haven't created a profile' message if there's nothing to display - was I going to make a table for profile data as opposed to user data?
 // call api for user info, should be same as jobly
 
-function CommentForm({id}) {
+function CommentForm({id, onAdd}) {
     const { byway } = useParams();
     // byway I think since that's what's in the URL
     const { currentUser } = useContext(UserContext);
 
-    const [comment, setComment] = useState(false);
-    // I think state is necessary because at first there is no comment, then comment exists
+    const [comment, setComment] = useState("");
 
     async function handleSubmit(evt) {
-        await BywayApi.makeComment(id, comment);
+        const response = await BywayApi.makeComment(id, comment);
         // setComment('');
-        setComment(comment);
+        setComment('');
+        onAdd(response)
         // getCommentsByByway(byway);
     }
 
     return (
         <div>
-            <textarea onChange={e => setComment(e.target.value)} ></textarea>
+            {/* <textarea onChange={e => setComment(e.target.value)} ></textarea> */}
+            <LimitedTextArea value={comment} limit={500} onChange={setComment}/>
             <button onClick={handleSubmit}>
                 Submit
             </button>

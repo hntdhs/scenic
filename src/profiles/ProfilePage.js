@@ -9,8 +9,9 @@ function ShowUserProfile() {
     const { username } = useParams();
     const { currentUser } = useContext(UserContext);
     const [isMe, setIsMe] = useState(false)
-    const [profileInfo, setProfileInfo] = useState(null);
-    const [userFavorites, setUserFavorites] = useState(null);
+    const [profileInfo, setProfileInfo] = useState({});
+    const [userFavorites, setUserFavorites] = useState([]);
+    // 
 
     useEffect(() => {  
         async function getUserInfo() {
@@ -34,7 +35,7 @@ function ShowUserProfile() {
             setUserFavorites(userFavorites);
         }
         getUserFavorites();
-    })
+    }, [])
 
     return (
         <div>

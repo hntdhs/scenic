@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import FilterSearch from "../byways/FilterSearch";
+import FilterSearch from "./FilterSearch";
 // import "./SearchForm.css";
-import GeographicFeaturesSearch from "../byways/geoFeaturesSearch";
+import GeographicFeaturesSearch from "./geoFeaturesSearch";
+import DesignationSearch from "./DesignationSearch";
 
 /** Search widget.
  *
@@ -22,7 +23,8 @@ function SearchForm({ searchFor, filterByways }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [minLength, setMinLength] = useState(0);
   const [maxLength, setMaxLength] = useState("");
-  const [geoFeaturesSelect, setGeoFeaturesSelect] = useState([]);
+  const [geoFeaturesSelect, setGeoFeaturesSelect] = useState({});
+  const [designationSearch, setDesignationSearch] = useState({});
   // added the geoFeaturesSelect useState, setGeoFeaturesSelect gets set in the onChange in GeographicFeaturesSearch (passed in when that component is called in the JSX below in this component)
 
 
@@ -31,12 +33,13 @@ function SearchForm({ searchFor, filterByways }) {
     // take care of accidentally trying to search for just spaces
     evt.preventDefault();
     searchFor(searchTerm.trim() || undefined);
-    setSearchTerm(searchTerm.trim());
+    setSearchTerm('');
   }
 
   function handleSubmitFilter(e) {
     e.preventDefault();
-    filterByways({minLength, maxLength, geoFeaturesSelect})
+    filterByways({minLength, maxLength, geoFeaturesSelect, designationSearch})
+
   }
   // handles submit for searches involving filters, i.e. not searching by name. sends filters for search over to FilterSearch, which is where filterByways is defined
   // e comes from the onChange in min and max length's onChange; different from other filters because it's a value the user is typing in rather than a checkbox
@@ -57,6 +60,7 @@ function SearchForm({ searchFor, filterByways }) {
                 // through the handleSubmit and its searchFor, the input's name makes it over to the search function in FilterSearch
                 placeholder="Enter search term.."
                 onChange={handleChange}
+                value={searchTerm}
             />
             <button type="submit">
               Submit
@@ -82,8 +86,12 @@ function SearchForm({ searchFor, filterByways }) {
             />
             <p>Search byways by geographic features. You'll see byways that contain all entered criteria.</p>
             <GeographicFeaturesSearch 
-              value={geoFeaturesSelect}
               onChange={setGeoFeaturesSelect}
+              value={geoFeaturesSelect}
+            />
+            <DesignationSearch 
+              onChange={setDesignationSearch}
+              value={designationSearch}
             />
             
             <button type="submit">

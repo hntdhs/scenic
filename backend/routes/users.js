@@ -118,7 +118,7 @@ router.post("/:username/favorites/:id", ensureCorrectUserOrAdmin, async function
 router.get("/:username/favorites", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
     const user = await User.getUserFavorites(req.params.username);
-    return res.json({ user });
+    return res.json(user);
   } catch (err) {
     return next(err);
   }

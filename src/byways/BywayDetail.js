@@ -6,9 +6,8 @@ import BywayApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
 import Alert from "../common/Alert";
 import FourOhFour from "../common/404";
-import CommentForm from "./CommentForm";
-import FavoriteAByway from "./FavoriteAByway";
-// import { getCommentsByByway } from "../../backend/models/byway";
+import CommentForm from "../actions/CommentForm";
+import FavoriteAByway from "../actions/FavoriteAByway";
 
 // need comment form submission (form in a separate component) and comments display (call the API for all comments on this byway)
 // will call BywayAPI for info on a particular byway taking the name with params, then display 
@@ -18,7 +17,7 @@ function BywayDetail() {
     const { name } = useParams();
 
     const [byway, setByway] = useState(null);
-    const [comments, setComments] = useState(null);
+    const [comments, setComments] = useState([]);
 
     // function for seeing if there's more than one feature, maybe see if string includes comma and if it doesn't then return as is, if it does then include the and
 
@@ -34,6 +33,39 @@ function BywayDetail() {
         getByway(name);
     }, [name]);
 
+    const addComment = (comment) => {
+        const updatedComments = [...comments, comment]
+        setComments(updatedComments);
+    }
+
+    // put breakpoint on first byway.geoFeatures.length below on Minnesota River's page, hovering over length showed 24, but hovering over geoFeatures showed the correct 3. hovering over Charles Street shows 5. Hallowed Ground shows the correct 0, so it makes sense that that's the only one getting to the 'else' at the bottom of the function. so the issue is that it's showing the correct geoFeatures when I put the breakpoint in, but the length is way off.
+    function checkGeoFeaturesLength(byway) {
+        const splitted = byway.geographicFeatures.split(',')
+        if (splitted.length >= 3) {
+            // if byway has 3 or more - features = Feature, feature, and feature
+            // return byway.geographicFeatures.charAt(0).toUpperCase() + byway.geographicFeatures.replace(/("[^"]+"|\w+)$/, "and $1").slice(1);
+            const lastIndex = byway.geographicFeatures.lastIndexOf(',')
+            return byway.geographicFeatures.charAt(0).toUpperCase() + byway.geographicFeatures.slice(1, lastIndex) + ' and' + byway.geographicFeatures(lastIndex + 1);
+        } else if (splitted.length === 2) {
+            // if byway has 2 - features = Feature and feature (needs 'and' between )
+            // return byway.geographicFeatures.charAt(0).toUpperCase() + byway.geographicFeatures.replace(/("[^"]+"|\w+)$/, "and $1").slice(1);
+            const newString = splitted[0] + ' and' + splitted[1]
+            return newString.charAt(0).toUpperCase() + newString.slice(1)
+        } else if (splitted.length === 1) {
+            // if byway has 1 - features = Feature
+            // byway with one feature (charles street) showed 'no features verified'
+            // after adding the .length to byway.geoFeatures charles street shows '3 or more'
+            return byway.geographicFeatures.charAt(0).toUpperCase() + byway.geographicFeatures.slice(1);
+        } else {
+            // if byway has none - 'No geographic features have been verified for this byway'
+            // byway with no features (hallowed ground) showed 'no features verified', maybe just because things are falling down to this part of the function
+            // after adding the .length to byway.geoFeatures this shows 'no features verified'
+            return "No geographic features have been verified for this byway.";
+
+        }
+        
+    }
+
 
 
     // if (!byway) return <LoadingSpinner />;
@@ -41,7 +73,7 @@ function BywayDetail() {
     // if (!byway) return <FourOhFour />
     // when I try it with Alert I get nothing on the page
     // just erase this? - just a blank page when there's nothing here
-
+    console.log(comments);
     return (
         <div>
             {byway
@@ -53,21 +85,21 @@ function BywayDetail() {
                         {/* <h3>{byway.length} / {(parseFloat(byway.length) * 1.60934).toFixed(1)} kilometres</h3> */}
                         <h3>{byway.length} miles / { Math.round((parseFloat(byway.length) * 1.60934)) } kilometres</h3>
                         <p><b>Fees:</b> {byway.fees}</p>
-                        <p><b>Geographic features on this byway:</b><br></br> Wondering what kind of natural settings you'll see on {byway.name}? On your visit, you'll be enjoying { byway.geographicFeatures.replace(/("[^"]+"|\w+)$/, "and $1") }.</p>
-                        {/* <p><b>Geographic features on this byway:</b><br></br> Wondering what kind of natural settings you'll see on {byway.name}? On your visit, you'll be enjoying {featuresStatement}</p> */}
-                        {/* <p>Geographic features on this byway: { byway.geographicFeatures.charAt(0).toUpperCase() + byway.geographicFeatures.slice(1) }</p> */}
+                        {/* <p><b>Geographic features on this byway:</b><br></br> Wondering what kind of natural settings you'll see on {byway.name}? On your visit, you'll be enjoying { byway.geographicFeatures.split(",").length > 1 ? byway.geographicFeatures.replace(/("[^"]+"|\w+)$/, "and $1") : `: ${byway.geographicFeatures}` }.</p> */}
+                        {/* <p><b>Wondering what kind of natural settings you'll see on this byway?</b> { byway.geographicFeatures.split(",").length >= 1 ? <p>Geographic features on {byway.name} include (but are not limited to): { byway.geographicFeatures.charAt(0).toUpperCase() + byway.geographicFeatures.slice(1) }</p> : <p>No geographic features have been verified for this byway</p> }.</p> */}
+                        {<p><b>Wondering what kind of natural settings you'll see on this byway?</b> {checkGeoFeaturesLength(byway)}.</p> }
                         <p><b>About {byway.name}</b><br></br>{byway.description}</p>
                         <FavoriteAByway id={byway.id} />
                         <h4>Comment on {byway.name}</h4>
-                        <CommentForm name={byway.name} id={byway.id}/>
+                        <CommentForm name={byway.name} id={byway.id} onAdd={addComment}/>
                         <div>
                             {comments
                             ? (
                                 <div>
-                                    {comments.map(c => (
-                                        <div>
-                                            <h6>{c.username}</h6>
-                                            <h6>{c.create_at}</h6>
+                                    {comments.map((c, i) => (
+                                        <div key={i}>
+                                            <h4>User {c.username}</h4>
+                                            <h4>said this at {c.create_at}:</h4>
                                             <p>{c.comment}</p>
                                         </div>
                                     ))}

@@ -226,16 +226,12 @@ class User {
       return result.rows[0];
     }
 
-    // static async getUserFavorites(username, byway_id)
     static async getUserFavorites(username) {
       let query = 
-        `SELECT favorites.username, favorites.byway_id, byways.name, byways.image, byways.designation FROM favorites JOIN byways ON favorites.byway_id = byways.id WHERE byway_id = $1`;
-        // the problem could be that this function is expecting byway_id but it's not in any of the functions leading up to this in routes, api or profile page. nor could it be, I'm asking for byway_id's associated with this username in the favorites table and hopefully get byway information using those byway id's. profile page only knows about the user, so it can't send a byway id. I know you can SELECT things that aren't sent in as an argument, I do it all the time. but if that were the only problem, I think I'd be getting an error from models complaining about there being no byway id. 
+        `SELECT favorites.username, favorites.byway_id, byways.name, byways.image, byways.designation FROM favorites JOIN byways ON favorites.byway_id = byways.id WHERE username = $1`;
 
-      // const response = await db.query(query, username, [byway_id])
-      const response = await db.query(query, username)
+      const response = await db.query(query, [username])
       return response.rows;
-        // want to display byway cards which link to byway pages, which probably requires mapping on the profile page as in state detail
       
     }
   }

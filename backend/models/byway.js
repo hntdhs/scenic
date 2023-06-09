@@ -12,12 +12,13 @@ class Byway {
         let whereExpressions = [];
         let queryValues = [];
         console.log(searchFilters)
-        const { name, minLength, maxLength, geoFeaturesSelect} = searchFilters;
+        const { name, minLength, maxLength, geoFeaturesSelect, designationSearch} = searchFilters;
 
         if (name) {
             queryValues.push(`%${name}%`);
             whereExpressions.push(`name ILIKE $${queryValues.length}`);
         }
+        // 'name' is whatever is being entered into the search window, so it goes into .length, which goes into await db.query at the bottom of this function
 
         if (maxLength > 0 && minLength > maxLength) {
             throw new BadRequestError("Minimum Length can't be greater than Maximum Length");
@@ -48,6 +49,14 @@ class Byway {
             // this is a lot simpler than doing individual if statements for each geo feature, like if (urban != undefined) push urban to queryValues
         }
 
+        if(designationSearch && designationSearch.length > 0) {
+            console.log(designationSearch)
+            designationSearch.forEach( i => {
+                queryValues.push(`%${i}%`);
+                whereExpressions.push(`designation ILIKE $${queryValues.length}`)
+            })
+        }
+
         // console.log(orExpressions, geoFeaturesSelect,geoFeaturesSelect.length > 0)
 
         if (orExpressions.length > 0) {
@@ -71,7 +80,7 @@ class Byway {
     }
 
     static async findBywaysByState(state)  {
-        let query = 'SELECT name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways WHERE state like $1';
+        let query = 'SELECT name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways WHERE state like $1 ORDER BY name';
 
         const response = await db.query(query, [`%${state}%`])
         return response.rows
@@ -91,7 +100,7 @@ class Byway {
     }
 
     static async getAllByways() {
-        let query = 'SELECT id, name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways';
+        let query = 'SELECT id, name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways ORDER BY name';
 
         const response = await db.query(query)
         return response.rows
@@ -100,7 +109,8 @@ class Byway {
 
     static async getCommentsByByway(byway_id) {
         // get all comments by byway
-        let query = 'SELECT comment, username, byway_id, create_at FROM comments JOIN byways ON comments.byway_id = byways.id WHERE byway_id = $1';
+        // let query = 'SELECT comment, username, byway_id, create_at, DATE(create_at) FROM comments JOIN byways ON comments.byway_id = byways.id WHERE byway_id = $1';
+        let query = 'SELECT comment, username, byway_id, create_at, DATE(create_at) FROM comments JOIN byways ON comments.byway_id = byways.id WHERE byway_id = $1';
 
         const response = await db.query(query, [byway_id])
         return response.rows
@@ -109,9 +119,12 @@ class Byway {
     static async makeComment(byway_id, comment, username) {
         console.log(username)
         const result = await db.query(
+            // `INSERT INTO comments(comment, username, byway_id, create_at, DATE(create_at))
+            // VALUES ($1, $2, $3, now())
+            // RETURNING comment, username, byway_id, create_at`,
             `INSERT INTO comments(comment, username, byway_id, create_at)
             VALUES ($1, $2, $3, now())
-            RETURNING comment, username, byway_id, create_at`,
+            RETURNING comment, username, byway_id, create_at, now()` ,  
             [
                 comment,
                 username,

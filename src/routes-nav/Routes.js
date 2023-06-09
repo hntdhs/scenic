@@ -5,13 +5,14 @@ import LoginForm from '../auth/LoginForm'
 import SignupForm from '../auth/SignupForm'
 import ProfileForm from "../profiles/ProfileForm";
 import ProfilePage from "../profiles/ProfilePage"
-import FilterSearch from "../byways/FilterSearch";
+import FilterSearch from "../search/FilterSearch";
 import NoSearchResults from "../common/NoSearchResults"
 import PrivateRoute from "./PrivateRoute";
 import StateMenu from "../byways/StateMenu";
 import StateDetail from "../byways/StateDetail";
 import BywayDetail from "../byways/BywayDetail";
 import DisplayRandomByway from "../byways/RandomByway";
+import DesignationExplanation from "../search/DesignationExplanation";
 
 
 
@@ -45,6 +46,10 @@ function Routes({ login, signup }) {
 
             <PrivateRoute exact path="/noresults">
               <NoSearchResults />
+            </PrivateRoute>
+
+            <PrivateRoute exact path="/designations-explanation">
+              <DesignationExplanation />
             </PrivateRoute>
 
             <PrivateRoute exact path="/profile">
