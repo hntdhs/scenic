@@ -37,6 +37,8 @@ function ShowUserProfile() {
         getUserFavorites();
     }, [])
 
+    // handleSubmit for removal button in map
+
     return (
         <div>
             {isMe ? <NavLink to={`/profile/`}>Edit your profile</NavLink> : ''}

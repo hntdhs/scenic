@@ -49,7 +49,7 @@ function FavoriteAByway({id}) {
 
         return (
             <div>
-                {setHasBeenSet
+                {hasBeenSet
                 ? (
                 <Alert messages={["Byway added to your favorites."]} />
                  ) : (

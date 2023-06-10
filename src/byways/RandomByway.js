@@ -6,6 +6,7 @@ import BywayApi from "../api/api";
 function DisplayRandomByway() {
     const history = useHistory();
     const [byway, setByway] = useState(null);
+    
     async function findOne() {
         let byway = await BywayApi.getRandomByway();
         setByway(byway);

@@ -97,7 +97,7 @@ function ProfileForm() {
               </div>
               <div>
                 <label>Location</label>
-                <LimitedTextArea value={formData.location} limit={100} onChange={(newValue) => {return handleChange('location', newValue)}} />
+                <LimitedTextArea value={formData.userLocation} limit={100} onChange={(newValue) => {return handleChange('userLocation', newValue)}} />
                 {/* <input
                     name="userLocation"
                     value={formData.location}
