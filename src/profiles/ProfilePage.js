@@ -4,6 +4,7 @@ import BywayApi from "../api/api";
 import UserContext from "../auth/UserContext";
 import { NavLink } from "react-router-dom";
 import BywayCard from "../byways/BywayCard";
+// import { getUserFavorites } from "../../backend/models/user";
 
 function ShowUserProfile() {
     const { username } = useParams();
@@ -11,7 +12,14 @@ function ShowUserProfile() {
     const [isMe, setIsMe] = useState(false)
     const [profileInfo, setProfileInfo] = useState({});
     const [userFavorites, setUserFavorites] = useState([]);
+    const [sortBy, setSortBy] = useState('name');
+    const [sortDirection, setSortDirection] = useState('asc');
     // 
+
+    async function getUserFavorites() {
+        let userFavorites = await BywayApi.getUserFavorites(username, sortBy, sortDirection);
+        setUserFavorites(userFavorites);
+    }
 
     useEffect(() => {  
         async function getUserInfo() {
@@ -19,8 +27,6 @@ function ShowUserProfile() {
             setProfileInfo(profileInfo);
         }
         getUserInfo();
-
-        // need to call for favorites unless I'm going to add favorites to user info as a column in that table
     }, [username]);
 
     useEffect(() => {
@@ -30,14 +36,30 @@ function ShowUserProfile() {
     }, [profileInfo, currentUser])   
     
     useEffect(() => {
-        async function getUserFavorites() {
-            let userFavorites = await BywayApi.getUserFavorites(username);
-            setUserFavorites(userFavorites);
-        }
+        // moved this to the top outside a useEffect to make it accessible to handleSubmitSortBy, but ended up not using it there, so could go back into this useEffect. don't think it matters if it's defined here or up top.
+        // async function getUserFavorites() {
+        //     let userFavorites = await BywayApi.getUserFavorites(username);
+        //     setUserFavorites(userFavorites);
+        // }
+        debugger
         getUserFavorites();
-    }, [])
+        
+    }, [sortBy, sortDirection])
 
     // handleSubmit for removal button in map
+    // tell the function which byway is being removed by passing it into an anonymous function in the button's onClick below
+    async function handleSubmit(username, byway_id) {
+        await BywayApi.removeFavorite(username, byway_id);
+        getUserFavorites();
+    }
+
+    async function handleSubmitSortBy(sortField, direction) {
+        setSortBy(sortField)
+        setSortDirection(direction);
+        // sortField and direction get passed here from the onClick in JSX
+    }
+        
+    
 
     return (
         <div>
@@ -48,14 +70,30 @@ function ShowUserProfile() {
             <h3>Favorite State to Travel To: {currentUser.favoriteState}</h3>
             <p>Bio: {currentUser.bio}</p>
             <h1>USER FAVORITES</h1>
+
+            <h4>Order favorites by:</h4>
+            {sortBy == 'name' && sortDirection == 'asc' ? 
+            // these are the initial states for sortBy and sortDirection
+                (<button onClick={e => handleSubmitSortBy('name', 'desc')}>Z-A</button>) :
+                // button starts as Z-A because byways are initially A-Z, so if user wanted to reverse order from that, button should be the opposite of what's initally shown
+                (<button onClick={e => handleSubmitSortBy('name', 'asc')}>A-Z</button>)
+            }
+            <button onClick={e => handleSubmitSortBy('length', 'asc')}>Shortest to Longest</button>
+            <button onClick={e => handleSubmitSortBy('length', 'desc')}>Longest to Shortest</button>
             <div>
                     {userFavorites.map(f => (
-                        <BywayCard
-                            key={f.name + f.state}
-                            name={f.name}
-                            image={f.image}
-                            designation={f.designation}
-                        />
+                        <div>
+                            <BywayCard
+                                key={f.name + f.state}
+                                name={f.name}
+                                image={f.image}
+                                designation={f.designation}
+                            />
+                        
+                            <button onClick={() => handleSubmit(username, f.byway_id)}>
+                            Remove Favorite
+                            </button>
+                        </div>
                     ))}
                 </div>
         </div>

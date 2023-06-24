@@ -12,7 +12,11 @@
       "testPathIgnorePatterns": [
         "/node_modules/",
         "config.js"
-      ]
+      ],
+        "verbose": true
+    },
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     },
     "keywords": [],
     "author": "",

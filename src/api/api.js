@@ -47,11 +47,6 @@ class BywayApi {
       return res;
     }
 
-    // static async getState(name) {
-    //   let res = await this.request(`states/${ name }`);
-    //   return res.state;
-    // }
-
     static async findBywaysByState(name) {
       let res = await this.request(`states/${ name }`);
       return res;
@@ -87,8 +82,15 @@ class BywayApi {
       return res;
     }
 
-    static async getUserFavorites(username) {
-      let res = await this.request(`users/${ username }/favorites`);
+    static async removeFavorite(username, id) {
+      let res = await this.request(`users/${ username }/favorites/${id}`, {}, "delete");
+      return res;
+      // can't tell if I need that empty object like favAByway or something different or nothing
+      // it was needed, not having it but then having 'delete' made it think delete was data instead of method, see top line of function and what's inside the parentheses for request
+    }
+
+    static async getUserFavorites(username, sortField, sortDirection) {
+      let res = await this.request(`users/${ username }/favorites?sort=${sortField}&direction=${sortDirection}`);
       return res;
     }
 

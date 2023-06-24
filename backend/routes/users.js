@@ -115,9 +115,19 @@ router.post("/:username/favorites/:id", ensureCorrectUserOrAdmin, async function
   }
 });
 
+router.delete("/:username/favorites/:id", ensureCorrectUserOrAdmin, async function (req, res, next) {
+  try {
+    const user = await User.removeFavorite(req.params.username, req.params.id);
+    return res.json({ user });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 router.get("/:username/favorites", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
-    const user = await User.getUserFavorites(req.params.username);
+    const user = await User.getUserFavorites(req.params.username, req.query.sort || 'name', req.query.direction || 'asc');
+    // the 'name' and 'asc' are to set a default in case nothing is declared
     return res.json(user);
   } catch (err) {
     return next(err);

@@ -207,8 +207,22 @@ class User {
           [username],
       );
       const user = result.rows[0];
+      // making sure it actually did find a row to delete
   
       if (!user) throw new NotFoundError(`No user: ${username}`);
+      // if that row doesn't exist then throw an error. for insert an error is automatically thrown so you don't need to add this
+    }
+
+    static async removeFavorite(username, byway_id) {
+      let result = await db.query(
+        `DELETE
+        FROM favorites
+        WHERE username= $1 and byway_id=$2`,
+        [
+          username,
+          byway_id,
+        ],
+      );
     }
 
     static async favoriteAByway(username, byway_id) {
@@ -226,13 +240,13 @@ class User {
       return result.rows[0];
     }
 
-    static async getUserFavorites(username) {
+    static async getUserFavorites(username, sortField, direction) {
       let query = 
-        `SELECT favorites.username, favorites.byway_id, byways.name, byways.image, byways.designation FROM favorites JOIN byways ON favorites.byway_id = byways.id WHERE username = $1`;
-
+        `SELECT favorites.username, favorites.byway_id, byways.name, byways.image, byways.designation 
+        FROM favorites JOIN byways ON favorites.byway_id = byways.id WHERE username = $1
+        ORDER BY ${sortField} ${direction}`;
       const response = await db.query(query, [username])
       return response.rows;
-      
     }
   }
 

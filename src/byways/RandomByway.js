@@ -24,7 +24,6 @@ function DisplayRandomByway() {
 
      function truncateCharCount(byway) {
             if (byway.description.length > 500) {
-                // return "too long"
                 return byway.description.slice(0,499) + "... (continued on byway's page)"
             } else {
                 return byway.description;
@@ -48,6 +47,7 @@ function DisplayRandomByway() {
 
                     <p>the code don't work</p>
                 )
+                // pass in large amount of text and be sure it's not longer than 500
                 
             }
         </div>

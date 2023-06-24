@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
+import { useToasts } from 'react-toast-notifications';
+
 
 function SignupForm({ signup }) {
+    const { addToast } = useToasts();
     const history = useHistory();
     const [formData, setFormData] = useState({
       username: "",
@@ -23,13 +26,16 @@ function SignupForm({ signup }) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-        let result = await signup(formData);
-        if (result.success) {
-          history.push("/");
+        try {
+            let result = await signup(formData);
+            if (result.success) {
+                history.push("/");
         //   adding new screen to navigation stack, we're saying go to this url next, adding it to the list of pages visited at the end and going to it
-        //   This is from react-jobly and I'm confused about what's happening with it. I saw in a note that it might have something to do with redirecting to /companies, but if that's true then I'm confused as to why this is how it's being done.
-        } else {
-          setFormErrors(result.errors);
+            } 
+        } catch {
+            if (errors.length > 0) {
+                addToast(errors[0], { appearance: 'error' });
+            }
         }
     }
 

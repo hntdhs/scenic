@@ -5,12 +5,14 @@ import BywayApi from "../api/api";
 import SearchForm from "./SearchForm";
 import BywayCard from "../byways/BywayCard";
 import Pagination from "../common/Pagination";
+import { useToasts } from 'react-toast-notifications';
 
 // search via filters, go to browse by state, go to display and search users
 
 function FilterSearch() {
-    
+    const { addToast } = useToasts();
     const [byways, setByways] = useState([]);
+    const [errors, setErrors] = useState([]);
     const [currentByWays, setCurrentByWays] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [bywaysPerPage] = useState(10);
@@ -40,13 +42,19 @@ function FilterSearch() {
 
     async function filterByways(filters) {
         try {
+            debugger
             let byways = await BywayApi.search(filters);
             setByways(byways);
             if (!byways.length) {
                 history.push("/noresults");
             }
         } catch (errors) {
-            return;
+            if (errors.length > 0) {
+                addToast(errors[0], { appearance: 'error' });
+                // can add error messaging/alerts with Toast before anything is sent to the back, like so:
+                //addToast("your search term must be more than 3 characters", { appearance: 'error' });
+            }
+            setErrors(errors);
         }
     }
 
@@ -62,8 +70,8 @@ function FilterSearch() {
     return (
         <div>
             <div>
-                <SearchForm searchFor={search} filterByways={filterByways} />
-                {/* search and filterByways are defined here, passing them over to SearchForm to make them useable there */}
+                <SearchForm searchFor={search} filterByways={filterByways} errors={errors} />
+                {/* search and filterByways are defined here, passing them over to SearchForm to make them useable there; don't actually know if errors is necessary to pass, didn't end up using it */}
             </div>
             <div>
                 {currentByWays.length > 0

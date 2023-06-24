@@ -61,6 +61,7 @@ function ProfileForm() {
     try {
       updatedUser = await BywayApi.saveProfile(username, profileData);
     } catch (errors) {
+      console.log('errors', errors)
       debugger;
       setFormErrors(errors);
       return;
@@ -108,30 +109,17 @@ function ProfileForm() {
               <div>
                 <label>Favorite state to travel to</label>
                 <LimitedTextArea value={formData.favoriteState} limit={100} onChange={(newValue) => {return handleChange('favoriteState', newValue)}} />
-                {/* <input
-                    name="favoriteState"
-                    value={formData.favoriteState}
-                    onChange={handleChange}
-                /> */}
               </div>
               <div>
                 <label>Profile Photo</label>
-                <LimitedTextArea value={formData.profilePhoto} limit={1000} onChange={(newValue) => {return handleChange('profilePhoto', newValue)}} />
-                {/* <input
+                {/* <LimitedTextArea value={formData.profilePhoto} limit={1000} onChange={(newValue) => {return handleChange('profilePhoto', newValue)}} /> */}
+                <input
                     name="profilePhoto"
                     value={formData.profilePhoto}
-                    onChange={handleChange}
-                /> */}
-              </div>
-              {/* <div>
-                <label>Confirm password to make changes:</label>
-                <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
+                    onChange={(event) => {return handleChange('profilePhoto', event.target.value)}}
                 />
-              </div> */}
+              </div>
+              {/* switched profile photo back a regular input because limited text area doesn't make sense for a URL, but that means that the handleChange is going to be a little different for the different inputs. with a regular input the onChange uses an event, not newValue */}
 
               {formErrors.length
                   ? <Alert type="danger" messages={formErrors} />

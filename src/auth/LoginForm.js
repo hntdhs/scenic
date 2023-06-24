@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
+import { useToasts } from 'react-toast-notifications';
+
 
 /** Login form.
  *
@@ -14,6 +16,7 @@ import Alert from "../common/Alert";
  */
 
 function LoginForm({ login }) {
+  const { addToast } = useToasts();
   const history = useHistory();
   const [formData, setFormData] = useState({
     username: "",
@@ -35,12 +38,16 @@ function LoginForm({ login }) {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    let result = await login(formData);
-    if (result.success) {
-      history.push("/");
-    } else {
-      setFormErrors(result.errors);
+    try {
+      let result = await login(formData);
+      if (result.success) {
+        history.push("/");
+      }
+    } catch {
+      if (errors.length > 0) {
+        addToast(errors[0], { appearance: 'error' });
     }
+  }
   }
 
   /** Update form data field */

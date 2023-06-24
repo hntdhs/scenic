@@ -8,6 +8,7 @@ import BywayApi from "./api/api";
 import UserContext from "./auth/UserContext";
 import jwt from "jsonwebtoken";
 import ScrollToTop from "./common/ScrollToTop";
+import { ToastProvider } from 'react-toast-notifications';
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "scenic-token";
@@ -126,15 +127,17 @@ function App() {
 
   return (
       <BrowserRouter>
-        <ScrollToTop>
-          <UserContext.Provider
-              value={{ currentUser, setCurrentUser, hasAppliedToJob, applyToJob }}>
-            <div className="App">
-              <Navigation logout={logout} />
-              <Routes login={login} signup={signup} logout={logout}/>
-            </div>
-          </UserContext.Provider>
-        </ScrollToTop>
+        <ToastProvider>
+          <ScrollToTop>
+            <UserContext.Provider
+                value={{ currentUser, setCurrentUser, hasAppliedToJob, applyToJob }}>
+              <div className="App">
+                <Navigation logout={logout} />
+                <Routes login={login} signup={signup} logout={logout}/>
+              </div>
+            </UserContext.Provider>
+          </ScrollToTop>
+        </ToastProvider>
       </BrowserRouter>
   );
 }
