@@ -32,10 +32,11 @@ function SignupForm({ signup }) {
                 history.push("/");
         //   adding new screen to navigation stack, we're saying go to this url next, adding it to the list of pages visited at the end and going to it
             } 
-        } catch {
+        } catch  (errors) {
             if (errors.length > 0) {
                 addToast(errors[0], { appearance: 'error' });
             }
+            setFormErrors(errors);
         }
     }
 

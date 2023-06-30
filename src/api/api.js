@@ -47,6 +47,11 @@ class BywayApi {
       return res;
     }
 
+    static async getAllUsers() {
+      let res = await this.request('users');
+      return res;
+    }
+
     static async findBywaysByState(name) {
       let res = await this.request(`states/${ name }`);
       return res;

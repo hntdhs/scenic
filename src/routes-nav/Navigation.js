@@ -39,6 +39,11 @@ function Navigation({ logout }) {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/users">
+              See All Users
+            </NavLink>
+          </li>
+          <li>
             <Link to="/" onClick={logout}>
               Log out {currentUser.first_name || currentUser.username}
             </Link>

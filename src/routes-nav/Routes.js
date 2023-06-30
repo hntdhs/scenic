@@ -13,6 +13,7 @@ import StateDetail from "../byways/StateDetail";
 import BywayDetail from "../byways/BywayDetail";
 import DisplayRandomByway from "../byways/RandomByway";
 import DesignationExplanation from "../search/DesignationExplanation";
+import UsersList from "../profiles/UsersList"
 
 
 
@@ -50,6 +51,10 @@ function Routes({ login, signup }) {
 
             <PrivateRoute exact path="/designations-explanation">
               <DesignationExplanation />
+            </PrivateRoute>
+
+            <PrivateRoute exact path="/users">
+              <UsersList />
             </PrivateRoute>
 
             <PrivateRoute exact path="/profile">

@@ -5,7 +5,7 @@
 const jsonschema = require("jsonschema");
 
 const express = require("express");
-const { ensureCorrectUserOrAdmin, ensureAdmin } = require("../middleware/auth");
+const { ensureCorrectUserOrAdmin, ensureAdmin, ensureLoggedIn } = require("../middleware/auth");
 const { BadRequestError } = require("../expressError");
 const User = require("../models/user");
 const { createToken } = require("../helpers/tokens");
@@ -60,6 +60,14 @@ router.post("/", ensureAdmin, async function (req, res, next) {
 //   }
 // });
 
+router.get("/", ensureLoggedIn, async function (req, res, next) {
+  try {
+    const users = await User.findAll();
+    return res.json({ users })
+  } catch (err) {
+    return next(err);
+  }
+});
 
 /** GET /[username] => { user }
  *
@@ -69,7 +77,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
  * Authorization required: admin or same user-as-:username
  **/
 
-router.get("/:username", ensureCorrectUserOrAdmin, async function (req, res, next) {
+router.get("/:username", ensureLoggedIn, async function (req, res, next) {
   try {
     const user = await User.get(req.params.username);
     return res.json({ user });
@@ -124,7 +132,7 @@ router.delete("/:username/favorites/:id", ensureCorrectUserOrAdmin, async functi
   }
 });
 
-router.get("/:username/favorites", ensureCorrectUserOrAdmin, async function (req, res, next) {
+router.get("/:username/favorites", ensureLoggedIn, async function (req, res, next) {
   try {
     const user = await User.getUserFavorites(req.params.username, req.query.sort || 'name', req.query.direction || 'asc');
     // the 'name' and 'asc' are to set a default in case nothing is declared

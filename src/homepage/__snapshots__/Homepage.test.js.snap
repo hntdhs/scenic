@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="Homepage"
+  >
+    <h1>
+      NATIONAL SCENIC BYWAYS
+    </h1>
+    <h2>
+      Hello testuser!
+      <br />
+      <a
+        href="/profile/{currentUser}"
+      >
+        View your profile, 
+      </a>
+      or if you haven't made one yet, 
+      <a
+        href="/profile"
+      >
+        create and edit your profile here!
+      </a>
+      <br />
+      <a
+        href="/search"
+      >
+        See all byways and search using filters here!
+      </a>
+      <br />
+      <a
+        href="/states"
+      >
+        See byways by state here!
+      </a>
+      <br />
+      <a
+        href="/random"
+      >
+        Or see a byway at random!
+      </a>
+    </h2>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot when logged out 1`] = `
+<DocumentFragment>
+  <div
+    class="Homepage"
+  >
+    <h1>
+      NATIONAL SCENIC BYWAYS
+    </h1>
+    <p>
+      <a
+        href="/login"
+      >
+        Log in
+      </a>
+      <a
+        href="/signup"
+      >
+        Sign up
+      </a>
+    </p>
+  </div>
+</DocumentFragment>
+`;

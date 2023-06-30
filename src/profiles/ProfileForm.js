@@ -26,10 +26,10 @@ function ProfileForm() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
-    bio: currentUser.bio,
-    userLocation: currentUser.userLocation,
-    favoriteState: currentUser.favoriteState,
-    profilePhoto: currentUser.profilePhoto,
+    bio: currentUser.bio || "",
+    userLocation: currentUser.userLocation || "",
+    favoriteState: currentUser.favoriteState  || "",
+    profilePhoto: currentUser.profilePhoto  || "",
   });
   const [formErrors, setFormErrors] = useState([]);
 
@@ -115,7 +115,7 @@ function ProfileForm() {
                 {/* <LimitedTextArea value={formData.profilePhoto} limit={1000} onChange={(newValue) => {return handleChange('profilePhoto', newValue)}} /> */}
                 <input
                     name="profilePhoto"
-                    value={formData.profilePhoto}
+                    value={formData.profilePhoto || ""}
                     onChange={(event) => {return handleChange('profilePhoto', event.target.value)}}
                 />
               </div>

@@ -41,7 +41,6 @@ function ShowUserProfile() {
         //     let userFavorites = await BywayApi.getUserFavorites(username);
         //     setUserFavorites(userFavorites);
         // }
-        debugger
         getUserFavorites();
         
     }, [sortBy, sortDirection])
@@ -64,11 +63,11 @@ function ShowUserProfile() {
     return (
         <div>
             {isMe ? <NavLink to={`/profile/`}>Edit your profile</NavLink> : ''}
-            <h3>Welcome to the profile page of {currentUser.username}</h3>
-            <img src={currentUser.profilePhoto} alt={"profile photo"} />
-            <h3>Location: {currentUser.userLocation}</h3>
-            <h3>Favorite State to Travel To: {currentUser.favoriteState}</h3>
-            <p>Bio: {currentUser.bio}</p>
+            {isMe ? <h3>Welcome to the profile page of {profileInfo.username}</h3> : <h3>Welcome to the profile page of {username}</h3>}
+            <img src={profileInfo.profilePhoto} alt={"profile photo"} />
+            <h3>Location: {profileInfo.userLocation}</h3>
+            <h3>Favorite State to Travel To: {profileInfo.favoriteState}</h3>
+            <p>Bio: {profileInfo.bio}</p>
             <h1>USER FAVORITES</h1>
 
             <h4>Order favorites by:</h4>
@@ -89,10 +88,10 @@ function ShowUserProfile() {
                                 image={f.image}
                                 designation={f.designation}
                             />
-                        
+                            {isMe ? (
                             <button onClick={() => handleSubmit(username, f.byway_id)}>
                             Remove Favorite
-                            </button>
+                            </button>) : <span></span> }
                         </div>
                     ))}
                 </div>

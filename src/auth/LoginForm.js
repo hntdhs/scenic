@@ -43,10 +43,11 @@ function LoginForm({ login }) {
       if (result.success) {
         history.push("/");
       }
-    } catch {
+    } catch (errors) {
       if (errors.length > 0) {
         addToast(errors[0], { appearance: 'error' });
-    }
+      }
+      setFormErrors(errors);
   }
   }
 

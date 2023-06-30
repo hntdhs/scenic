@@ -43,9 +43,6 @@
   "jest": {
     "moduleNameMapper": {
       "axios": "axios/dist/node/axios.cjs"
-    },
-    "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     }
   }
 }
