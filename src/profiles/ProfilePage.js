@@ -25,6 +25,8 @@ function ShowUserProfile() {
 
     useEffect(() => {  
         async function getUserInfo() {
+            let errors = formErrors;
+            // attempted fix 
             try {
                 let profileInfo = await BywayApi.getCurrentUser(username);
                 setProfileInfo(profileInfo);

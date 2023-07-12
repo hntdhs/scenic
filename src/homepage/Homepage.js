@@ -14,7 +14,8 @@ function Homepage() {
           {currentUser
             ? <h2>
                 Hello {currentUser.username}!<br></br>
-                <Link to="/profile/{currentUser}">View your profile, </Link>or if you haven't made one yet, <Link to="/profile">create and edit your profile here!</Link><br></br>
+                <Link to={`/profile/${currentUser.username}`}>View your profile, </Link>or if you haven't made one yet, <Link to="/profile">create and edit your profile here!</Link><br></br>
+                {/* <Link to={`/byways/${name}`}> */}
                 {/* <Link to="/browse">Browse through every national byway, select favorites, plan a trip, and connect with other users here!</Link> */}
                 <Link to="/search">See all byways and search using filters here!</Link><br></br>
                 <Link to="/states">See byways by state here!</Link><br></br>
