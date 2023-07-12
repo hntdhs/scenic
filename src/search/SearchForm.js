@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FilterSearch from "./FilterSearch";
 // import "./SearchForm.css";
-import GeographicFeaturesSearch from "./GeoFeaturesSearch";
+import GeographicFeaturesSearch from "./GeographicFeaturesSearch";
 import DesignationSearch from "./DesignationSearch";
 
 /** Search widget.

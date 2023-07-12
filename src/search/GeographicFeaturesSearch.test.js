@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import GeographicFeaturesSearch from "./GeoFeaturesSearch.js";
+import GeographicFeaturesSearch from "./GeographicFeaturesSearch.js";
 import { expect } from "@jest/globals";
 
 it("matches snapshot", function () {
