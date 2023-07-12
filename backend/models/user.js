@@ -117,9 +117,6 @@ class User {
   
     /** Given a username, return data about user.
      *
-     * Returns { username, first_name, last_name, is_admin, jobs }
-     *   where jobs is { id, title, company_handle, company_name, state }
-     *
      * Throws NotFoundError if user not found.
      **/
   

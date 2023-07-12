@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <a
+      href="/designations-explanation"
+    >
+      What are these?
+    </a>
+    <div
+      class="single-checkbox"
+    >
+      <label
+        for="All-American Road"
+      >
+        All-American Road
+      </label>
+      <div>
+        <label>
+          <input
+            name="All-American Road"
+            type="checkbox"
+            value="All-American Road"
+          />
+        </label>
+      </div>
+    </div>
+    <div
+      class="single-checkbox"
+    >
+      <label
+        for="National Scenic Byway"
+      >
+        National Scenic Byway
+      </label>
+      <div>
+        <label>
+          <input
+            name="National Scenic Byway"
+            type="checkbox"
+            value="National Scenic Byway"
+          />
+        </label>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

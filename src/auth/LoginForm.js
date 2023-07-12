@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
-import { useToasts } from 'react-toast-notifications';
+import { ToastProvider, useToasts } from 'react-toast-notifications';
 
 
 /** Login form.
@@ -42,13 +42,15 @@ function LoginForm({ login }) {
       let result = await login(formData);
       if (result.success) {
         history.push("/");
+      } else {
+        result.errors.forEach(i =>  addToast(i, { appearance: 'error' }));
       }
     } catch (errors) {
       if (errors.length > 0) {
         addToast(errors[0], { appearance: 'error' });
       }
       setFormErrors(errors);
-  }
+    }
   }
 
   /** Update form data field */

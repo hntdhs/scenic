@@ -4,17 +4,19 @@ import BywayApi from "../api/api";
 import UserContext from "../auth/UserContext";
 import { NavLink } from "react-router-dom";
 import BywayCard from "../byways/BywayCard";
+import { useToasts } from 'react-toast-notifications';
 // import { getUserFavorites } from "../../backend/models/user";
 
 function ShowUserProfile() {
     const { username } = useParams();
+    const { addToast } = useToasts();
     const { currentUser } = useContext(UserContext);
     const [isMe, setIsMe] = useState(false)
     const [profileInfo, setProfileInfo] = useState({});
     const [userFavorites, setUserFavorites] = useState([]);
     const [sortBy, setSortBy] = useState('name');
     const [sortDirection, setSortDirection] = useState('asc');
-    // 
+    const [formErrors, setFormErrors] = useState([]);
 
     async function getUserFavorites() {
         let userFavorites = await BywayApi.getUserFavorites(username, sortBy, sortDirection);
@@ -23,8 +25,18 @@ function ShowUserProfile() {
 
     useEffect(() => {  
         async function getUserInfo() {
-            let profileInfo = await BywayApi.getCurrentUser(username);
-            setProfileInfo(profileInfo);
+            try {
+                let profileInfo = await BywayApi.getCurrentUser(username);
+                setProfileInfo(profileInfo);
+                if (errors) {
+                    profileInfo.errors.forEach(i =>  addToast(i, { appearance: 'error' }));
+                }    
+            } catch (errors) {
+                if (errors.length > 0) {
+                    addToast(errors[0], { appearance: 'error' });
+                }
+                setFormErrors(errors);
+            }
         }
         getUserInfo();
     }, [username]);

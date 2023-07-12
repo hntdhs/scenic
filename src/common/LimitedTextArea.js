@@ -6,11 +6,12 @@ const LimitedTextArea = ({ value, limit, onChange }) => {
 
   const setFormattedContent = useCallback(
     text => {
-      const limitedContent = text.slice(0, limit)
+      // const limitedContent = text.slice(0, limit)
+      const limitedContent = value.slice(0, limit)
       setContent(limitedContent);
       onChange(limitedContent);
     },
-    [limit, setContent, ]
+    [limit, setContent ]
   );
   // useCallback is used to isolate resource intensive functions so that they won't automatically run on every render; it only runs when one of its dependencies update - I thought useEffects run every time one of its dependencies updates? What's the difference?
 

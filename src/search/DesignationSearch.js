@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Checkbox from "./Checkbox";
 
-function DesignationSearch({onChange }) {
+function DesignationSearch({ onChange }) {
     const categories = ['All-American Road', 'National Scenic Byway'];
     const [selected, setSelected] = useState([]);
 

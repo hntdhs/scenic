@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <h1>
+      BIG PROBLEMS! No byways match what you searched for!
+    </h1>
+    <a
+      href="/search"
+    >
+      Try again! Try harder!
+    </a>
+  </div>
+</DocumentFragment>
+`;

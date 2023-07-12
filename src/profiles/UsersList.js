@@ -7,8 +7,8 @@ function UsersList() {
 
     useEffect(() => {
         async function getUsers() {
-            users = BywayApi.getAllUsers();
-            setUsers(users);
+            const u = await BywayApi.getAllUsers();
+            setUsers(u.users);
         }
         getUsers();
     }, []);
@@ -16,13 +16,14 @@ function UsersList() {
     return (
         <div>
             {users.length
-            ? (
-                <div>
-                    {users.map(u => (
-                        <a href="/profile/{u.username}">{u.username}</a>
-                    ))}
-                </div>
-            ) : (
+            ? users.map((u, i) => (
+                        <div>
+
+                        <a key={i} href={`/profile/${u.username}`}>{u.username}</a>
+                        </div>
+                    ))
+               
+             : (
                 <h4>Sorry, no results found.</h4>
             )}
         </div>

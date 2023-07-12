@@ -13,7 +13,7 @@ import { ToastProvider } from 'react-toast-notifications';
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "scenic-token";
 
-/** Jobly application.
+/** Byways application.
  *
  * - infoLoaded: has user data been pulled from API?
  *   (this manages spinner for "loading...")
@@ -111,18 +111,6 @@ function App() {
     }
   }
 
-  /** Checks if a job has been applied for. */
-  function hasAppliedToJob(id) {
-    return applicationIds.has(id);
-  }
-
-  /** Apply to a job: make API call and update set of application IDs. */
-  function applyToJob(id) {
-    if (hasAppliedToJob(id)) return;
-    BywayApi.applyToJob(currentUser.username, id);
-    setApplicationIds(new Set([...applicationIds, id]));
-  }
-
   if (!infoLoaded) return <LoadingSpinner />;
 
   return (
@@ -130,7 +118,7 @@ function App() {
         <ToastProvider>
           <ScrollToTop>
             <UserContext.Provider
-                value={{ currentUser, setCurrentUser, hasAppliedToJob, applyToJob }}>
+                value={{ currentUser, setCurrentUser }}>
               <div className="App">
                 <Navigation logout={logout} />
                 <Routes login={login} signup={signup} logout={logout}/>

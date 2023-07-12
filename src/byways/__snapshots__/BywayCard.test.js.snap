@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <a
+      href="/byways/Great River Road"
+    >
+      <h3>
+        Great River Road
+      </h3>
+      <img
+        alt="Great River Road"
+        src="https://fhwaapps.fhwa.dot.gov/bywaysp/uploads/asset_files/2279/82535_1-4Effigy%20Mounds%20National%20Monument%20Fire%20Point1_sq.jpg"
+      />
+      <h4>
+        All-American Road
+      </h4>
+    </a>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot 2`] = `
+<DocumentFragment>
+  <div>
+    <a
+      href="/byways/undefined"
+    >
+      <h3 />
+      <img />
+      <h4 />
+    </a>
+  </div>
+</DocumentFragment>
+`;

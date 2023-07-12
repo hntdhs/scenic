@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <h3>
+      Welcome to the profile page of 
+    </h3>
+    <img
+      alt="profile photo"
+    />
+    <h3>
+      Location: 
+    </h3>
+    <h3>
+      Favorite State to Travel To: 
+    </h3>
+    <p>
+      Bio: 
+    </p>
+    <h1>
+      USER FAVORITES
+    </h1>
+    <h4>
+      Order favorites by:
+    </h4>
+    <button>
+      Z-A
+    </button>
+    <button>
+      Shortest to Longest
+    </button>
+    <button>
+      Longest to Shortest
+    </button>
+    <div />
+  </div>
+</DocumentFragment>
+`;

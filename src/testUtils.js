@@ -8,13 +8,14 @@ const demoUser = {
   email: "test@test.net",
   photo_url: null,
 };
-
-const UserProvider =
-    // ({ children, currentUser = demoUser, hasAppliedToJob = () => false }) => (
-    <UserContext.Provider value={{ currentUser, hasAppliedToJob }}>
+// const
+let UserProvider =
+    ({ children, currentUser = demoUser }) => (
+    <UserContext.Provider value={{ currentUser }}>
       {children}
     </UserContext.Provider>
-);
+    )
+
 
 // const UserProvider =
 //     ({ children, currentUser = demoUser, hasAppliedToJob = () => false }) => (

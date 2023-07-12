@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <h1>
+      no byway by that name
+    </h1>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot 2`] = `
+<DocumentFragment>
+  <div>
+    <h1>
+      no byway by that name
+    </h1>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot 3`] = `
+<DocumentFragment>
+  <div>
+    <h1>
+      no byway by that name
+    </h1>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot 4`] = `
+<DocumentFragment>
+  <div>
+    <h1>
+      no byway by that name
+    </h1>
+  </div>
+</DocumentFragment>
+`;

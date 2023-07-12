@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import FilterSearch from "./FilterSearch";
 // import "./SearchForm.css";
-import GeographicFeaturesSearch from "./geoFeaturesSearch";
+import GeographicFeaturesSearch from "./GeoFeaturesSearch";
 import DesignationSearch from "./DesignationSearch";
 
 /** Search widget.
- *
- * Appears on CompanyList and JobList (in jobly) so that these can be filtered
- * down.
  *
  * This component doesn't *do* the searching, but it renders the search
  * form and calls the `searchFor` function prop that runs in a parent to do the

@@ -18,14 +18,18 @@ function BywayDetail() {
     const [isFavorite, setIsFavorite] = useState(false);
 
 
-    useEffect(() => {
-        
+    useEffect(() => {        
         async function getByway(name) {
             try {
                 const b = await BywayApi.getByway(name)
                 setByway(b);
                 const c = await BywayApi.getCommentsByByway(b.id);
                 setComments(c);
+                const favorites = await BywayApi.getUserFavorites(currentUser.username, "name", "asc");
+
+                if (favorites.find(i => i.byway_id === b.id)) {
+                    setIsFavorite(true);
+                } 
         } catch (errors) {
             if (errors.length > 0) {
                 addToast(errors[0], { appearance: 'error' });
@@ -36,24 +40,8 @@ function BywayDetail() {
         getByway(name);
     }, [name]);
 
-    useEffect(() => {
-        async function checkIfFavorite(name) {
-            try {
-                const favorites = await BywayApi.getUserFavorites(currentUser.username, "name", "asc");
-                // if (favorites.includes(name.byway_id)) {
-                if (favorites.find(byway => byway.byway_id === name.byway_id)) {
-                    setIsFavorite(true);
-                } 
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        checkIfFavorite(name);
-    }, [])
+
     // empty array makes it only happen first time
-    // myArray = [{'id':'73','foo':'bar'},{'id':'45','foo':'bar'}, etc.]
-    // myArray.find(x => x.id === '45').foo;
-    // favorites.find(byway => byway.byway_id === name.byway_id)
 
     const addComment = (comment) => {
         const updatedComments = [...comments, comment]
@@ -108,10 +96,8 @@ function BywayDetail() {
                             <h4>Byway is in your favorites</h4>
                         ) : (
                             <FavoriteAByway id={byway.id} />
-                            // <h3>is favorite:{isFavorite}</h3>
                         )
                         }
-                        {/* <FavoriteAByway id={byway.id} /> */}
                         <h4>Comment on {byway.name}</h4>
                         <CommentForm name={byway.name} id={byway.id} onAdd={addComment}/>
                         <div>
@@ -120,7 +106,7 @@ function BywayDetail() {
                                 <div>
                                     {comments.map((c, i) => (
                                         <div key={i}>
-                                            <h4>User <a href="/profile/c.username">{c.username}</a> said this at {moment(c.create_at).format("MM/DD/YYYY hh:mm a")}:</h4>
+                                            <h4>User <a href={`/profile/${c.username}`}>{c.username}</a> said this at {moment(c.create_at).format("MM/DD/YYYY hh:mm a")}:</h4>
                                             <p>{c.comment}</p>
                                         </div>
                                     ))}
@@ -137,11 +123,6 @@ function BywayDetail() {
                     <h1>no byway by that name</h1>
                 )
             }
-            {/* just take out the ternary operator and just have the html stuff in one div to get what I had previously */}
-            {/* weird thing is that the first part of the ternary operator works fine but if the URL is a byway that doesn't exist then the : part doesn't work, it gets stuck on the if statement above the return statement */}
-            {/* ^ it's because if there's no byway it gets stuck on the if statement, if there is it goes ternary part 1, it would never get to part 2 */}
-            {/* could just take ternary out and have it load a page that says 'no such byway' if !byway, and a different page if a state doesn't have any byways in StateDetail but I don't know if that's efficient */}
-            {/* why won't it work with no if statement and with ternary? seems like that would be simplest. actually throwing an error with a custom error would be simplest */}
         </div>
     )
 }
