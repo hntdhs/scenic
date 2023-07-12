@@ -30,9 +30,9 @@ function ShowUserProfile() {
             try {
                 let profileInfo = await BywayApi.getCurrentUser(username);
                 setProfileInfo(profileInfo);
-                if (errors) {
-                    profileInfo.errors.forEach(i =>  addToast(i, { appearance: 'error' }));
-                }    
+                // if (errors) {
+                //     profileInfo.errors.forEach(i =>  addToast(i, { appearance: 'error' }));
+                // }    
             } catch (errors) {
                 if (errors.length > 0) {
                     addToast(errors[0], { appearance: 'error' });
