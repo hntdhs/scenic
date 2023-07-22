@@ -5,7 +5,7 @@ import BywayDetail from "./BywayDetail";
 import { MemoryRouter, Route } from "react-router-dom";
 import { UserProvider } from "../testUtils";
 import { ToastProvider } from 'react-toast-notifications';
-
+import puppeteer from 'puppeteer-core';
 
 it("renders without crashing", function () {
     render(
@@ -76,3 +76,28 @@ it("renders without crashing", function () {
     );
     expect(asFragment()).toMatchSnapshot();
   });
+
+  // it("submits favorite to user favorites", async () => {
+      // const browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
+      // const page = await browser.newPage();
+
+      
+  // })
+
+
+
+    // it("login succesfully", async () => {
+  //   const browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
+  //   const page = await browser.newPage();
+  //   await page.goto('http://localhost:3000/login');
+  
+  //   await page.type('#password', 'atlantic');
+  //   await page.type('#username', 'atlantic');
+  
+  //   await Promise.all([
+  //     page.click('#loginSubmit'),
+  //     await page.waitForNavigation()
+  //   ]);
+  //   await expect(page.url()).toMatch('http://localhost:3000')
+  
+  // });

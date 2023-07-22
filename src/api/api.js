@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
-
+// that process.env will be the envirnment var to set on the front to talk to the back
 // ask about static async request method in jobly api, or look up where it's used
 
 class BywayApi {

@@ -4,6 +4,7 @@ import StateCard from "./StateCard";
 import { MemoryRouter } from "react-router";
 import { expect } from "@jest/globals";
 
+
 it("matches snapshot", function () {
     const stateCard = { name: "Nebraska", image: "/stateOutlines/Nebraska.png", nickname: "Cornhusker State"  }
     const { asFragment } = render(
@@ -13,3 +14,8 @@ it("matches snapshot", function () {
     );
     expect(asFragment()).toMatchSnapshot();
 });
+
+  
+  
+  
+  

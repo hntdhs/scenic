@@ -27,8 +27,8 @@ function GeographicFeaturesSearch({ onChange }) {
     }
     return (
         <div>
-            {categories.map(c => (
-                <div className="single-checkbox">
+            {categories.map((c,i) => (
+                <div key={i} className="single-checkbox">
                     <label key={c} htmlFor={c}>{c}</label>
                     <Checkbox onChange={changeHandler} name={c}/>
                 </div>

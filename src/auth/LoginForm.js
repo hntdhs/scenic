@@ -70,6 +70,7 @@ function LoginForm({ login }) {
                 <div className="form-group">
                   <label>Username</label>
                   <input
+                  id='username'
                       name="username"
                       className="form-control"
                       value={formData.username}
@@ -81,6 +82,7 @@ function LoginForm({ login }) {
                 <div className="form-group">
                   <label>Password</label>
                   <input
+                  id='password'
                       type="password"
                       name="password"
                       className="form-control"
@@ -96,6 +98,7 @@ function LoginForm({ login }) {
                     : null}
 
                 <button
+                id='loginSubmit'
                     className="btn btn-primary float-right"
                     onSubmit={handleSubmit}
                 >

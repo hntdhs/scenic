@@ -7,7 +7,7 @@ const LimitedTextArea = ({ value, limit, onChange }) => {
   const setFormattedContent = useCallback(
     text => {
       // const limitedContent = text.slice(0, limit)
-      const limitedContent = value.slice(0, limit)
+      const limitedContent = text.slice(0, limit)
       setContent(limitedContent);
       onChange(limitedContent);
     },

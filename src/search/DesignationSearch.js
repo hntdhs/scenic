@@ -27,8 +27,8 @@ function DesignationSearch({ onChange }) {
         return (
             <div>
                 <a href="/designations-explanation">What are these?</a>
-                {categories.map(c => (
-                    <div className="single-checkbox">
+                {categories.map((c, i) => (
+                    <div key={i} className="single-checkbox">
                         <label key={c} htmlFor={c}>{c}</label>
                         <Checkbox onChange={changeHandler} name={c}/>
                     </div>
