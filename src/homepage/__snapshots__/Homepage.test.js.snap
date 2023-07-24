@@ -12,7 +12,7 @@ exports[`matches snapshot 1`] = `
       Hello testuser!
       <br />
       <a
-        href="/profile/{currentUser}"
+        href="/profile/testuser"
       >
         View your profile, 
       </a>

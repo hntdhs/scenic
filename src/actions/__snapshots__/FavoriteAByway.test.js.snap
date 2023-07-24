@@ -3,7 +3,9 @@
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <button>
+    <button
+      id="submit_favorite"
+    >
       Add this byway to your favorites
     </button>
   </div>

@@ -11,7 +11,9 @@ exports[`matches snapshot 1`] = `
         0/500
       </p>
     </div>
-    <button>
+    <button
+      id="comment_submit"
+    >
       Submit
     </button>
   </div>

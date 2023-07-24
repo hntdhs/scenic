@@ -4,34 +4,35 @@ import LoginForm from "./LoginForm";
 import { MemoryRouter } from "react-router";
 import { ToastProvider } from 'react-toast-notifications';
 import puppeteer from 'puppeteer-core'
+import { loginTest } from "../login_test.js";
 
+let browser;
+let page;
 
+beforeEach(async () => {
+  browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
+});
+
+afterEach(async () => {
+  await browser.close()
+});
 
 // if a component renders a link or a route, etc, you'll get a warning about context unless you wrap the unit test in a router component like Memory Routeer
 it("login succesfully", async () => {
-  const browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
-  const page = await browser.newPage();
-  await page.goto('http://localhost:3000/login');
-
-  await page.type('#password', 'atlantic');
-  await page.type('#username', 'atlantic');
-
-  await Promise.all([
-    page.click('#loginSubmit'),
-    await page.waitForNavigation()
-  ]);
+  
+  
+  page = await loginTest(browser);
   await expect(page.url()).toMatch('http://localhost:3000')
 
 });
 
 // if a component renders a link or a route, etc, you'll get a warning about context unless you wrap the unit test in a router component like Memory Routeer
 it("login unsuccessfully", async () => {
-  const browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
   const page = await browser.newPage();
   await page.goto('http://localhost:3000/login');
 
   await page.type('#password', 'atlantic');
-  await page.type('#username', 'atlantic1');
+  await page.type('#username', 'atlantic1i');
 
   await Promise.all([
     page.click('#loginSubmit'),
@@ -39,3 +40,36 @@ it("login unsuccessfully", async () => {
   await expect(page.url()).toMatch('http://localhost:3000/login')
 
 });
+
+// if a component renders a link or a route, etc, you'll get a warning about context unless you wrap the unit test in a router component like Memory Routeer
+// it("login succesfully", async () => {
+//   const browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
+//   const page = await browser.newPage();
+//   await page.goto('http://localhost:3000/login');
+
+//   await page.type('#password', 'atlantic');
+//   await page.type('#username', 'atlantic');
+
+//   await Promise.all([
+//     page.click('#loginSubmit'),
+//     await page.waitForNavigation()
+//   ]);
+//   await expect(page.url()).toMatch('http://localhost:3000')
+
+// });
+
+// if a component renders a link or a route, etc, you'll get a warning about context unless you wrap the unit test in a router component like Memory Routeer
+// it("login unsuccessfully", async () => {
+//   const browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
+//   const page = await browser.newPage();
+//   await page.goto('http://localhost:3000/login');
+
+//   await page.type('#password', 'atlantic');
+//   await page.type('#username', 'atlantic1');
+
+//   await Promise.all([
+//     page.click('#loginSubmit'),
+//   ]);
+//   await expect(page.url()).toMatch('http://localhost:3000/login')
+
+// });

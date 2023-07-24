@@ -94,7 +94,7 @@ function ProfileForm() {
             <form>
               <div>
                 <label>Bio</label>
-                <LimitedTextArea value={formData.bio} limit={200} onChange={(newValue) => {return handleChange('bio', newValue)}} />
+                <LimitedTextArea id="bio" value={formData.bio} limit={200} onChange={(newValue) => {return handleChange('bio', newValue)}} />
               </div>
               <div>
                 <label>Location</label>
@@ -131,7 +131,7 @@ function ProfileForm() {
                   : null}
 
               <button
-                  className="btn btn-primary btn-block mt-4"
+                  id="save"
                   onClick={handleSubmit}
               >
                 Save Changes

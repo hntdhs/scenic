@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 function StateCard ({ name, nickname, image }) {
     return (
-        <Link id="stateLink" to={`/states/${name}`}>
-            <h3>{name}</h3>
+        <span>
+            <h3><Link to={`/states/${name}`}>{name}</Link></h3>
             {image}
             <h4>{nickname}</h4>
-        </Link>
+        </span>
     );
 }
 

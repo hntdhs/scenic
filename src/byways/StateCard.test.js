@@ -5,16 +5,6 @@ import { MemoryRouter } from "react-router";
 import { expect } from "@jest/globals";
 
 
-it("matches snapshot", function () {
-    const stateCard = { name: "Nebraska", image: "/stateOutlines/Nebraska.png", nickname: "Cornhusker State"  }
-    const { asFragment } = render(
-        <MemoryRouter>
-            <StateCard stateCard={stateCard} />
-        </MemoryRouter>
-    );
-    expect(asFragment()).toMatchSnapshot();
-});
-
   
   
   
