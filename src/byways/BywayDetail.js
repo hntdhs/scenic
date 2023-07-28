@@ -83,7 +83,7 @@ function BywayDetail() {
         <div>
             {byway
                 ? (
-                    <div>
+                    <div id='byway-detail'>
                         <h1>{byway.name}</h1>
                         <img src={byway.image} alt={byway.name}></img>
                         <h2>{byway.state}</h2>

@@ -7,9 +7,6 @@ import LoadingSpinner from "../common/LoadingSpinner";
 
 
 // shows cards of each byway that's in the state
-// the issue is that i don't know how to do 'if byway is in this state, return it so it can be displayed on this page'. i don't see where in jobly it does 'if job is from this company return it so it can be displayed on company page.' (looks like it's in the models folder in the backend)
-// has to load all the byways that are in this state - thinking something like 'return byways where state = x’ -  but where does this go? somewhere in the backend i'm sure. should there be a getBywaysByState method in api? otherwise it's basically the same as CompanyList
-// checkout the routes folder in jobly backend, there's a lot in there i haven't done for scenic that needs doing that could be causing problems
 
 
 
@@ -36,7 +33,7 @@ function StateDetail() {
             {stateByways.length
             // states.length > 0
             ? (
-                <div>
+                <div id='state-page'>
                     <h2>Check Out the Scenic Drives Available in {name}!</h2>
                     {stateByways.map(s => (
                         <BywayCard

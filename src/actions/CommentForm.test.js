@@ -2,33 +2,33 @@ import React from "react";
 import { render } from "@testing-library/react";
 import CommentForm from "./CommentForm";
 import { ToastProvider } from 'react-toast-notifications';
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Route } from "react-router-dom";
 import { UserProvider } from "../testUtils";
-import puppeteer from 'puppeteer-core'
-import { loginTest } from "../login_test.js";
+import { loginTest, delay } from "../login_test.js";
+import { mount, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import BywayApi from "../api/api";
+jest.mock('../api/api', () => ({
+  makeComment: jest.fn()
+}))
 
+configure({adapter: new Adapter()});
 
-  let browser;
-  let page;
+it("clicking submit calls callback", async () => {
+  const mockCallBack = jest.fn();
 
-  beforeEach(async () => {
-  browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
-  page = await loginTest(browser);
-});
+  const wrapper = mount(
+    <ToastProvider><MemoryRouter initialEntries={["/byways/Talladega%20Scenic%20Drive"]}>
+        <UserProvider>
+          <Route path="/byways/:name">
+          <CommentForm name="test" id="1" onAdd={mockCallBack}/>
+          </Route>
+        </UserProvider>
+      </MemoryRouter></ToastProvider>,
+  );
 
-afterEach(async () => {
-  await browser.close()
-});
+  const button = wrapper.find('#comment_submit')
+  await button.simulate('click');
+  expect(mockCallBack).toHaveBeenCalledTimes(1);
+})
 
-  // it("shows up on a user's profile page when they favorite a byway", async () => {
-  //   await page.goto('http://localhost:3000/byways/Wichita%20Mountains%20Byway');
-  //   await page.waitForNavigation()
-
-  //   await page.type('#comment_form', 'integration testing');
-
-  //   await Promise.all([
-  //     page.click('comment_submit'),
-  //     await page.waitForNavigation()
-  //   ]);
-  //   await expect(page.url()).toContain('integration testing')
-  // })

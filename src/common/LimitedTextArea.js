@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 
 
-const LimitedTextArea = ({ value, limit, onChange, id }) => {
+const LimitedTextArea = ({ value, limit, onChange, domId }) => {
   const [content, setContent] = useState("");
 
   const setFormattedContent = useCallback(
@@ -22,7 +22,7 @@ const LimitedTextArea = ({ value, limit, onChange, id }) => {
   return (
     <div>
       <textarea
-        id={id}
+        id={domId}
         onChange={event => setFormattedContent(event.target.value)}
         value={content}
       />

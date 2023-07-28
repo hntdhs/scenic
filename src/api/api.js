@@ -19,9 +19,11 @@ class BywayApi {
           : {};
   
       try {
-        return (await axios({ url, method, data, params, headers })).data;
+        const response = await axios({ url, method, data, params, headers })
+        console.log(response)
+        return response.data
       } catch (err) {
-        console.error("API Error:", err);
+        console.log("API Error:", err);
         let message = err.response.data.error.message;
         throw Array.isArray(message) ? message : [message];
       }

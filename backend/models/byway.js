@@ -6,6 +6,28 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 
 class Byway {
 
+    static async create({ name, state, length, designation, fees, image, description, geographicFeatures }) {
+        const result = await db.query(
+            `INSERT INTO byways
+            (name, state, length, designation, fees, image, description, geographic_features)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            RETURNING name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures"`,
+            [
+                name,
+                state,
+                length,
+                designation,
+                fees,
+                image,
+                description,
+                geographicFeatures,
+            ],
+        );
+        const byway = result.rows[0];
+
+        return byway;
+    }
+
     static async findAll(searchFilters = {}) {
         let query = 'SELECT name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways';
     

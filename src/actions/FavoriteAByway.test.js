@@ -1,73 +1,36 @@
 import React from "react";
-import { render } from "@testing-library/react";
-import FavoriteAByway from "./FavoriteAByway.js"
-import { MemoryRouter } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import {fireEvent} from "@testing-library/dom";
+import FavoriteAByway from "./FavoriteAByway";
+import { ToastProvider } from 'react-toast-notifications';
+import { MemoryRouter, Route } from "react-router-dom";
 import { UserProvider } from "../testUtils";
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
-import puppeteer from 'puppeteer-core'
-import { loginTest } from "../login_test.js";
+import { mount, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+// import FavoriteAByway from "./FavoriteAByway";
 
-jest.setTimeout(20000)
+jest.mock('../api/api', () => ({
+    favoriteAByway: jest.fn()
+}))
 
+configure({adapter: new Adapter()});
 
+it("clicking submit calls callback", async () => {
+  const mockCallBack = jest.fn();
 
-  let browser;
-  let page;
-
-  beforeEach(async () => {
-  browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
-  page = await loginTest(browser);
+  const wrapper = render(
+    <ToastProvider><MemoryRouter initialEntries={["/byways/Talladega%20Scenic%20Drive"]}>
+        <UserProvider>
+          <Route path="/byways/:name">
+          <FavoriteAByway username="test" id="1" callback={mockCallBack}/>
+          </Route>
+        </UserProvider>
+      </MemoryRouter></ToastProvider>,
+  );
+  const button = screen.getByTestId('submit_favorite');
   
-});
-
-afterEach(async () => {
-  await browser.close()
-});
-
-
-  it("shows up on a user's profile page when they favorite a byway", async () => {
-    
-    await page.goto('http://localhost:3000/byways/Wichita%20Mountains%20Byway');
-    await page.waitForNavigation()
-    
-    page.click('#submit_favorite'),
-    await page.waitForNavigation()
-    
-    await expect(page.url()).toContain('added to favorites')
-  })
-// is this in the right spot or should it be in byway detail?
-// don't know if I need that page.waitForNavigation if I'm staying on the same page, and not sure if that expect page url is right for this either
-
-
-
-
-
-
-//   let browser;
-// let page;
-
-// beforeEach(async () => {
-//   browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
-//   page = await browser.newPage();
-// });
-
-// afterEach(async () => {
-//   await browser.close()
-// });
-
-// // if a component renders a link or a route, etc, you'll get a warning about context unless you wrap the unit test in a router component like Memory Routeer
-// it("login succesfully", async () => {
-  
-//   await page.goto('http://localhost:3000/login');
-
-//   await page.type('#password', 'atlantic');
-//   await page.type('#username', 'atlantic');
-
-//   await Promise.all([
-//     page.click('#loginSubmit'),
-//     await page.waitForNavigation()
-//   ]);
-//   await expect(page.url()).toMatch('http://localhost:3000')
-
-// });
+  await fireEvent.click(button);
+  expect(mockCallBack).toHaveBeenCalledTimes(1);
+})
+// it gave me an error saying that FavoriteAByway was already declared, so I commented out the import line and left the jest.mock. but in comment form those two things have different names, so I wonder if that's why this is erroring

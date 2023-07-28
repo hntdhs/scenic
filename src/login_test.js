@@ -15,25 +15,41 @@ const escapeXpathString = str => {
   return `concat('${splitedQuotes}', '')`;
 };
 
-const clickByText = async function(page, text, element) {
-  element = element || 'a';
-  const escapedText = escapeXpathString(text);
-  const xpath = `//${element}[text()[contains(${escapedText})]]`;
-  console.log(xpath)
-  const elements = await page.$x(xpath);
-  if(elements.length > 0) {
-      for(i in elements) {
-          e = elements[i];
-          if(await e.isIntersectingViewport()) {
-              await e.click();
-              return;
-          }
-      }
-  }
-  else {
-      console.log(xpath);
-  }
-  throw new Error(`Link not found: ${text}`);
-};
+function getText(linkText) {
+  linkText = linkText.replace(/\r\n|\r/g, "\n");
+  linkText = linkText.replace(/\ +/g, " ");
 
-export {loginTest, clickByText}
+  // Replace &nbsp; with a space 
+  var nbspPattern = new RegExp(String.fromCharCode(160), "g");
+  return linkText.replace(nbspPattern, " ");
+}
+
+async function findByLink(page, linkString) {
+  const links = await page.$$('a')
+  for (var i=0; i < links.length; i++) {
+    let valueHandle = await links[i].getProperty('innerText');
+    let linkText = await valueHandle.jsonValue();
+    const text = getText(linkText);
+    if (linkString.includes(text)) {
+      console.log(linkString);
+      console.log(text);
+      console.log("Found");
+      return links[i];
+    }
+    return null;
+  }
+}
+
+const clickByText = async function(page, text, element) {
+  const link = await findByLink(page, text)
+  console.log('found', link)
+  if (link) {
+    await link.click()
+  }
+}
+
+const delay = (delayInms) => {
+  return new Promise(resolve => setTimeout(resolve, delayInms));
+}
+
+export {loginTest, clickByText, delay} 

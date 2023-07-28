@@ -8,24 +8,24 @@ import StateCard from "./StateCard";
 
 function StateMenu() {
 
-    const [states, setStates] = useState(null);
+    const [states, setStates] = useState([]);
 
     useEffect(() => {
         async function getStates() {
+
             let states = await BywayApi.getAllStates();
+            console.log('received states', states)
             setStates(states);
         }
         getStates();
     }, []);
-
-    if (!states) return <LoadingSpinner />;
 
     return (
         <div>
             {states.length
             // states.length > 0
             ? (
-                <div id="state_link">
+                <div>
                     {states.map(s => (
                         <StateCard
                             key={s.name}

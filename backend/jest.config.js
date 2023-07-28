@@ -10,7 +10,5 @@ module.exports = {
     "^.+\\.(js|jsx|ts|tsx)$": "esbuild-jest",
     // "^.+\\.css$": "jest-css-modules-transform",
   },
-  preset: 'jest-puppeteer',
-  roots: [ 'specs' ],
 };
 

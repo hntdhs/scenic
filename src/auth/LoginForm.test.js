@@ -1,75 +1,46 @@
+
+
+// if a component renders a link or a route, etc, you'll get a warning about context unless you wrap the unit test in a router component like Memory Routeer
+
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import {fireEvent} from "@testing-library/dom";
 import LoginForm from "./LoginForm";
-import { MemoryRouter } from "react-router";
 import { ToastProvider } from 'react-toast-notifications';
-import puppeteer from 'puppeteer-core'
-import { loginTest } from "../login_test.js";
+import { MemoryRouter, Route } from "react-router-dom";
+import { UserProvider } from "../testUtils";
+import { loginTest, delay } from "../login_test.js";
+import { mount, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import BywayApi from "../api/api";
+jest.mock('../api/api', () => ({
+  login: jest.fn()
+}))
 
-let browser;
-let page;
+configure({adapter: new Adapter()});
 
-beforeEach(async () => {
-  browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
-});
+it("clicking login calls callback", async () => {
+  const mockCallBack = jest.fn();
 
-afterEach(async () => {
-  await browser.close()
-});
+  const wrapper = render(
+    <ToastProvider><MemoryRouter  initialEntries={["/login"]}>
+        {/* taking out the initialEntries because I don't know what the equivalent for login would be and it seems like /login would go with Route path */}
+        <UserProvider>
+          <Route path="/login">
+          <LoginForm username="test" password="11111" login={mockCallBack}/>
+          </Route>
+        </UserProvider>
+      </MemoryRouter></ToastProvider>,
+  );
 
-// if a component renders a link or a route, etc, you'll get a warning about context unless you wrap the unit test in a router component like Memory Routeer
-it("login succesfully", async () => {
   
+  userEvent.type(screen.getByTestId('username', 'test'));
+  userEvent.type(screen.getByTestId('password', 'test'));
+  const button = screen.getByTestId('loginSubmit');
   
-  page = await loginTest(browser);
-  await expect(page.url()).toMatch('http://localhost:3000')
+  await fireEvent.click(button);
 
-});
+  expect(mockCallBack).toHaveBeenCalledTimes(1);
+})
 
-// if a component renders a link or a route, etc, you'll get a warning about context unless you wrap the unit test in a router component like Memory Routeer
-it("login unsuccessfully", async () => {
-  const page = await browser.newPage();
-  await page.goto('http://localhost:3000/login');
-
-  await page.type('#password', 'atlantic');
-  await page.type('#username', 'atlantic1i');
-
-  await Promise.all([
-    page.click('#loginSubmit'),
-  ]);
-  await expect(page.url()).toMatch('http://localhost:3000/login')
-
-});
-
-// if a component renders a link or a route, etc, you'll get a warning about context unless you wrap the unit test in a router component like Memory Routeer
-// it("login succesfully", async () => {
-//   const browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
-//   const page = await browser.newPage();
-//   await page.goto('http://localhost:3000/login');
-
-//   await page.type('#password', 'atlantic');
-//   await page.type('#username', 'atlantic');
-
-//   await Promise.all([
-//     page.click('#loginSubmit'),
-//     await page.waitForNavigation()
-//   ]);
-//   await expect(page.url()).toMatch('http://localhost:3000')
-
-// });
-
-// if a component renders a link or a route, etc, you'll get a warning about context unless you wrap the unit test in a router component like Memory Routeer
-// it("login unsuccessfully", async () => {
-//   const browser = await puppeteer.launch({headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
-//   const page = await browser.newPage();
-//   await page.goto('http://localhost:3000/login');
-
-//   await page.type('#password', 'atlantic');
-//   await page.type('#username', 'atlantic1');
-
-//   await Promise.all([
-//     page.click('#loginSubmit'),
-//   ]);
-//   await expect(page.url()).toMatch('http://localhost:3000/login')
-
-// });

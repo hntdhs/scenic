@@ -1,4 +1,8 @@
-const db = require("../db.js");
+if (typeof global.TextEncoder === 'undefined') {
+    const { TextEncoder } = require('util');
+    global.TextEncoder = TextEncoder;
+}
+
 const Byway = require("./byway.js");
 const {
   commonBeforeAll,
@@ -24,64 +28,66 @@ describe("findAll", function() {
             {
                 name: "byway1",
                 state: "state1",
-                length: "1",
+                length: 1,
                 designation: "desig1",
                 fees: "fees1",
                 image: "http://byway1.img",
                 description: "desc1",
-                geographic_features: "features1",
+                geographicFeatures: "features1",
             },
             {
                 name: "byway2",
                 state: "state2",
-                length: "2",
+                length: 2,
                 designation: "desig2",
                 fees: "fees2",
                 image: "http://byway2.img",
                 description: "desc2",
-                geographic_features: "features2",
+                geographicFeatures: "features2",
             },
             {
                 name: "byway3",
                 state: "state3",
-                length: "3",
+                length: 3,
                 designation: "desig1",
                 fees: "fees3",
                 image: "http://byway3.img",
                 description: "desc3",
-                geographic_features: "features3",
+                geographicFeatures: "features3",
             },
         ]);
     });
 
     test("searching by min length works", async function() {
         let byways = await Byway.findAll({ minLength: 3 });
+        delete byways[0].id
         expect(byways).toEqual([
             {
                 name: "byway3",
                 state: "state3",
-                length: "3",
+                length: 3,
                 designation: "desig1",
                 fees: "fees3",
                 image: "http://byway3.img",
                 description: "desc3",
-                geographic_features: "features3",
+                geographicFeatures: "features3",
             },
         ]);
     })
 
     test("searching by name works", async function() {
-        let byways = await Byway.findAll({ name: byway1 });
+        let byways = await Byway.findAll({ name: 'byway1' });
+        delete byways[0].id
         expect(byways).toEqual([
             {
                 name: "byway1",
                 state: "state1",
-                length: "1",
+                length: 1,
                 designation: "desig1",
                 fees: "fees1",
                 image: "http://byway1.img",
                 description: "desc1",
-                geographic_features: "features1",
+                geographicFeatures: "features1",
             },
         ]);
     });
@@ -90,18 +96,20 @@ describe("findAll", function() {
 describe("getByway", function() {
     test("getting single byway works", async function () {
         let byway = await Byway.getByway("byway1");
-        expect(byway).toEqual([
+        delete byway.id
+        expect(byway).toEqual(
             {
                 name: "byway1",
                 state: "state1",
-                length: "1",
+                length: 1,
                 designation: "desig1",
                 fees: "fees1",
                 image: "http://byway1.img",
                 description: "desc1",
-                geographic_features: "features1",
+                geographicFeatures: "features1",
+
             },
-        ]);
+        );
     });
 });
 
@@ -112,12 +120,12 @@ describe("findBywaysByState", function() {
             {
                 name: "byway2",
                 state: "state2",
-                length: "2",
+                length: 2,
+                "fees": "fees2",
                 designation: "desig2",
-                fees: "fees2",
                 image: "http://byway2.img",
                 description: "desc2",
-                geographic_features: "features2",
+                geographicFeatures: "features2",
             },
         ]);
     });

@@ -37,6 +37,7 @@ function LoginForm({ login }) {
    */
 
   async function handleSubmit(evt) {
+    console.log(login)
     evt.preventDefault();
     try {
       let result = await login(formData);
@@ -70,7 +71,7 @@ function LoginForm({ login }) {
                 <div className="form-group">
                   <label>Username</label>
                   <input
-                  id='username'
+                  data-testid='username'
                       name="username"
                       className="form-control"
                       value={formData.username}
@@ -82,7 +83,7 @@ function LoginForm({ login }) {
                 <div className="form-group">
                   <label>Password</label>
                   <input
-                  id='password'
+                  data-testid='password'
                       type="password"
                       name="password"
                       className="form-control"
@@ -98,7 +99,7 @@ function LoginForm({ login }) {
                     : null}
 
                 <button
-                id='loginSubmit'
+                data-testid='loginSubmit'
                     className="btn btn-primary float-right"
                     onSubmit={handleSubmit}
                 >

@@ -22,7 +22,7 @@ import useTimedMessage from "../hooks/useTimedMessage";
  * Routes -> ProfileForm -> Alert
  */
 
-function ProfileForm() {
+function ProfileForm({callback}) {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
@@ -47,6 +47,7 @@ function ProfileForm() {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
+    callback();
 
     let profileData = {
       bio: formData.bio,
@@ -73,6 +74,7 @@ function ProfileForm() {
 
     // trigger reloading of user information throughout the site
     setCurrentUser(updatedUser);
+    
     history.push("/profile");
   }
 
@@ -131,7 +133,7 @@ function ProfileForm() {
                   : null}
 
               <button
-                  id="save"
+                  data-testid="save-button"
                   onClick={handleSubmit}
               >
                 Save Changes

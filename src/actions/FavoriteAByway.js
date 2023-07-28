@@ -5,7 +5,7 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 import Alert from "../common/Alert";
 
-function FavoriteAByway({id}) {
+function FavoriteAByway({id, callback}) {
     const { byway } = useParams();
     const { currentUser } = useContext(UserContext);
 
@@ -28,24 +28,9 @@ function FavoriteAByway({id}) {
         await BywayApi.favoriteAByway(currentUser.username, id);
         setFavorite(id);
         setHasBeenSet(true);
+        callback(evt)
         // set state variable to true
     }
-
-//     return (
-//         <div>
-//             <div>
-//                 {/* {setFavorite(id)
-//                     ?
-//                     <Alert messages={["Byway added to your favorites."]} />
-//                     :  */}
-//                     {/* try in onSubmit? with a state variable that sets whether or not the byway has been favorited */}
-//                     <button onClick={handleSubmit}>
-//                         Add this byway to your favorites
-//                     </button>
-//             </div>
-//         </div>
-//     )
-// }
 
         return (
             <div>
@@ -53,7 +38,7 @@ function FavoriteAByway({id}) {
                 ? (
                 <Alert messages={["Byway added to your favorites."]} />
                  ) : (
-                <button id="submit_favorite" onClick={handleSubmit}>
+                <button data-testid="submit_favorite" onClick={handleSubmit}>
                     Add this byway to your favorites
                 </button>
                  )}

@@ -1,5 +1,5 @@
 "use strict";
-/** Database setup for Scenic. */
+
 const { Client } = require("pg");
 const { getDatabaseUri } = require("./config");
 
