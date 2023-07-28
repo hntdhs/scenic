@@ -12,10 +12,12 @@ const bywayModel = require('../models/byway.js')
 
 
 router.get("/", ensureLoggedIn, async function (req, res, next) {
-    const data = await bywayModel.getAllByways(req.params)
-    return res.json(data);
-        
-  });
+  let data = await bywayModel.getAllByways(req.params)
+  if (req.query.minLength) {
+    data = data.filter(({ length }) => length >= req.query.minLength)
+  }
+  return res.json(data);
+});
 
   router.get("/search", ensureLoggedIn, async function (req, res, next) {
     console.log(req.query, req.params, req.body)

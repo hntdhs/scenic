@@ -6,12 +6,12 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 
 class Byway {
 
-    static async create({ name, state, length, designation, fees, image, description, geographicFeatures }) {
+    static async create({ name, state, length, designation, fees, image, description, geographic_features }) {
         const result = await db.query(
             `INSERT INTO byways
             (name, state, length, designation, fees, image, description, geographic_features)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-            RETURNING name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures"`,
+            RETURNING name, state, length, designation, fees, image, description, geographic_features`,
             [
                 name,
                 state,
@@ -20,7 +20,7 @@ class Byway {
                 fees,
                 image,
                 description,
-                geographicFeatures,
+                geographic_features,
             ],
         );
         const byway = result.rows[0];
@@ -29,7 +29,7 @@ class Byway {
     }
 
     static async findAll(searchFilters = {}) {
-        let query = 'SELECT name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways';
+        let query = 'SELECT name, state, length, designation, fees, image, description, geographic_features FROM byways';
     
         let whereExpressions = [];
         let queryValues = [];
@@ -95,14 +95,15 @@ class Byway {
 
     }
 
-    static async getAllStates(name) {
+    static async getAllStates() {
         let query = 'SELECT name, nickname, image FROM states';
+        
         const response =  await db.query(query)
         return response.rows
     }
 
     static async findBywaysByState(state)  {
-        let query = 'SELECT name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways WHERE state like $1 ORDER BY name';
+        let query = 'SELECT name, state, length, designation, fees, image, description, geographic_features FROM byways WHERE state like $1 ORDER BY name';
 
         const response = await db.query(query, [`%${state}%`])
         return response.rows
@@ -111,7 +112,7 @@ class Byway {
     }
 
     static async getByway(name) {
-        let query = 'SELECT id, name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways WHERE name = $1';
+        let query = 'SELECT id, name, state, length, designation, fees, image, description, geographic_features FROM byways WHERE name = $1';
         
         const response = await db.query(query, [name])        
         if (!response) {
@@ -122,11 +123,10 @@ class Byway {
     }
 
     static async getAllByways() {
-        let query = 'SELECT id, name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways ORDER BY name';
+        let query = 'SELECT id, name, state, length, designation, fees, image, description, geographic_features FROM byways ORDER BY name';
 
         const response = await db.query(query)
         return response.rows
-
     }
 
     static async getCommentsByByway(byway_id) {
@@ -158,7 +158,7 @@ class Byway {
     }
 
     static async getRandomByway() {
-        const query = 'SELECT name, state, length, designation, fees, image, description, geographic_features AS "geographicFeatures" FROM byways ORDER BY random() LIMIT 1';
+        const query = 'SELECT name, state, length, designation, fees, image, description, geographic_features FROM byways ORDER BY random() LIMIT 1';
 
         const response = await db.query(query);        
 

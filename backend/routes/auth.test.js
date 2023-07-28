@@ -1,3 +1,8 @@
+if (typeof global.TextEncoder === 'undefined') {
+  const { TextEncoder } = require('util');
+  global.TextEncoder = TextEncoder;
+}
+
 "use strict";
 
 const request = require("supertest");

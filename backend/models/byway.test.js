@@ -33,7 +33,7 @@ describe("findAll", function() {
                 fees: "fees1",
                 image: "http://byway1.img",
                 description: "desc1",
-                geographicFeatures: "features1",
+                geographic_features: "features1",
             },
             {
                 name: "byway2",
@@ -43,7 +43,7 @@ describe("findAll", function() {
                 fees: "fees2",
                 image: "http://byway2.img",
                 description: "desc2",
-                geographicFeatures: "features2",
+                geographic_features: "features2",
             },
             {
                 name: "byway3",
@@ -53,7 +53,7 @@ describe("findAll", function() {
                 fees: "fees3",
                 image: "http://byway3.img",
                 description: "desc3",
-                geographicFeatures: "features3",
+                geographic_features: "features3",
             },
         ]);
     });
@@ -70,7 +70,7 @@ describe("findAll", function() {
                 fees: "fees3",
                 image: "http://byway3.img",
                 description: "desc3",
-                geographicFeatures: "features3",
+                geographic_features: "features3",
             },
         ]);
     })
@@ -87,7 +87,7 @@ describe("findAll", function() {
                 fees: "fees1",
                 image: "http://byway1.img",
                 description: "desc1",
-                geographicFeatures: "features1",
+                geographic_features: "features1",
             },
         ]);
     });
@@ -106,7 +106,7 @@ describe("getByway", function() {
                 fees: "fees1",
                 image: "http://byway1.img",
                 description: "desc1",
-                geographicFeatures: "features1",
+                geographic_features: "features1",
 
             },
         );
@@ -114,7 +114,7 @@ describe("getByway", function() {
 });
 
 describe("findBywaysByState", function() {
-    test("getting byways by state woeks", async function () {
+    test("getting byways by state works", async function () {
         let byway = await Byway.findBywaysByState("state2");
         expect(byway).toEqual([
             {
@@ -125,7 +125,7 @@ describe("findBywaysByState", function() {
                 designation: "desig2",
                 image: "http://byway2.img",
                 description: "desc2",
-                geographicFeatures: "features2",
+                geographic_features: "features2",
             },
         ]);
     });
