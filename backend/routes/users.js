@@ -96,6 +96,7 @@ router.get("/:username", ensureLoggedIn, async function (req, res, next) {
  router.patch("/:username", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, userUpdateSchema);
+
     if (!validator.valid) {
       const errs = validator.errors.map(e => e.stack);
       throw new BadRequestError(errs);
@@ -114,6 +115,15 @@ router.get("/:username", ensureLoggedIn, async function (req, res, next) {
 router.post("/:username/favorites/:id", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
     const user = await User.favoriteAByway(req.params.username, req.params.id);
+    return res.json({ user });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+router.delete("/:username", ensureCorrectUserOrAdmin, async function (req, res, next) {
+  try {
+    const user = await User.removeFavorite(req.params.username, req.params.id);
     return res.json({ user });
   } catch (err) {
     return next(err);

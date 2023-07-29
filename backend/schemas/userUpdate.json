@@ -8,6 +8,11 @@
         "minLength": 0,
         "maxLength": 200
       },
+      "password": {
+        "type": "string",
+        "minLength": 5,
+        "maxLength": 20
+      },
       "userLocation": {
         "type": "string",
         "minLength": 0,

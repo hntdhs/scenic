@@ -15,7 +15,6 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testJobIds,
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
@@ -33,7 +32,7 @@ describe("authenticate", function () {
       firstName: "U1F",
       lastName: "U1L",
       email: "u1@email.com",
-      isAdmin: false,
+      isAdmin: true,
     });
   });
 
@@ -73,10 +72,11 @@ describe("register", function () {
       password: "password",
     });
     expect(user).toEqual(newUser);
+
     const found = await db.query("SELECT * FROM users WHERE username = 'new'");
     expect(found.rows.length).toEqual(1);
     expect(found.rows[0].is_admin).toEqual(false);
-    expect(found.rows[0].password.startsWith("$2b$")).toEqual(true);
+    expect(found.rows[0].password.startsWith("$2b$")).toEqual(true); // Why $2b$ ?
   });
 
   test("works: adds admin", async function () {
@@ -173,8 +173,8 @@ describe("get", function () {
 
 describe("update", function () {
   const updateData = {
-    firstName: "NewF",
-    lastName: "NewF",
+    first_name: "NewF",
+    last_name: "NewF",
     email: "new@email.com",
     bio: "test",
     favoriteState: "Illinois",
@@ -187,14 +187,14 @@ describe("update", function () {
     let update = await User.update("u1", updateData);
     expect(update).toEqual({
       username: "u1",
-      ...updateData,
+      ...updateData
     });
   });
 
   test("not found if no such user", async function () {
     try {
-      await User.update("nope", {
-        firstName: "test",
+      await User.update("nope_user", {
+        first_name: "test",
       });
       fail();
     } catch (err) {

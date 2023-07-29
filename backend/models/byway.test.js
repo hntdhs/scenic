@@ -107,7 +107,6 @@ describe("getByway", function() {
                 image: "http://byway1.img",
                 description: "desc1",
                 geographic_features: "features1",
-
             },
         );
     });

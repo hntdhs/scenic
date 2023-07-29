@@ -21,7 +21,7 @@ async function commonBeforeAll() {
     //   email: "new@email.com",
     //   bio: "test",
     //   favoriteState: "Illinois",
-    //   profilePhoto: "http://test.img",
+    //   profile_photo: "http://test.img",
     //   userLocation: "location",
     //   isAdmin: true,
     // };
@@ -34,9 +34,9 @@ async function commonBeforeAll() {
                           email,
                           bio,
                           favorite_state,
-                          profilePhoto,
-                          userLocation,
-                          isAdmin)
+                          profile_photo,
+                          user_location,
+                          is_admin)
         VALUES ('u1', $1, 'U1F', 'U1L', 'u1@email.com', 'bioU1', 'stateU1', 'http://u1.img', 'u1loc', 'true'),
                ('u2', $2, 'U2F', 'U2L', 'u2@email.com', 'bioU2', 'stateU2', 'http://u2.img', 'u2loc', 'true')
         RETURNING username`,

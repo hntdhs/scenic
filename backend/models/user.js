@@ -103,11 +103,16 @@ class User {
   
     static async findAll() {
       const result = await db.query(
-            `SELECT username,
-                    first_name AS "firstName",
-                    last_name AS "lastName",
-                    email,
-                    is_admin AS "isAdmin"
+            `SELECT
+                username,
+                first_name AS "firstName",
+                last_name AS "lastName",
+                email,
+                is_admin AS "isAdmin",
+                bio,
+                user_location AS "userLocation",
+                favorite_state AS "favoriteState",
+                profile_photo AS "profilePhoto"
              FROM users
              ORDER BY username`,
       );
@@ -178,12 +183,16 @@ class User {
       const querySql = `UPDATE users 
                         SET ${setCols} 
                         WHERE username = ${usernameVarIdx} 
-                        RETURNING username,
-                                  bio AS "bio",
-                                  user_location AS "userLocation",
-                                  favorite_state AS "favoriteState",
-                                  profile_photo AS "profilePhoto",
-                                  is_admin AS "isAdmin"`;
+                        RETURNING
+                            username,
+                            email,
+                            first_name,
+                            last_name,
+                            bio,
+                            user_location AS "userLocation",
+                            favorite_state AS "favoriteState",
+                            profile_photo AS "profilePhoto",
+                            is_admin AS "isAdmin"`;
       const result = await db.query(querySql, [...values, username]);
       const user = result.rows[0];
   

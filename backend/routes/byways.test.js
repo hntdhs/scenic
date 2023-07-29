@@ -12,13 +12,11 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testJobIds,
   u1Token,
   adminToken,
 } = require("./_testCommon");
 
 let token;
-
 beforeAll(async () => {
   const { body } = await request(app)
     .post("/auth/token")

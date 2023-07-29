@@ -8,7 +8,6 @@ async function commonBeforeAll() {
   // await db.query("DELETE FROM states");
   await db.query("DELETE FROM users");
 
-
   await Byway.create(
     {
       name: "b1",
@@ -48,6 +47,10 @@ async function commonBeforeAll() {
     lastName: "U1L",
     email: "user1@user.com",
     password: "password1",
+    bio: "bio1",
+    favorite_state: "state1",
+    profile_photo: "http://u1.img",
+    user_location: "loc1",
     isAdmin: false,
   });
   await User.register({
@@ -79,6 +82,7 @@ async function commonBeforeEach() {
   async function commonAfterAll() {
     await db.end();
   }
+
 
   module.exports = {
     commonBeforeAll,
