@@ -49,19 +49,19 @@ function BywayDetail() {
     }
 
     function checkGeoFeaturesLength(byway) {
-        let tempString = byway.geographicFeatures
+        let tempString = byway.geographic_features
         tempString = tempString[0].toUpperCase() + tempString.slice(1)
         const splitted = tempString.split(',')
         if (splitted.length >= 3) {
             // if byway has 3 or more - features = Feature, feature and feature
-            // return byway.geographicFeatures.charAt(0).toUpperCase() + byway.geographicFeatures.replace(/("[^"]+"|\w+)$/, "and $1").slice(1);
+            // return byway.geographic_features.charAt(0).toUpperCase() + byway.geographic_features.replace(/("[^"]+"|\w+)$/, "and $1").slice(1);
             const comma_separated_list_until_last_element = splitted.slice(0, splitted.length - 1).join(', ')
             // takes the splitted string, slices it from beginning up until the last element and joins them on comma, but there won't be a comma after the last feature, meaning we can add the last feature from splitted and return it at the end of this below with 'and' in front of it but no comma
             return comma_separated_list_until_last_element + ' and ' + splitted[splitted.length - 1]
-            //return byway.geographicFeatures.charAt(0).toUpperCase() + byway.geographicFeatures.slice(1, lastIndex) + ' and' + byway.geographicFeatures(lastIndex + 1);
+            //return byway.geographic_features.charAt(0).toUpperCase() + byway.geographic_features.slice(1, lastIndex) + ' and' + byway.geographic_features(lastIndex + 1);
         } else if (splitted.length === 2) {
             // if byway has 2 - features = Feature and feature
-            // this replaced the comma with regex - return byway.geographicFeatures.charAt(0).toUpperCase() + byway.geographicFeatures.replace(/("[^"]+"|\w+)$/, "and $1").slice(1);
+            // this replaced the comma with regex - return byway.geographic_features.charAt(0).toUpperCase() + byway.geographic_features.replace(/("[^"]+"|\w+)$/, "and $1").slice(1);
             const newString = splitted[0] + ' and' + splitted[1]
             return newString.charAt(0).toUpperCase() + newString.slice(1)
         } else if (splitted.length === 1) {
