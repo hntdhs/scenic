@@ -47,7 +47,9 @@ function ProfileForm({callback}) {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    callback();
+    if (callback) {
+      callback();
+    }
 
     let profileData = {
       bio: formData.bio,
