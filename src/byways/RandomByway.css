@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css?family=Lora:400,400i|Open+Sans:300,400,600,700,800");
+body {
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: #fefefe;
+}
+
+/* .all-random-content {
+    align-items: center;
+} */
+
+.byway-img {
+    padding: 10px;
+
+}
+
+.container-fluid {
+    align-items: start;
+}
+
+.byway-info {
+    padding-left: 1em;
+}
+
+.byway-desc {
+    font-size: large;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: "Open Sans", sans-serif;
+    font-weight: normal;
+    max-width: 60%;
+}
+
+.go-to-byway {
+    font-size: medium;
+}
+
+.random-byway-name {
+    font-family: fantasy;
+    color: green;
+}
+
+.welcome-message {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}

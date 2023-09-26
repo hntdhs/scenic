@@ -18,6 +18,7 @@ function Checkbox(props) {
                     onChange={handleChange}
                     name={props.name}
                     value={props.name}
+                    class="form-check-input"
                 />
             </label>
         </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import BywayApi from "../api/api";
+import "./RandomByway.css"
 
 function DisplayRandomByway() {
     const history = useHistory();
@@ -32,16 +33,31 @@ function DisplayRandomByway() {
 
     return (
         <div>
+            <div class="container text-center" id="app-name">
+                <h1>NATIONAL SCENIC BYWAYS</h1>
+            </div>
             {byway
                 ? (
-                   <div> 
-                    <h1>Check out {byway.name} in {byway.state}!</h1>
-                    <img src={byway.image} alt={byway.name}></img>
-                    <p>{truncateCharCount(byway)}</p>
-                    <Link to={`/byways/${byway.name}`}>Go to this byway's page to learn more, comment, and favorite {byway.name}.</Link>
-                    <br></br><button onClick={handleSubmit}>
-                        Try another byway
-                    </button>
+                   <div className="all-random-content"> 
+                       <div className="welcome-message">
+                            <h1>Check out <span className="random-byway-name">{byway.name}</span> in {byway.state}!</h1>
+                        </div>
+                        <div className="container-fluid">
+                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                        </div>
+                        <div className="byway-info">
+                            <p className="byway-desc">{truncateCharCount(byway)}</p>
+                            <div className="go-to-byway">
+                                <Link to={`/byways/${byway.name}`} className="link-offset-2 link-danger">Go to this byway's page to learn more, comment, and favorite {byway.name}.</Link>
+                            </div>
+                            <button onClick={handleSubmit} class="btn btn-outline-success btn-lg">
+                                Try another byway
+                            </button>
+                        </div>
                     </div>
                 ) : (
 

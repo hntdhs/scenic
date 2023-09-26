@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import BywayApi from "../api/api";
 import BywayCard from "./BywayCard";
+import "./StateDetail.css";
 import LoadingSpinner from "../common/LoadingSpinner";
 
 
@@ -28,13 +29,18 @@ function StateDetail() {
 
     return (
         <div>
+            <div class="container text-center" id="app-name">
+                <h1>NATIONAL SCENIC BYWAYS</h1>
+            </div>
             {/* <h2>Check Out the Scenic Drives Available in {name}!</h2> */}
             {/*  */}
             {stateByways.length
             // states.length > 0
             ? (
-                <div id='state-page'>
-                    <h2>Check Out the Scenic Drives Available in {name}!</h2>
+                <div>
+                    <div className="check-out-box">
+                        <h2 className="check-out-message">Check Out the Scenic Drives Available in {name}!</h2>
+                    </div>
                     {stateByways.map(s => (
                         <BywayCard
                             key={s.name}

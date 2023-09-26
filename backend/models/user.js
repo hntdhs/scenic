@@ -1,7 +1,7 @@
 "use strict";
 
 const db = require("../db");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { sqlForPartialUpdate } = require("../helpers/sql");
 const {
   NotFoundError,
@@ -57,7 +57,8 @@ class User {
      **/
   
     static async register(
-        { username, password, firstName, lastName, email, isAdmin }) {
+        { username, password, firstName, lastName, email, isAdmin, bio = null, favorite_state = null, profile_photo = null, user_location = null }) {
+
       const duplicateCheck = await db.query(
             `SELECT username
              FROM users
@@ -78,8 +79,12 @@ class User {
               first_name,
               last_name,
               email,
-              is_admin)
-             VALUES ($1, $2, $3, $4, $5, $6)
+              is_admin,
+              bio,
+              favorite_state,
+              profile_photo,
+              user_location)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
              RETURNING username, first_name AS "firstName", last_name AS "lastName", email, is_admin AS "isAdmin"`,
           [
             username,
@@ -88,6 +93,10 @@ class User {
             lastName,
             email,
             isAdmin,
+            bio,
+            favorite_state,
+            profile_photo,
+            user_location
           ],
       );
   
@@ -232,7 +241,6 @@ class User {
     }
 
     static async favoriteAByway(username, byway_id) {
-      console.log(username)
       const result = await db.query(
           `INSERT INTO favorites(username, byway_id)
           VALUES ($1, $2)

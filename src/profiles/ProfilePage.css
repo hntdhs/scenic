@@ -1,0 +1,19 @@
+.profile-username {
+    font-family: fantasy;
+    color: green;
+}
+
+.edit-profile {
+    /* border: solid green 1px; */
+    margin: 15px;   
+    font-size: large;
+}
+
+.profile-photo {
+    margin-bottom: 10px;
+}
+
+.user-info {
+    margin: 10px;
+    border-bottom: green;
+}

@@ -15,6 +15,9 @@ function UsersList() {
 
     return (
         <div>
+            <div class="container text-center" id="app-name">
+                <h1>NATIONAL SCENIC BYWAYS</h1>
+            </div>
             {users.length
             ? users.map((u, i) => (
                         <div>

@@ -3,34 +3,63 @@
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <h3>
-      Welcome to the profile page of 
-    </h3>
-    <img
-      alt="profile photo"
+    <div
+      class="container text-center"
+      id="app-name"
+    >
+      <h1>
+        NATIONAL SCENIC BYWAYS
+      </h1>
+    </div>
+    <div
+      class="edit-profile"
     />
-    <h3>
-      Location: 
-    </h3>
-    <h3>
-      Favorite State to Travel To: 
-    </h3>
-    <p>
-      Bio: 
-    </p>
+    <div
+      class="welcome-to-profile"
+    >
+      <h3>
+        Welcome to the profile page of 
+      </h3>
+    </div>
+    <div
+      class="profile-photo"
+    >
+      <img
+        alt="profile photo"
+      />
+    </div>
+    <div
+      class="user-info"
+    >
+      <h3>
+        Location: 
+      </h3>
+      <h3>
+        Favorite State to Travel To: 
+      </h3>
+      <h4>
+        Bio: 
+      </h4>
+    </div>
     <h1>
       USER FAVORITES
     </h1>
     <h4>
       Order favorites by:
     </h4>
-    <button>
+    <button
+      class="btn btn-outline-success"
+    >
       Z-A
     </button>
-    <button>
+    <button
+      class="btn btn-outline-success"
+    >
       Shortest to Longest
     </button>
-    <button>
+    <button
+      class="btn btn-outline-success"
+    >
       Longest to Shortest
     </button>
     <div />

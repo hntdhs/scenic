@@ -7,6 +7,7 @@ import UserContext from "../auth/UserContext";
 import moment from 'moment';
 // see Moment docs on display for how to format comment dates/times in different ways
 import { useToasts } from 'react-toast-notifications';
+import "./BywayDetail.css"
 
 
 function BywayDetail() {
@@ -81,6 +82,9 @@ function BywayDetail() {
 
     return (
         <div>
+            <div class="container text-center" id="app-name">
+                <h1>NATIONAL SCENIC BYWAYS</h1>
+            </div>
             {byway
                 ? (
                     <div id='byway-detail'>
@@ -88,9 +92,9 @@ function BywayDetail() {
                         <img src={byway.image} alt={byway.name}></img>
                         <h2>{byway.state}</h2>
                         <h3>{byway.length} miles / { Math.round((parseFloat(byway.length) * 1.60934)) } kilometres</h3>
-                        <p><b>Fees:</b> {byway.fees}</p>
-                        {<p><b>Wondering what kind of natural settings you'll see on this byway?</b> {checkGeoFeaturesLength(byway)}.</p> }
-                        <p><b>About {byway.name}</b><br></br>{byway.description}</p>
+                        <h3>Fees: {byway.fees}</h3>
+                        {<h3>Wondering what kind of natural settings you'll see on this byway? {checkGeoFeaturesLength(byway)}.</h3> }
+                        <h3>About {byway.name}<br></br>{byway.description}</h3>
                         {isFavorite === true
                         ? (
                             <h4>Byway is in your favorites</h4>
@@ -103,11 +107,11 @@ function BywayDetail() {
                         <div>
                             {comments
                             ? (
-                                <div>
+                                <div className="comment-area">
                                     {comments.map((c, i) => (
                                         <div key={i}>
-                                            <h4>User <a href={`/profile/${c.username}`}>{c.username}</a> said this at {moment(c.create_at).format("MM/DD/YYYY hh:mm a")}:</h4>
-                                            <p>{c.comment}</p>
+                                            <h4>User <a href={`/profile/${c.username}`}><span className="comment-user">{c.username}</span></a> said this at {moment(c.create_at).format("MM/DD/YYYY hh:mm a")}:</h4>
+                                            <p className="comment-text">{c.comment}</p>
                                         </div>
                                     ))}
                                 </div>

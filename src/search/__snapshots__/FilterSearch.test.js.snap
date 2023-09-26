@@ -4,294 +4,370 @@ exports[`matches snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div>
-      <div>
+      <div
+        class="float-container"
+      >
         <div
-          class="all-searches"
+          class="container text-center"
+          id="app-name"
         >
-          <form
-            class="byway-name-search"
-          >
-            <p>
-              Search byways by name
-            </p>
-            <label
-              for="searchTerm"
-            >
-              Byway Name:
-            </label>
-            <input
-              name="searchTerm"
-              placeholder="Enter search term.."
-              value=""
-            />
-            <button
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
+          <h1>
+            NATIONAL SCENIC BYWAYS
+          </h1>
         </div>
         <div
-          class="not-name-searches"
+          class="float-child"
         >
-          <form>
-            <p>
-              Search byways by length. The longest of America's Byways® is the Alaska Marine Highway at 3500 miles!
-            </p>
-            <label
-              for="minLength"
-            >
-              Minimum Byway Length:
-            </label>
-            <input
-              name="minLength"
-              placeholder="how many miles?"
-              value="0"
-            />
-            <label
-              for="maxLength"
-            >
-              Maximum Byway Length:
-            </label>
-            <input
-              name="maxLength"
-              placeholder="how many miles?"
-              value=""
-            />
-            <p>
-              Search byways by geographic features. You'll see byways that contain all entered criteria.
-            </p>
-            <div>
-              <div
-                class="single-checkbox"
+          <div
+            class="byway-name-search"
+          >
+            <form>
+              <p>
+                Search byways by name
+              </p>
+              <label
+                for="searchTerm"
               >
-                <label
-                  for="canyon"
+                Byway Name:
+              </label>
+              <input
+                name="searchTerm"
+                placeholder="Enter search term.."
+                value=""
+              />
+              <div>
+                <button
+                  class="btn btn-success btn-lg"
+                  type="submit"
                 >
-                  canyon
-                </label>
-                <div>
-                  <label>
-                    <input
-                      name="canyon"
-                      type="checkbox"
-                      value="canyon"
-                    />
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+          <div
+            class="not-name-searches"
+          >
+            <form>
+              <div
+                class="length-search"
+              >
+                <p>
+                  Search byways by length. The longest of America's Byways® is the Alaska Marine Highway at 3500 miles!
+                </p>
+                <div
+                  class="input-group input-group-lg"
+                >
+                  <label
+                    class="input-group-text"
+                    for="minLength"
+                    id="inputGroup-sizing-lg"
+                  >
+                    Minimum Byway Length:
                   </label>
+                  <input
+                    name="minLength"
+                    placeholder="how many miles?"
+                    value="0"
+                  />
+                </div>
+                <div
+                  class="input-group input-group-lg"
+                >
+                  <label
+                    class="input-group-text"
+                    for="maxLength"
+                    id="inputGroup-sizing-lg"
+                  >
+                    Maximum Byway Length:
+                  </label>
+                  <input
+                    name="maxLength"
+                    placeholder="how many miles?"
+                    value=""
+                  />
                 </div>
               </div>
               <div
-                class="single-checkbox"
+                class="geo-features-search"
               >
-                <label
-                  for="coastline"
-                >
-                  coastline
-                </label>
+                <p>
+                  Search byways by geographic features. You'll see byways that contain all entered criteria.
+                </p>
                 <div>
-                  <label>
-                    <input
-                      name="coastline"
-                      type="checkbox"
-                      value="coastline"
-                    />
-                  </label>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      class="form-check-label"
+                      for="canyon"
+                    >
+                      canyon
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="canyon"
+                          type="checkbox"
+                          value="canyon"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      class="form-check-label"
+                      for="coastline"
+                    >
+                      coastline
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="coastline"
+                          type="checkbox"
+                          value="coastline"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      class="form-check-label"
+                      for="desert"
+                    >
+                      desert
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="desert"
+                          type="checkbox"
+                          value="desert"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      class="form-check-label"
+                      for="forest"
+                    >
+                      forest
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="forest"
+                          type="checkbox"
+                          value="forest"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      class="form-check-label"
+                      for="grasslands"
+                    >
+                      grasslands
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="grasslands"
+                          type="checkbox"
+                          value="grasslands"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      class="form-check-label"
+                      for="lake"
+                    >
+                      lake
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="lake"
+                          type="checkbox"
+                          value="lake"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      class="form-check-label"
+                      for="mountains"
+                    >
+                      mountains
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="mountains"
+                          type="checkbox"
+                          value="mountains"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      class="form-check-label"
+                      for="swamp"
+                    >
+                      swamp
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="swamp"
+                          type="checkbox"
+                          value="swamp"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      class="form-check-label"
+                      for="river"
+                    >
+                      river
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="river"
+                          type="checkbox"
+                          value="river"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      class="form-check-label"
+                      for="urban"
+                    >
+                      urban
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="urban"
+                          type="checkbox"
+                          value="urban"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <p>
+                  Search by official designation
+                </p>
+                <div>
+                  <div
+                    class="link"
+                  >
+                    <a
+                      href="/designations-explanation"
+                    >
+                      What are these?
+                    </a>
+                  </div>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      for="All-American Road"
+                    >
+                      All-American Road
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="All-American Road"
+                          type="checkbox"
+                          value="All-American Road"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="form-check form-check-inline"
+                  >
+                    <label
+                      for="National Scenic Byway"
+                    >
+                      National Scenic Byway
+                    </label>
+                    <div>
+                      <label>
+                        <input
+                          class="form-check-input"
+                          name="National Scenic Byway"
+                          type="checkbox"
+                          value="National Scenic Byway"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    class="btn btn-success btn-lg"
+                    type="submit"
+                  >
+                    Submit
+                  </button>
                 </div>
               </div>
-              <div
-                class="single-checkbox"
-              >
-                <label
-                  for="desert"
-                >
-                  desert
-                </label>
-                <div>
-                  <label>
-                    <input
-                      name="desert"
-                      type="checkbox"
-                      value="desert"
-                    />
-                  </label>
-                </div>
-              </div>
-              <div
-                class="single-checkbox"
-              >
-                <label
-                  for="forest"
-                >
-                  forest
-                </label>
-                <div>
-                  <label>
-                    <input
-                      name="forest"
-                      type="checkbox"
-                      value="forest"
-                    />
-                  </label>
-                </div>
-              </div>
-              <div
-                class="single-checkbox"
-              >
-                <label
-                  for="grasslands"
-                >
-                  grasslands
-                </label>
-                <div>
-                  <label>
-                    <input
-                      name="grasslands"
-                      type="checkbox"
-                      value="grasslands"
-                    />
-                  </label>
-                </div>
-              </div>
-              <div
-                class="single-checkbox"
-              >
-                <label
-                  for="lake"
-                >
-                  lake
-                </label>
-                <div>
-                  <label>
-                    <input
-                      name="lake"
-                      type="checkbox"
-                      value="lake"
-                    />
-                  </label>
-                </div>
-              </div>
-              <div
-                class="single-checkbox"
-              >
-                <label
-                  for="mountains"
-                >
-                  mountains
-                </label>
-                <div>
-                  <label>
-                    <input
-                      name="mountains"
-                      type="checkbox"
-                      value="mountains"
-                    />
-                  </label>
-                </div>
-              </div>
-              <div
-                class="single-checkbox"
-              >
-                <label
-                  for="swamp"
-                >
-                  swamp
-                </label>
-                <div>
-                  <label>
-                    <input
-                      name="swamp"
-                      type="checkbox"
-                      value="swamp"
-                    />
-                  </label>
-                </div>
-              </div>
-              <div
-                class="single-checkbox"
-              >
-                <label
-                  for="river"
-                >
-                  river
-                </label>
-                <div>
-                  <label>
-                    <input
-                      name="river"
-                      type="checkbox"
-                      value="river"
-                    />
-                  </label>
-                </div>
-              </div>
-              <div
-                class="single-checkbox"
-              >
-                <label
-                  for="urban"
-                >
-                  urban
-                </label>
-                <div>
-                  <label>
-                    <input
-                      name="urban"
-                      type="checkbox"
-                      value="urban"
-                    />
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div>
-              <a
-                href="/designations-explanation"
-              >
-                What are these?
-              </a>
-              <div
-                class="single-checkbox"
-              >
-                <label
-                  for="All-American Road"
-                >
-                  All-American Road
-                </label>
-                <div>
-                  <label>
-                    <input
-                      name="All-American Road"
-                      type="checkbox"
-                      value="All-American Road"
-                    />
-                  </label>
-                </div>
-              </div>
-              <div
-                class="single-checkbox"
-              >
-                <label
-                  for="National Scenic Byway"
-                >
-                  National Scenic Byway
-                </label>
-                <div>
-                  <label>
-                    <input
-                      name="National Scenic Byway"
-                      type="checkbox"
-                      value="National Scenic Byway"
-                    />
-                  </label>
-                </div>
-              </div>
-            </div>
-            <button
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
+            </form>
+          </div>
+        </div>
+        <div
+          class="float-child"
+        >
+          <img
+            alt="road through forest"
+            class="forest"
+            src="https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+          />
         </div>
       </div>
     </div>

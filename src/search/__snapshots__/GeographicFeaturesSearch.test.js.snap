@@ -4,9 +4,10 @@ exports[`matches snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="single-checkbox"
+      class="form-check form-check-inline"
     >
       <label
+        class="form-check-label"
         for="canyon"
       >
         canyon
@@ -14,6 +15,7 @@ exports[`matches snapshot 1`] = `
       <div>
         <label>
           <input
+            class="form-check-input"
             name="canyon"
             type="checkbox"
             value="canyon"
@@ -22,9 +24,10 @@ exports[`matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="single-checkbox"
+      class="form-check form-check-inline"
     >
       <label
+        class="form-check-label"
         for="coastline"
       >
         coastline
@@ -32,6 +35,7 @@ exports[`matches snapshot 1`] = `
       <div>
         <label>
           <input
+            class="form-check-input"
             name="coastline"
             type="checkbox"
             value="coastline"
@@ -40,9 +44,10 @@ exports[`matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="single-checkbox"
+      class="form-check form-check-inline"
     >
       <label
+        class="form-check-label"
         for="desert"
       >
         desert
@@ -50,6 +55,7 @@ exports[`matches snapshot 1`] = `
       <div>
         <label>
           <input
+            class="form-check-input"
             name="desert"
             type="checkbox"
             value="desert"
@@ -58,9 +64,10 @@ exports[`matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="single-checkbox"
+      class="form-check form-check-inline"
     >
       <label
+        class="form-check-label"
         for="forest"
       >
         forest
@@ -68,6 +75,7 @@ exports[`matches snapshot 1`] = `
       <div>
         <label>
           <input
+            class="form-check-input"
             name="forest"
             type="checkbox"
             value="forest"
@@ -76,9 +84,10 @@ exports[`matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="single-checkbox"
+      class="form-check form-check-inline"
     >
       <label
+        class="form-check-label"
         for="grasslands"
       >
         grasslands
@@ -86,6 +95,7 @@ exports[`matches snapshot 1`] = `
       <div>
         <label>
           <input
+            class="form-check-input"
             name="grasslands"
             type="checkbox"
             value="grasslands"
@@ -94,9 +104,10 @@ exports[`matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="single-checkbox"
+      class="form-check form-check-inline"
     >
       <label
+        class="form-check-label"
         for="lake"
       >
         lake
@@ -104,6 +115,7 @@ exports[`matches snapshot 1`] = `
       <div>
         <label>
           <input
+            class="form-check-input"
             name="lake"
             type="checkbox"
             value="lake"
@@ -112,9 +124,10 @@ exports[`matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="single-checkbox"
+      class="form-check form-check-inline"
     >
       <label
+        class="form-check-label"
         for="mountains"
       >
         mountains
@@ -122,6 +135,7 @@ exports[`matches snapshot 1`] = `
       <div>
         <label>
           <input
+            class="form-check-input"
             name="mountains"
             type="checkbox"
             value="mountains"
@@ -130,9 +144,10 @@ exports[`matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="single-checkbox"
+      class="form-check form-check-inline"
     >
       <label
+        class="form-check-label"
         for="swamp"
       >
         swamp
@@ -140,6 +155,7 @@ exports[`matches snapshot 1`] = `
       <div>
         <label>
           <input
+            class="form-check-input"
             name="swamp"
             type="checkbox"
             value="swamp"
@@ -148,9 +164,10 @@ exports[`matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="single-checkbox"
+      class="form-check form-check-inline"
     >
       <label
+        class="form-check-label"
         for="river"
       >
         river
@@ -158,6 +175,7 @@ exports[`matches snapshot 1`] = `
       <div>
         <label>
           <input
+            class="form-check-input"
             name="river"
             type="checkbox"
             value="river"
@@ -166,9 +184,10 @@ exports[`matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="single-checkbox"
+      class="form-check form-check-inline"
     >
       <label
+        class="form-check-label"
         for="urban"
       >
         urban
@@ -176,6 +195,7 @@ exports[`matches snapshot 1`] = `
       <div>
         <label>
           <input
+            class="form-check-input"
             name="urban"
             type="checkbox"
             value="urban"

@@ -21,17 +21,21 @@ function StateMenu() {
     }, []);
 
     return (
-        <div>
+        <div className="float-container">
+            <div class="container text-center" id="app-name">
+                <h1>NATIONAL SCENIC BYWAYS</h1>
+            </div>
             {states.length
             // states.length > 0
             ? (
-                <div>
+                <div className="float-child">
                     {states.map(s => (
                         <StateCard
                             key={s.name}
                             name={s.name}
                             nickname={s.nickname}
                             image={<img src={s.image} alt={s.name}/>}
+                            className="state-card"
                         />
                     ))}
                 </div>

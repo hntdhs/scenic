@@ -51,7 +51,7 @@ async function commonBeforeAll() {
     favorite_state: "state1",
     profile_photo: "http://u1.img",
     user_location: "loc1",
-    isAdmin: false,
+    isAdmin: true,
   });
   await User.register({
     username: "u2",

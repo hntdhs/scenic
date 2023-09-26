@@ -1,0 +1,12 @@
+.comment-user {
+    color: green;
+}
+
+.comment-text {
+    font-size: medium;
+}
+
+.comment-area {
+    max-width: 50%;
+    border: black;
+}

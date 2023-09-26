@@ -17,6 +17,8 @@ const morgan = require("morgan");
 
 const app = express();
 
+// Julie thought this line instead of the line after it might fix the issue on Render of her not being able to see it, but Skye didn't think CORS was the issue
+// app.use(cors({ origin: '*' }));
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));

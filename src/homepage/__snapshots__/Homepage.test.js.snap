@@ -5,42 +5,150 @@ exports[`matches snapshot 1`] = `
   <div
     class="Homepage"
   >
-    <h1>
-      NATIONAL SCENIC BYWAYS
-    </h1>
-    <h2>
-      Hello testuser!
-      <br />
-      <a
-        href="/profile/testuser"
+    <div
+      class="container-fluid"
+    >
+      <div
+        class="container text-center"
+        id="app-name"
       >
-        View your profile, 
-      </a>
-      or if you haven't made one yet, 
-      <a
-        href="/profile"
+        <h1>
+          NATIONAL SCENIC BYWAYS
+        </h1>
+      </div>
+      <div
+        class="container text-center"
       >
-        create and edit your profile here!
-      </a>
-      <br />
-      <a
-        href="/search"
+        <h2>
+          <div
+            class="row justify-content-md-center"
+          >
+            <div
+              class="col"
+            >
+              Hi there and welcome, 
+              <span
+                class="home-username"
+              >
+                testuser
+              </span>
+               !
+            </div>
+            <div
+              class="col"
+            >
+              <a
+                class="link-success"
+                href="/profile/testuser"
+              >
+                View your profile, 
+              </a>
+              or if you haven't made one yet, 
+              <a
+                class="link-success"
+                href="/profile"
+              >
+                create and edit your profile here!
+              </a>
+            </div>
+          </div>
+          <div
+            class="row justify-content-md-center"
+          >
+            <div
+              class="col"
+            >
+              <a
+                class="link-success"
+                href="/search"
+              >
+                See all byways and search using filters here!
+              </a>
+              <br />
+            </div>
+            <div
+              class="col"
+            >
+              <a
+                class="link-success"
+                href="/states"
+              >
+                See byways by state here!
+              </a>
+              <br />
+            </div>
+            <div
+              class="col"
+            >
+              <a
+                class="link-success"
+                href="/random"
+              >
+                Or see a byway at random!
+              </a>
+            </div>
+          </div>
+        </h2>
+      </div>
+    </div>
+    <div
+      class="gallery"
+    >
+      <figure
+        class="gallery__item gallery__item--1"
       >
-        See all byways and search using filters here!
-      </a>
-      <br />
-      <a
-        href="/states"
+        <img
+          alt="Mountains"
+          class="gallery__img"
+          src="https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg"
+        />
+      </figure>
+      <figure
+        class="gallery__item gallery__item--2"
       >
-        See byways by state here!
-      </a>
-      <br />
-      <a
-        href="/random"
+        <img
+          alt="Forest"
+          class="gallery__img"
+          src="https://www.travelandleisure.com/thmb/Ne05bVVgbqpA8FQIvI4vCifNUxA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/hallerbos-forest-halle-belgium-2-BEAUTFORESTS0721-4ff5b556613e4814b5b7165f8851de39.jpg"
+        />
+      </figure>
+      <figure
+        class="gallery__item gallery__item--3"
       >
-        Or see a byway at random!
-      </a>
-    </h2>
+        <img
+          alt="River"
+          class="gallery__img"
+          src="https://upload.wikimedia.org/wikipedia/commons/d/de/Elwha_River_-_Humes_Ranch_Area2.JPG"
+        />
+      </figure>
+      <figure
+        class="gallery__item gallery__item--4"
+      >
+        <img
+          alt="Desert"
+          class="gallery__img"
+          src="https://www.thoughtco.com/thmb/5M-JochOZmjKg9Pc3tK5zbpE_hU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/saguaro-cactus-forest-in-saguaro-national-park-arizona-946243008-5c4553fb46e0fb0001c1bbd8.jpg"
+        />
+      </figure>
+      <figure
+        class="gallery__item gallery__item--5"
+      >
+        <img
+          alt="Coastline"
+          class="gallery__img"
+          src="https://media.cnn.com/api/v1/images/stellar/prod/180626120725-07-spectacular-coastlines-garden-route.jpg?q=w_4272,h_2403,x_0,y_0,c_fill/w_1280"
+        />
+      </figure>
+      <figure
+        class="gallery__item gallery__item--6"
+      >
+        <img
+          alt="Prarie"
+          class="gallery__img"
+          src="https://animals.sandiegozoo.org/sites/default/files/2016-08/habitats_hero_prairie.jpg"
+        />
+      </figure>
+    </div>
   </div>
 </DocumentFragment>
 `;
@@ -50,21 +158,106 @@ exports[`matches snapshot when logged out 1`] = `
   <div
     class="Homepage"
   >
-    <h1>
-      NATIONAL SCENIC BYWAYS
-    </h1>
-    <p>
-      <a
-        href="/login"
+    <div
+      class="container-fluid"
+    >
+      <div
+        class="container text-center"
+        id="app-name"
       >
-        Log in
-      </a>
-      <a
-        href="/signup"
+        <h1>
+          NATIONAL SCENIC BYWAYS
+        </h1>
+      </div>
+      <div
+        class="container text-center"
       >
-        Sign up
-      </a>
-    </p>
+        <h2>
+          <div
+            class="row justify-content-md-center"
+          >
+            <div
+              class="col"
+            >
+              <a
+                class="link-success"
+                href="/login"
+              >
+                Log in
+              </a>
+            </div>
+            <div
+              class="col"
+            >
+              <a
+                class="link-success"
+                href="/signup"
+              >
+                Sign up
+              </a>
+            </div>
+          </div>
+        </h2>
+      </div>
+    </div>
+    <div
+      class="gallery"
+    >
+      <figure
+        class="gallery__item gallery__item--1"
+      >
+        <img
+          alt="Mountains"
+          class="gallery__img"
+          src="https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg"
+        />
+      </figure>
+      <figure
+        class="gallery__item gallery__item--2"
+      >
+        <img
+          alt="Forest"
+          class="gallery__img"
+          src="https://www.travelandleisure.com/thmb/Ne05bVVgbqpA8FQIvI4vCifNUxA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/hallerbos-forest-halle-belgium-2-BEAUTFORESTS0721-4ff5b556613e4814b5b7165f8851de39.jpg"
+        />
+      </figure>
+      <figure
+        class="gallery__item gallery__item--3"
+      >
+        <img
+          alt="River"
+          class="gallery__img"
+          src="https://upload.wikimedia.org/wikipedia/commons/d/de/Elwha_River_-_Humes_Ranch_Area2.JPG"
+        />
+      </figure>
+      <figure
+        class="gallery__item gallery__item--4"
+      >
+        <img
+          alt="Desert"
+          class="gallery__img"
+          src="https://www.thoughtco.com/thmb/5M-JochOZmjKg9Pc3tK5zbpE_hU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/saguaro-cactus-forest-in-saguaro-national-park-arizona-946243008-5c4553fb46e0fb0001c1bbd8.jpg"
+        />
+      </figure>
+      <figure
+        class="gallery__item gallery__item--5"
+      >
+        <img
+          alt="Coastline"
+          class="gallery__img"
+          src="https://media.cnn.com/api/v1/images/stellar/prod/180626120725-07-spectacular-coastlines-garden-route.jpg?q=w_4272,h_2403,x_0,y_0,c_fill/w_1280"
+        />
+      </figure>
+      <figure
+        class="gallery__item gallery__item--6"
+      >
+        <img
+          alt="Prarie"
+          class="gallery__img"
+          src="https://animals.sandiegozoo.org/sites/default/files/2016-08/habitats_hero_prairie.jpg"
+        />
+      </figure>
+    </div>
   </div>
 </DocumentFragment>
 `;

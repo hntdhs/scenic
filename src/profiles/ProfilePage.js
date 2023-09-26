@@ -5,6 +5,7 @@ import UserContext from "../auth/UserContext";
 import { NavLink } from "react-router-dom";
 import BywayCard from "../byways/BywayCard";
 import { useToasts } from 'react-toast-notifications';
+import "./ProfilePage.css"
 // import { getUserFavorites } from "../../backend/models/user";
 
 function ShowUserProfile() {
@@ -76,23 +77,34 @@ function ShowUserProfile() {
 
     return (
         <div>
-            {isMe ? <NavLink to={`/profile/`}>Edit your profile</NavLink> : ''}
-            {isMe ? <h3>Welcome to the profile page of {profileInfo.username}</h3> : <h3>Welcome to the profile page of {username}</h3>}
-            <img src={profileInfo.profilePhoto} alt={"profile photo"} />
-            <h3>Location: {profileInfo.userLocation}</h3>
-            <h3>Favorite State to Travel To: {profileInfo.favoriteState}</h3>
-            <p>Bio: {profileInfo.bio}</p>
+            <div class="container text-center" id="app-name">
+                <h1>NATIONAL SCENIC BYWAYS</h1>
+            </div>
+            <div className="edit-profile">
+                {isMe ? <NavLink to={`/profile/`} className="link-offset-2 link-danger">Edit your profile</NavLink> : ''}
+            </div>
+            <div className="welcome-to-profile">
+                {isMe ? <h3>Welcome to the profile page of <span className="profile-username">{profileInfo.username}</span></h3> : <h3>Welcome to the profile page of {username}</h3>}
+            </div>
+            <div className="profile-photo">
+                <img src={profileInfo.profilePhoto} alt={"profile photo"} />
+            </div>
+            <div className="user-info">
+                <h3>Location: {profileInfo.userLocation}</h3>
+                <h3>Favorite State to Travel To: {profileInfo.favoriteState}</h3>
+                <h4>Bio: {profileInfo.bio}</h4>
+            </div>
             <h1>USER FAVORITES</h1>
 
             <h4>Order favorites by:</h4>
             {sortBy == 'name' && sortDirection == 'asc' ? 
             // these are the initial states for sortBy and sortDirection
-                (<button onClick={e => handleSubmitSortBy('name', 'desc')}>Z-A</button>) :
+                (<button onClick={e => handleSubmitSortBy('name', 'desc')} class="btn btn-outline-success">Z-A</button>) :
                 // button starts as Z-A because byways are initially A-Z, so if user wanted to reverse order from that, button should be the opposite of what's initally shown
-                (<button onClick={e => handleSubmitSortBy('name', 'asc')}>A-Z</button>)
+                (<button onClick={e => handleSubmitSortBy('name', 'asc')} class="btn btn-outline-success">A-Z</button>)
             }
-            <button onClick={e => handleSubmitSortBy('length', 'asc')}>Shortest to Longest</button>
-            <button onClick={e => handleSubmitSortBy('length', 'desc')}>Longest to Shortest</button>
+            <button onClick={e => handleSubmitSortBy('length', 'asc')} class="btn btn-outline-success">Shortest to Longest</button>
+            <button onClick={e => handleSubmitSortBy('length', 'desc')} class="btn btn-outline-success">Longest to Shortest</button>
             <div>
                     {userFavorites.map(f => (
                         <div>
@@ -103,7 +115,7 @@ function ShowUserProfile() {
                                 designation={f.designation}
                             />
                             {isMe ? (
-                            <button onClick={() => handleSubmit(username, f.byway_id)}>
+                            <button onClick={() => handleSubmit(username, f.byway_id)} class="btn btn-outline-success">
                             Remove Favorite
                             </button>) : <span></span> }
                         </div>

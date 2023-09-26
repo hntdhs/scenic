@@ -22,7 +22,7 @@ function CommentForm({id, onAdd}) {
         <div>
             {/* <textarea onChange={e => setComment(e.target.value)} ></textarea> */}
             <LimitedTextArea domId="comment_form" value={comment} limit={500} onChange={setComment}/>
-            <button id="comment_submit" onClick={handleSubmit}>
+            <button id="comment_submit" onClick={handleSubmit} class="btn btn-outline-success btn-lg">
                 Submit
             </button>
         </div>

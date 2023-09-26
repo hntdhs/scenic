@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import "./LimitedTextArea.css"
 
 
 const LimitedTextArea = ({ value, limit, onChange, domId }) => {
@@ -20,11 +21,13 @@ const LimitedTextArea = ({ value, limit, onChange, domId }) => {
   }, [value])
 
   return (
-    <div>
+    <div className="text-area">
       <textarea
         id={domId}
         onChange={event => setFormattedContent(event.target.value)}
         value={content}
+        className="form-control form-control-lg"
+        id="comment-box"
       />
       <p>
         Maximum length: {limit}<br></br>

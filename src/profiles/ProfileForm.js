@@ -4,6 +4,7 @@ import Alert from "../common/Alert";
 import BywayApi from "../api/api";
 import UserContext from "../auth/UserContext";
 import LimitedTextArea from "../common/LimitedTextArea";
+import "./ProfileForm.css"
 
 // eslint-disable-next-line
 import useTimedMessage from "../hooks/useTimedMessage";
@@ -93,14 +94,11 @@ function ProfileForm({callback}) {
 
   return (
       <div>
-        <h2>Hi there, {currentUser.username}! This is where you create and edit your profile.</h2>
-        <h3>Profile</h3>
-            <form>
-              <div>
+        <h2>Hi there, <span className="edit-user">{currentUser.username}</span> ! This is where you create and edit your profile.</h2>            <form>
+              <div className="edit-input">
                 <label>Bio</label>
                 <LimitedTextArea id="bio" value={formData.bio} limit={200} onChange={(newValue) => {return handleChange('bio', newValue)}} />
-              </div>
-              <div>
+              
                 <label>Location</label>
                 <LimitedTextArea value={formData.userLocation} limit={100} onChange={(newValue) => {return handleChange('userLocation', newValue)}} />
                 {/* <input
@@ -109,12 +107,10 @@ function ProfileForm({callback}) {
                     onChange={handleChange}
                 /> */}
                 {/* there's two different input types so might need two versions of handleChange */}
-              </div>
-              <div>
+              
                 <label>Favorite state to travel to</label>
                 <LimitedTextArea value={formData.favoriteState} limit={100} onChange={(newValue) => {return handleChange('favoriteState', newValue)}} />
-              </div>
-              <div>
+              
                 <label>Profile Photo</label>
                 {/* <LimitedTextArea value={formData.profilePhoto} limit={1000} onChange={(newValue) => {return handleChange('profilePhoto', newValue)}} /> */}
                 <input
@@ -137,6 +133,7 @@ function ProfileForm({callback}) {
               <button
                   data-testid="save-button"
                   onClick={handleSubmit}
+                  class="btn btn-outline-success"
               >
                 Save Changes
               </button>

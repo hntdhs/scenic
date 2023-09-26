@@ -12,16 +12,16 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
     };
     return (
         <nav>
-            <ul>
-                <li>
-                    <a onClick={prevPage} href='#'>Previous</a>
+            <ul className="pagination pagination-lg">
+                <li className="page-item">
+                    <a className="page-link" onClick={prevPage} href='#'>Previous</a>
                 </li>
                 {pageNumbers.map(pgNumber => (
-                    <li key={pgNumber}>
-                    <a onClick={() => setCurrentPage(pgNumber)} href='#'>{pgNumber}</a>
+                    <li key={pgNumber} className="page-item">
+                    <a className="page-link" onClick={() => setCurrentPage(pgNumber)} href='#'>{pgNumber}</a>
                     </li>
                 ))}
-                <li>
+                <li className="page-item">
                     <a onClick={nextPage} href='#'>Next</a>
                 </li>
             </ul>

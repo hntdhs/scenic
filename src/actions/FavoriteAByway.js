@@ -38,7 +38,7 @@ function FavoriteAByway({id, callback}) {
                 ? (
                 <Alert messages={["Byway added to your favorites."]} />
                  ) : (
-                <button data-testid="submit_favorite" onClick={handleSubmit}>
+                <button data-testid="submit_favorite" onClick={handleSubmit} class="btn btn-outline-success btn-lg">
                     Add this byway to your favorites
                 </button>
                  )}

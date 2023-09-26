@@ -33,7 +33,6 @@ beforeAll(async () => {
     .post("/auth/token")
     .send({ username: "u1", password: "password1" });
   
-
     adminToken = token;
 
   await commonBeforeAll();
@@ -192,10 +191,10 @@ describe("GET /users/:username", function () {
         lastName: "U1L",
         email: "user1@user.com",
         bio: "bio1",
-        favorite_state: "state1",
-        profile_photo: "http://u1.img",
-        user_location: "loc1",
-        isAdmin: false,
+        favoriteState: "state1",
+        profilePhoto: "http://u1.img",
+        userLocation: "loc1",
+        isAdmin: true,
       },
     });
   });

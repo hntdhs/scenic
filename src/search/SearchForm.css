@@ -1,0 +1,75 @@
+/* .all-searches {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+} */
+
+.byway-name-search {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    width: 90%;
+    padding-top: .5em;
+    border-bottom: solid;
+    border-color: green;
+    border-width: 1px;
+}
+
+.byway-name-search p {
+    /* font-family: Arial, Helvetica, sans-serif;
+    font-size: large; */
+    color: green;
+    font-size: larger;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.not-name-searches {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    width: 90%;
+}
+
+.length-search {
+    padding-top: 1em;
+}
+
+.length-search p {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+    color: green;
+    font-size: larger;
+}
+
+.geo-features-search {
+    padding-top: 1em;
+}
+
+.geo-features-search p {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+    color: green;
+    font-size: larger;
+    /* text-align: justify; */
+}
+
+.btn {
+    margin-bottom: 2em;
+    margin-top: 1em;
+    margin-left: .5em;
+}
+
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 10px;
+    border: 2px solid red;
+    /* height:66.67vh; */
+}  
+
+.forest {
+    width: 100%;
+
+}

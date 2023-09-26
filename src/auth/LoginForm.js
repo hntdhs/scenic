@@ -62,6 +62,9 @@ function LoginForm({ login }) {
 
   return (
       <div className="LoginForm">
+        <div class="container text-center" id="app-name">
+                <h1>NATIONAL SCENIC BYWAYS</h1>
+            </div>
         <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
           <h3 className="mb-3">Log In</h3>
 
