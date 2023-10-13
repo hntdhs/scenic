@@ -1,8 +1,19 @@
-.edit-input {
-    font-size: medium;
+.edit-welcome {
+    margin: 1em;
+}
+
+.edit-form {
+    margin: 1em;
 }
 
 .edit-user {
     font-family: fantasy;
     color: green;
 }
+
+.profile-edit-input-label {
+    font-weight: bold;
+    font-size: medium;
+    font-family: fantasy;
+    color: green;
+} 

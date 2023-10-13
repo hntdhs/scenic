@@ -2,35 +2,52 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  <div>
+  <span
+    class="byway-card"
+  >
     <a
+      class="link-offset-2 link-underline link-underline-opacity-0"
       href="/byways/Great River Road"
     >
-      <h3>
+      <h3
+        class="byway-card-name"
+      >
         Great River Road
       </h3>
       <img
         alt="Great River Road"
+        class="byway-card-image"
         src="https://fhwaapps.fhwa.dot.gov/bywaysp/uploads/asset_files/2279/82535_1-4Effigy%20Mounds%20National%20Monument%20Fire%20Point1_sq.jpg"
       />
-      <h4>
+      <h4
+        class="byway-card-designation"
+      >
         All-American Road
       </h4>
     </a>
-  </div>
+  </span>
 </DocumentFragment>
 `;
 
 exports[`matches snapshot 2`] = `
 <DocumentFragment>
-  <div>
+  <span
+    class="byway-card"
+  >
     <a
+      class="link-offset-2 link-underline link-underline-opacity-0"
       href="/byways/undefined"
     >
-      <h3 />
-      <img />
-      <h4 />
+      <h3
+        class="byway-card-name"
+      />
+      <img
+        class="byway-card-image"
+      />
+      <h4
+        class="byway-card-designation"
+      />
     </a>
-  </div>
+  </span>
 </DocumentFragment>
 `;

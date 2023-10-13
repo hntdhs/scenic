@@ -6,6 +6,7 @@ import SearchForm from "./SearchForm";
 import BywayCard from "../byways/BywayCard";
 import Pagination from "../common/Pagination";
 import { useToasts } from 'react-toast-notifications';
+import "./FilterSearch.css"
 
 // search via filters, go to browse by state, go to display and search users
 
@@ -73,18 +74,21 @@ function FilterSearch() {
                 <SearchForm searchFor={search} filterByways={filterByways} errors={errors} />
                 {/* search and filterByways are defined here, passing them over to SearchForm to make them useable there; don't actually know if errors is necessary to pass, didn't end up using it */}
             </div>
-            <div>
+            {/* <div className="float-container container-fluid"> */}
+            <div className="float-container">
                 {currentByWays.length > 0
                 ? (
                     <div>
-                        <div>
+                        <div class="row">
                             {currentByWays.map(s => (
-                                <BywayCard
-                                    key={s.name + s.state}
-                                    name={s.name}
-                                    image={s.image}
-                                    designation={s.designation}
-                                />
+                                <div class='state-card col-3'>
+                                    <BywayCard
+                                        key={s.name + s.state}
+                                        name={s.name}
+                                        image={s.image}
+                                        designation={s.designation}
+                                    />
+                                </div>
                             ))}
                         </div>
                         <div>

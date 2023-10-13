@@ -2,67 +2,157 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    id="profile-page"
+  >
     <div
       class="container text-center"
       id="app-name"
     >
-      <h1>
-        NATIONAL SCENIC BYWAYS
-      </h1>
+      <a
+        class="link-offset-2 link-underline link-underline-opacity-0 homepage-link"
+        href="/"
+      >
+        <h1>
+          NATIONAL SCENIC BYWAYS
+        </h1>
+      </a>
     </div>
     <div
       class="edit-profile"
     />
     <div
-      class="welcome-to-profile"
+      class="float-container"
     >
-      <h3>
-        Welcome to the profile page of 
-      </h3>
+      <div
+        class="float-child w-50"
+      >
+        <div
+          class="profile-info"
+        >
+          <div
+            class="welcome-to-profile"
+          >
+            <h3>
+              Welcome to the profile page of 
+              <div
+                class="profile-username"
+              />
+            </h3>
+          </div>
+          <div>
+            <img
+              alt="profile photo"
+              class="profile-photo"
+            />
+          </div>
+          <div
+            class="user-info"
+          >
+            <h3>
+              Location: 
+            </h3>
+            <h3>
+              Favorite State to Travel To: 
+            </h3>
+            <h4>
+              Bio: 
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div
+        class="float-child w-50"
+        id="gallery-container"
+      >
+        <div
+          class="profile-page-gallery"
+        >
+          <figure
+            class="gallery__item gallery__item--1"
+          >
+            <img
+              alt=""
+              class="gallery__img"
+              src="https://www.adorama.com/alc/wp-content/uploads/2018/08/san-juans-feature.jpg"
+            />
+          </figure>
+          <figure
+            class="gallery__item gallery__item--2"
+          >
+            <img
+              alt=""
+              class="gallery__img"
+              src="https://www.adorama.com/alc/wp-content/uploads/2018/08/san-juans-feature.jpg"
+            />
+          </figure>
+          <figure
+            class="gallery__item gallery__item--3"
+          >
+            <img
+              alt=""
+              class="gallery__img"
+              src="https://www.adorama.com/alc/wp-content/uploads/2018/08/san-juans-feature.jpg"
+            />
+          </figure>
+          <figure
+            class="gallery__item gallery__item--4"
+          >
+            <img
+              alt=""
+              class="gallery__img"
+              src="https://www.adorama.com/alc/wp-content/uploads/2018/08/san-juans-feature.jpg"
+            />
+          </figure>
+          <figure
+            class="gallery__item gallery__item--5"
+          >
+            <img
+              alt=""
+              class="gallery__img"
+              src="https://www.adorama.com/alc/wp-content/uploads/2018/08/san-juans-feature.jpg"
+            />
+          </figure>
+          <figure
+            class="gallery__item gallery__item--6"
+          >
+            <img
+              alt=""
+              class="gallery__img"
+              src="https://www.adorama.com/alc/wp-content/uploads/2018/08/san-juans-feature.jpg"
+            />
+          </figure>
+        </div>
+      </div>
     </div>
     <div
-      class="profile-photo"
+      class="text-and-favorite-buttons"
     >
-      <img
-        alt="profile photo"
-      />
-    </div>
-    <div
-      class="user-info"
-    >
-      <h3>
-        Location: 
-      </h3>
-      <h3>
-        Favorite State to Travel To: 
-      </h3>
+      <h1>
+        USER FAVORITES
+      </h1>
       <h4>
-        Bio: 
+        Order favorites by:
       </h4>
+      <button
+        class="btn btn-outline-success"
+      >
+        Z-A
+      </button>
+      <button
+        class="btn btn-outline-success"
+      >
+        Shortest to Longest
+      </button>
+      <button
+        class="btn btn-outline-success"
+      >
+        Longest to Shortest
+      </button>
     </div>
-    <h1>
-      USER FAVORITES
-    </h1>
-    <h4>
-      Order favorites by:
-    </h4>
-    <button
-      class="btn btn-outline-success"
-    >
-      Z-A
-    </button>
-    <button
-      class="btn btn-outline-success"
-    >
-      Shortest to Longest
-    </button>
-    <button
-      class="btn btn-outline-success"
-    >
-      Longest to Shortest
-    </button>
-    <div />
+    <div
+      class="row"
+    />
   </div>
 </DocumentFragment>
 `;

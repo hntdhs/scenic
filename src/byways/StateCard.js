@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import "./StateCard.css"
 
 
-function StateCard ({ name, nickname, image }) {
+function StateCard ({ name, nickname, image, className }) {
     return (
-        <span class='state'>
-            <Link id={name} to={`/states/${name}`} class="link-underline-opacity-0">
+        <span class='state' className={className}>
+            <Link id={name} to={`/states/${name}`} class="link-offset-2 link-underline link-underline-opacity-0">
                 <h3 className="state-name">{name}</h3>
                 {image}
-                <h4>{nickname}</h4>
+                <h4 className="state-nickname">{nickname}</h4>
             </Link>
         </span>
     );

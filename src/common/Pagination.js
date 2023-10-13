@@ -27,7 +27,6 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
             </ul>
         </nav>
     )
-    // check right number of pages and that next button appears where it should and doesn't appear when it shouldn't
 }
 
 export default Pagination

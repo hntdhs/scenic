@@ -34,7 +34,7 @@ function DisplayRandomByway() {
     return (
         <div>
             <div class="container text-center" id="app-name">
-                <h1>NATIONAL SCENIC BYWAYS</h1>
+                <Link class="link-offset-2 link-underline link-underline-opacity-0 homepage-link" to="/"><h1>NATIONAL SCENIC BYWAYS</h1></Link>
             </div>
             {byway
                 ? (

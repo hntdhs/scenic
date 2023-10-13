@@ -1,0 +1,21 @@
+/* .byway-card {
+    padding: 5em;
+    border: groove 1px #DE9B72;
+    text-align: center;
+} */
+
+
+.byway-card-name {
+    color: green;
+    font-family: fantasy;
+    font-size: 2.5em;
+}
+
+.byway-card-image {
+    width: 50%;
+}
+
+.byway-card-designation {
+    color: green;
+    font-size: 2em;
+}

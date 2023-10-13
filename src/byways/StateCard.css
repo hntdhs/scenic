@@ -1,7 +1,23 @@
-#state {
-    font-family: fantasy;
+.state-card {
+    padding: 5em;
+    border: groove 1px #DE9B72;
+    text-align: center;
 }
 
 .state-name {
     font-family: fantasy;
+    color: green;
 }
+
+.state-nickname {
+    font-family: fantasy;
+    color: green;
+
+    padding-top: 1em;
+    font-size: large;
+}
+
+/* .state-image {
+    align-content: center;
+    border: solid 2px rebeccapurple;
+} */

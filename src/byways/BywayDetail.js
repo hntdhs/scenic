@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import BywayApi from "../api/api";
 import CommentForm from "../actions/CommentForm";
 import FavoriteAByway from "../actions/FavoriteAByway";
@@ -83,18 +83,41 @@ function BywayDetail() {
     return (
         <div>
             <div class="container text-center" id="app-name">
-                <h1>NATIONAL SCENIC BYWAYS</h1>
+                <Link class="link-offset-2 link-underline link-underline-opacity-0 homepage-link" to="/"><h1>NATIONAL SCENIC BYWAYS</h1></Link>
             </div>
             {byway
                 ? (
                     <div id='byway-detail'>
-                        <h1>{byway.name}</h1>
-                        <img src={byway.image} alt={byway.name}></img>
-                        <h2>{byway.state}</h2>
-                        <h3>{byway.length} miles / { Math.round((parseFloat(byway.length) * 1.60934)) } kilometres</h3>
-                        <h3>Fees: {byway.fees}</h3>
-                        {<h3>Wondering what kind of natural settings you'll see on this byway? {checkGeoFeaturesLength(byway)}.</h3> }
-                        <h3>About {byway.name}<br></br>{byway.description}</h3>
+                        <div className="byway-name">
+                            <h1>{byway.name}</h1>
+                        </div>
+                        <div className="containter-fluid">
+                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                        </div>
+                        <div className="byway-state">
+                            <h2>{byway.state}</h2>
+                        </div>
+                        <div className="byway-length">
+                            <h3>{byway.length} miles / { Math.round((parseFloat(byway.length) * 1.60934)) } kilometres</h3>
+                        </div>
+                        <div className="byway-fees">
+                            <h3>Fees: {byway.fees}</h3>
+                        </div>
+                        <div className="byway-features">
+                            {<h3>Wondering what kind of natural settings you'll see on this byway? {checkGeoFeaturesLength(byway)}.</h3> }
+                        </div>
+                        <div className="about-byway">
+                            <div className="about-byway-name">
+                                <h3>About {byway.name}</h3>
+                            </div>
+                            <div className="byway-desc">    
+                                <h3>{byway.description}</h3>
+                            </div>
+                        </div>
                         {isFavorite === true
                         ? (
                             <h4>Byway is in your favorites</h4>

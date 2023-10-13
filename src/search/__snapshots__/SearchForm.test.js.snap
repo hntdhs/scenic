@@ -4,6 +4,7 @@ exports[`matches snapshot 1`] = `
 <DocumentFragment>
   <div
     class="float-container"
+    id="search-form"
   >
     <div
       class="container text-center"
@@ -14,7 +15,7 @@ exports[`matches snapshot 1`] = `
       </h1>
     </div>
     <div
-      class="float-child"
+      class="float-child w-50"
     >
       <div
         class="byway-name-search"

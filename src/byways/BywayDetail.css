@@ -10,3 +10,38 @@
     max-width: 50%;
     border: black;
 }
+
+.byway-name {
+    color: green;
+    font-family: fantasy;
+    padding-top: 1em;
+}
+
+.byway-state {
+    color: green;
+    font-family: fantasy;
+    padding-bottom: 2em;
+}
+
+.byway-length {
+    font-style: oblique;
+    padding-bottom: 1em;
+}
+
+.byway-fees {
+    padding-bottom: 1em;
+    max-width: 60%;
+}
+
+.byway-features {
+    padding-bottom: 1em;
+    max-width: 60%;
+}
+
+.about-byway {
+    padding-bottom: 1em;
+}
+
+.about-byway-name {
+    font-style: oblique;
+}

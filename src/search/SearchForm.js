@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import FilterSearch from "./FilterSearch";
+import { Link } from "react-router-dom";
 import "./SearchForm.css";
+// import "./SearchFormTest.css"
 import GeographicFeaturesSearch from "./GeographicFeaturesSearch";
 import DesignationSearch from "./DesignationSearch";
 
@@ -47,11 +48,11 @@ function SearchForm({ searchFor, filterByways }) {
   }
 
   return (
-      <div className="float-container">
+      <div className="float-container" id='search-form'>
         <div class="container text-center" id="app-name">
-            <h1>NATIONAL SCENIC BYWAYS</h1>
+        <Link class="link-offset-2 link-underline link-underline-opacity-0 homepage-link" to="/"><h1>NATIONAL SCENIC BYWAYS</h1></Link>
         </div>
-        <div className="float-child">
+        <div className="float-child w-50">
           <div className="byway-name-search">
             <form onSubmit={handleSubmit}>
               <p>Search byways by name</p>
@@ -74,7 +75,7 @@ function SearchForm({ searchFor, filterByways }) {
             <form onSubmit={handleSubmitFilter}>
               <div className="length-search">
                 <p>Search byways by length. The longest of America's Byways&reg; is the Alaska Marine Highway at 3500 miles!</p>
-                <div class="input-group input-group-lg">
+                <div class="input-group input-group-lg" id="min-length">
                   <label class="input-group-text" id="inputGroup-sizing-lg" htmlFor="minLength">Minimum Byway Length:</label>
                   <input
                       name="minLength"
@@ -113,10 +114,11 @@ function SearchForm({ searchFor, filterByways }) {
             </form>
           </div>
         </div>
+
         <div className="float-child">
-          <img src="https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" alt="road through forest" className="forest"></img>
+          <img src="https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" alt="road through forest" className="forest" ></img>
         </div>
-      </div>
+    </div>
   );
 }
 

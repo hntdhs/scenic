@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Alert from "../common/Alert";
 import BywayApi from "../api/api";
 import UserContext from "../auth/UserContext";
@@ -94,12 +94,16 @@ function ProfileForm({callback}) {
 
   return (
       <div>
-        <h2>Hi there, <span className="edit-user">{currentUser.username}</span> ! This is where you create and edit your profile.</h2>            <form>
+        <div class="container text-center" id="app-name">
+                <Link class="link-offset-2 link-underline link-underline-opacity-0 homepage-link" to="/"><h1>NATIONAL SCENIC BYWAYS</h1></Link>
+        </div>
+        <h2 className="edit-welcome">Hi there, <span className="edit-user">{currentUser.username}</span> ! This is where you create and edit your profile.</h2>            
+        <form className="edit-form">
               <div className="edit-input">
-                <label>Bio</label>
+                <label className="profile-edit-input-label">Bio</label>
                 <LimitedTextArea id="bio" value={formData.bio} limit={200} onChange={(newValue) => {return handleChange('bio', newValue)}} />
               
-                <label>Location</label>
+                <label className="profile-edit-input-label">Location</label>
                 <LimitedTextArea value={formData.userLocation} limit={100} onChange={(newValue) => {return handleChange('userLocation', newValue)}} />
                 {/* <input
                     name="userLocation"
@@ -108,10 +112,10 @@ function ProfileForm({callback}) {
                 /> */}
                 {/* there's two different input types so might need two versions of handleChange */}
               
-                <label>Favorite state to travel to</label>
+                <label className="profile-edit-input-label">Favorite state to travel to</label>
                 <LimitedTextArea value={formData.favoriteState} limit={100} onChange={(newValue) => {return handleChange('favoriteState', newValue)}} />
               
-                <label>Profile Photo</label>
+                <label className="profile-edit-input-label">Profile Photo</label>
                 {/* <LimitedTextArea value={formData.profilePhoto} limit={1000} onChange={(newValue) => {return handleChange('profilePhoto', newValue)}} /> */}
                 <input
                     name="profilePhoto"

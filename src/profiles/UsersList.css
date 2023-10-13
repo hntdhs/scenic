@@ -1,0 +1,23 @@
+.user-link {
+    font-weight: bold;
+    font-family: fantasy;
+    font-size: x-large;
+    width: 33%;
+    margin: .5em;
+    text-align: center;
+}
+
+.user-link a {
+    color: green;
+    font-family: fantasy;
+}
+
+.user-list-explain {
+    text-align: center;
+    font-size: large;
+    margin-bottom: 1em;
+}
+
+#users-list .float-child {
+    float: left;
+}

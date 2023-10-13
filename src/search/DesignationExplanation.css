@@ -1,0 +1,12 @@
+.explanation {
+    max-width: 60%;
+    font-size: medium;
+    font-weight: 500;
+    padding-top: 1em;
+}
+
+.exp-desc {
+    font-variant-caps: all-small-caps;
+    color: rgb(1, 112, 1);
+    font-weight: bold;
+}

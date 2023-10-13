@@ -1,9 +1,9 @@
 
 import React, { useEffect, useState } from "react";
 import BywayApi from "../api/api";
-import LoadingSpinner from "../common/LoadingSpinner";
+import { Link } from "react-router-dom";
 import StateCard from "./StateCard";
-
+import "./StateMenu.css"
 
 
 function StateMenu() {
@@ -21,27 +21,27 @@ function StateMenu() {
     }, []);
 
     return (
-        <div className="float-container">
+        <div className="float-container container-fluid ">
             <div class="container text-center" id="app-name">
-                <h1>NATIONAL SCENIC BYWAYS</h1>
+                <Link class="link-offset-2 link-underline link-underline-opacity-0 homepage-link" to="/"><h1>NATIONAL SCENIC BYWAYS</h1></Link>
             </div>
-            {states.length
-            // states.length > 0
-            ? (
-                <div className="float-child">
-                    {states.map(s => (
-                        <StateCard
-                            key={s.name}
-                            name={s.name}
-                            nickname={s.nickname}
-                            image={<img src={s.image} alt={s.name}/>}
-                            className="state-card"
-                        />
-                    ))}
-                </div>
-            ) : (
-                <h4>Sorry, no results found.</h4>
-            )}
+            <div class='row'>
+                {states.length
+                // states.length > 0
+                ? (states.map(s => (
+                            <StateCard
+                                key={s.name}
+                                name={s.name}
+                                nickname={s.nickname}
+                                image={<img src={s.image} alt={s.name} className="state-image"/>}
+                                className="state-card col-4"
+                            />
+                        ))
+                    
+                ) : (
+                    <h4>Sorry, no results found.</h4>
+                )}
+            </div>
         </div>
     );
 }

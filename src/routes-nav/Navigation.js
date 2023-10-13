@@ -85,40 +85,45 @@ function loggedInNav() {
       <div class="container-fluid">
         <div className="outer-border">
           <div className="inner-border">
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <NavLink class="nav-link" to="/search">
+            {/* <div class="collapse navbar-collapse" id="navbarText"> */}
+              <ul class="navbar-nav justify-content-center">
+                <li >
+                  <NavLink className={({ isActive }) => (isActive ? 'active' : 'inactive')}  to="/search">
                     View All Byways and Search
                   </NavLink>
                 </li>
-                <li class="nav-item">
-                  <NavLink class="nav-link" to="/states">
+                <li >
+                  <NavLink className={({ isActive }) => (isActive ? 'active' : 'inactive')} to="/states">
                     View Byways by State
                   </NavLink>
                 </li>
-                <li class="nav-item">
-                  <NavLink class="nav-link" to={`/profile/${currentUser.username}`}>
+                <li >
+                  <NavLink className={({ isActive }) => (isActive ? 'active' : 'inactive')} to={`/profile/${currentUser.username}`}>
                     Profile
                   </NavLink>
                 </li>
-                <li class="nav-item">
-                  <NavLink class="nav-link" to="/random">
+                <li >
+                  <NavLink className={({ isActive }) => (isActive ? 'active' : 'inactive')} to="/random">
                     See a Random Byway
                   </NavLink>
                 </li>
-                <li class="nav-item">
-                  <NavLink class="nav-link" to="/users">
+                <li >
+                  <NavLink className={({ isActive }) => (isActive ? 'active' : 'inactive')} to="/users">
                     See All Users
                   </NavLink>
                 </li>
-                <li class="nav-item">
+                {/* <li >
                   <Link class="nav-link" to="/" onClick={logout}>
+                    Log out {currentUser.first_name || currentUser.username}
+                  </Link>
+                </li> */}
+                <li >
+                  <Link className="logout-button" to="/" onClick={logout}>
                     Log out {currentUser.first_name || currentUser.username}
                   </Link>
                 </li>
               </ul>
-            </div>
+            {/* </div> */}
           </div>
         </div>
       </div>
@@ -145,9 +150,9 @@ function loggedOutNav() {
 
 return (
     <nav>
-      <Link to="/">
+      {/* <Link to="/">
         Scenic Byways
-      </Link>
+      </Link> */}
       {currentUser ? loggedInNav() : loggedOutNav()}
     </nav>
 );

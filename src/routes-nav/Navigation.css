@@ -1,10 +1,12 @@
 .navbar {
-    width: 100%;
+    max-width: 100%;
     overflow: auto;
     border: black;
-    /* border-bottom: solid 3px #6e7491; */
+    border-bottom: solid 3px #DE9B72;
 
 }
+
+
 /* 
 .container-fluid {
     display: flex;
@@ -29,15 +31,40 @@
     margin: 0 auto;
 }
 
-.nav-link {
+.navbar a {
     color: black;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 20px;
     float: left;
     padding: 12px;
-    /* width: 16%; */
+    text-decoration: none;
 }
 
-.nav-link a:hover {
+li a.active {
+    border: firebrick 3px solid; 
+    font-weight: bold;
     background-color: green;
+    font-family: fantasy;
+    font-stretch: expanded;
+    border-bottom: 3px solid red;
+    color: white;
+} 
+
+li:hover a {
+    border: firebrick 3px solid; 
+    background-color: rgb(223, 255, 223);
+    font-family: fantasy;
+    border-bottom: 3px solid red;
+    color: firebrick;
+    
+}
+
+li:hover a.active{ 
+    border: firebrick 3px solid; 
+    font-weight: bold;
+    background-color: green;
+    font-family: fantasy;
+    font-stretch: expanded;
+    border-bottom: 3px solid red;
+    color: white;
 }
