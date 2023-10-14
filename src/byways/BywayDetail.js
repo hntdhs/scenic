@@ -85,71 +85,73 @@ function BywayDetail() {
             <div class="container text-center" id="app-name">
                 <Link class="link-offset-2 link-underline link-underline-opacity-0 homepage-link" to="/"><h1>NATIONAL SCENIC BYWAYS</h1></Link>
             </div>
-            {byway
-                ? (
-                    <div id='byway-detail'>
-                        <div className="byway-name">
-                            <h1>{byway.name}</h1>
-                        </div>
-                        <div className="containter-fluid">
-                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
-                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
-                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
-                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
-                            <img src={byway.image} alt={byway.name} className="byway-img"></img>
-                        </div>
-                        <div className="byway-state">
-                            <h2>{byway.state}</h2>
-                        </div>
-                        <div className="byway-length">
-                            <h3>{byway.length} miles / { Math.round((parseFloat(byway.length) * 1.60934)) } kilometres</h3>
-                        </div>
-                        <div className="byway-fees">
-                            <h3>Fees: {byway.fees}</h3>
-                        </div>
-                        <div className="byway-features">
-                            {<h3>Wondering what kind of natural settings you'll see on this byway? {checkGeoFeaturesLength(byway)}.</h3> }
-                        </div>
-                        <div className="about-byway">
-                            <div className="about-byway-name">
-                                <h3>About {byway.name}</h3>
-                            </div>
-                            <div className="byway-desc">    
-                                <h3>{byway.description}</h3>
-                            </div>
-                        </div>
-                        {isFavorite === true
-                        ? (
-                            <h4>Byway is in your favorites</h4>
-                        ) : (
-                            <FavoriteAByway id={byway.id} />
-                        )
-                        }
-                        <h4>Comment on {byway.name}</h4>
-                        <CommentForm name={byway.name} id={byway.id} onAdd={addComment}/>
+            <div className='byway-detail'>
+                {byway
+                    ? (
                         <div>
-                            {comments
-                            ? (
-                                <div className="comment-area">
-                                    {comments.map((c, i) => (
-                                        <div key={i}>
-                                            <h4>User <a href={`/profile/${c.username}`}><span className="comment-user">{c.username}</span></a> said this at {moment(c.create_at).format("MM/DD/YYYY hh:mm a")}:</h4>
-                                            <p className="comment-text">{c.comment}</p>
-                                        </div>
-                                    ))}
+                            <div className="byway-name">
+                                <h1>{byway.name}</h1>
+                            </div>
+                            <div className="containter-fluid">
+                                <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                                <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                                <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                                <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                                <img src={byway.image} alt={byway.name} className="byway-img"></img>
+                            </div>
+                            <div className="byway-state">
+                                <h2>{byway.state}</h2>
+                            </div>
+                            <div className="byway-length">
+                                <h3>{byway.length} miles / { Math.round((parseFloat(byway.length) * 1.60934)) } kilometres</h3>
+                            </div>
+                            <div className="byway-fees">
+                                <h3>Fees: {byway.fees}</h3>
+                            </div>
+                            <div className="byway-features">
+                                {<h3>Wondering what kind of natural settings you'll see on this byway? {checkGeoFeaturesLength(byway)}.</h3> }
+                            </div>
+                            <div className="about-byway">
+                                <div className="about-byway-name">
+                                    <h3>About {byway.name}</h3>
                                 </div>
+                                <div className="byway-desc">    
+                                    <h3>{byway.description}</h3>
+                                </div>
+                            </div>
+                            {isFavorite === true
+                            ? (
+                                <h4>Byway is in your favorites</h4>
                             ) : (
-                                <p>no one has commented</p>
+                                <FavoriteAByway id={byway.id} />
                             )
                             }
-                        </div>
+                            <h4>Comment on {byway.name}</h4>
+                            <CommentForm name={byway.name} id={byway.id} onAdd={addComment}/>
+                            <div>
+                                {comments
+                                ? (
+                                    <div className="comment-area">
+                                        {comments.map((c, i) => (
+                                            <div key={i}>
+                                                <h4>User <a href={`/profile/${c.username}`}><span className="comment-user">{c.username}</span></a> said this at {moment(c.create_at).format("MM/DD/YYYY hh:mm a")}:</h4>
+                                                <p className="comment-text">{c.comment}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>no one has commented</p>
+                                )
+                                }
+                            </div>
 
-                    </div>
-                    
-                ) : (
-                    <h1>no byway by that name</h1>
-                )
-            }
+                        </div>
+                        
+                    ) : (
+                        <h1>no byway by that name</h1>
+                    )
+                }
+            </div>
         </div>
     )
 }

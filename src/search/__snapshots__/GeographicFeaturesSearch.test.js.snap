@@ -6,202 +6,212 @@ exports[`matches snapshot 1`] = `
     <div
       class="form-check form-check-inline"
     >
-      <label
-        class="form-check-label"
-        for="canyon"
-      >
-        canyon
-      </label>
       <div>
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="canyon"
             type="checkbox"
             value="canyon"
           />
         </label>
       </div>
+      <label
+        class="form-check-label"
+        for="flexCheckChecked"
+      >
+        canyon
+      </label>
     </div>
     <div
       class="form-check form-check-inline"
     >
-      <label
-        class="form-check-label"
-        for="coastline"
-      >
-        coastline
-      </label>
       <div>
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="coastline"
             type="checkbox"
             value="coastline"
           />
         </label>
       </div>
+      <label
+        class="form-check-label"
+        for="flexCheckChecked"
+      >
+        coastline
+      </label>
     </div>
     <div
       class="form-check form-check-inline"
     >
-      <label
-        class="form-check-label"
-        for="desert"
-      >
-        desert
-      </label>
       <div>
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="desert"
             type="checkbox"
             value="desert"
           />
         </label>
       </div>
+      <label
+        class="form-check-label"
+        for="flexCheckChecked"
+      >
+        desert
+      </label>
     </div>
     <div
       class="form-check form-check-inline"
     >
-      <label
-        class="form-check-label"
-        for="forest"
-      >
-        forest
-      </label>
       <div>
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="forest"
             type="checkbox"
             value="forest"
           />
         </label>
       </div>
+      <label
+        class="form-check-label"
+        for="flexCheckChecked"
+      >
+        forest
+      </label>
     </div>
     <div
       class="form-check form-check-inline"
     >
-      <label
-        class="form-check-label"
-        for="grasslands"
-      >
-        grasslands
-      </label>
       <div>
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="grasslands"
             type="checkbox"
             value="grasslands"
           />
         </label>
       </div>
+      <label
+        class="form-check-label"
+        for="flexCheckChecked"
+      >
+        grasslands
+      </label>
     </div>
     <div
       class="form-check form-check-inline"
     >
-      <label
-        class="form-check-label"
-        for="lake"
-      >
-        lake
-      </label>
       <div>
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="lake"
             type="checkbox"
             value="lake"
           />
         </label>
       </div>
+      <label
+        class="form-check-label"
+        for="flexCheckChecked"
+      >
+        lake
+      </label>
     </div>
     <div
       class="form-check form-check-inline"
     >
-      <label
-        class="form-check-label"
-        for="mountains"
-      >
-        mountains
-      </label>
       <div>
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="mountains"
             type="checkbox"
             value="mountains"
           />
         </label>
       </div>
+      <label
+        class="form-check-label"
+        for="flexCheckChecked"
+      >
+        mountains
+      </label>
     </div>
     <div
       class="form-check form-check-inline"
     >
-      <label
-        class="form-check-label"
-        for="swamp"
-      >
-        swamp
-      </label>
       <div>
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="swamp"
             type="checkbox"
             value="swamp"
           />
         </label>
       </div>
+      <label
+        class="form-check-label"
+        for="flexCheckChecked"
+      >
+        swamp
+      </label>
     </div>
     <div
       class="form-check form-check-inline"
     >
-      <label
-        class="form-check-label"
-        for="river"
-      >
-        river
-      </label>
       <div>
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="river"
             type="checkbox"
             value="river"
           />
         </label>
       </div>
+      <label
+        class="form-check-label"
+        for="flexCheckChecked"
+      >
+        river
+      </label>
     </div>
     <div
       class="form-check form-check-inline"
     >
-      <label
-        class="form-check-label"
-        for="urban"
-      >
-        urban
-      </label>
       <div>
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="urban"
             type="checkbox"
             value="urban"
           />
         </label>
       </div>
+      <label
+        class="form-check-label"
+        for="flexCheckChecked"
+      >
+        urban
+      </label>
     </div>
   </div>
 </DocumentFragment>

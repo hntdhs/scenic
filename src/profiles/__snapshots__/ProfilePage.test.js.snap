@@ -23,6 +23,7 @@ exports[`matches snapshot 1`] = `
     />
     <div
       class="float-container"
+      id="profile-info-and-img"
     >
       <div
         class="float-child w-50"

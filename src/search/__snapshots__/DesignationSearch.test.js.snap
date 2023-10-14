@@ -24,6 +24,7 @@ exports[`matches snapshot 1`] = `
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="All-American Road"
             type="checkbox"
             value="All-American Road"
@@ -43,6 +44,7 @@ exports[`matches snapshot 1`] = `
         <label>
           <input
             class="form-check-input"
+            id="flexCheckDefault"
             name="National Scenic Byway"
             type="checkbox"
             value="National Scenic Byway"

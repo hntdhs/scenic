@@ -34,7 +34,7 @@ function StateMenu() {
                                 name={s.name}
                                 nickname={s.nickname}
                                 image={<img src={s.image} alt={s.name} className="state-image"/>}
-                                className="state-card col-4"
+                                className="card col-4"
                             />
                         ))
                     

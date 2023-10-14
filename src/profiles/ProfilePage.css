@@ -22,12 +22,13 @@
 .welcome-to-profile .profile-username {
     font-size: 1.5em;
     /* padding: 1em; */
-    margin-top: .5em;
+    margin-top: 1em;
 }
 
 .profile-photo {
     margin-bottom: 10px;
     width: 50%;
+    height: 20em;
 }
 
 .user-info {
@@ -37,7 +38,8 @@
 }
 
 .text-and-favorite-buttons {
-    margin-left: 1em;
+    text-align: center;
+    margin-top: 1em;
 }
 
 #profile-page .float-child {
@@ -47,11 +49,10 @@
     /* border: solid 3px red; */
     /* padding: 10px; */
 }
-
-#gallery-container {
-    /* height: 50em; */
-    /* border-bottom: green solid 5px; */
-}
+/* 
+#profile-info-and-img {
+    border-bottom: green solid .5px;
+} */
 
 .profile-page-gallery {
     display: grid;

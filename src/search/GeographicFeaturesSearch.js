@@ -29,8 +29,9 @@ function GeographicFeaturesSearch({ onChange }) {
         <div>
             {categories.map((c,i) => (
                 <div key={i} className="form-check form-check-inline">
-                    <label key={c} htmlFor={c} class="form-check-label">{c}</label>
                     <Checkbox onChange={changeHandler} name={c}/>
+                    {/* <label key={c} htmlFor={c} class="form-check-label">{c}</label> */}
+                    <label key={c} htmlFor="flexCheckChecked" class="form-check-label">{c}</label>
                 </div>
             ))
     

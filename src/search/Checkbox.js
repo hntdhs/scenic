@@ -19,6 +19,7 @@ function Checkbox(props) {
                     name={props.name}
                     value={props.name}
                     class="form-check-input"
+                    id="flexCheckDefault"
                 />
             </label>
         </div>

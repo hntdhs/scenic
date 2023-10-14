@@ -78,12 +78,12 @@ function ShowUserProfile() {
     return (
         <div id='profile-page'>
             <div class="container text-center" id="app-name">
-            <Link class="link-offset-2 link-underline link-underline-opacity-0 homepage-link" to="/"><h1>NATIONAL SCENIC BYWAYS</h1></Link>
+                <Link class="link-offset-2 link-underline link-underline-opacity-0 homepage-link" to="/"><h1>NATIONAL SCENIC BYWAYS</h1></Link>
             </div>
             <div className="edit-profile">
                 {isMe ? <NavLink to={`/profile/`} className="link-offset-2 link-danger">Edit your profile</NavLink> : ''}
             </div>
-            <div className="float-container">
+            <div className="float-container" id="profile-info-and-img">
                 <div className="float-child w-50">
                     <div className="profile-info">
                         {/* <div className="welcome-to-profile">
@@ -139,7 +139,7 @@ function ShowUserProfile() {
             </div>
             <div class='row'>
                     {userFavorites.map(f => (
-                        <div class='state-card col-3'>
+                        <div class='card col-4'>
                             <BywayCard
                                 key={f.name + f.state}
                                 name={f.name}

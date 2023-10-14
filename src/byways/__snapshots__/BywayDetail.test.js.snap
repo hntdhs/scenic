@@ -16,9 +16,13 @@ exports[`matches snapshot 1`] = `
         </h1>
       </a>
     </div>
-    <h1>
-      no byway by that name
-    </h1>
+    <div
+      class="byway-detail"
+    >
+      <h1>
+        no byway by that name
+      </h1>
+    </div>
   </div>
 </DocumentFragment>
 `;
@@ -39,9 +43,13 @@ exports[`matches snapshot 2`] = `
         </h1>
       </a>
     </div>
-    <h1>
-      no byway by that name
-    </h1>
+    <div
+      class="byway-detail"
+    >
+      <h1>
+        no byway by that name
+      </h1>
+    </div>
   </div>
 </DocumentFragment>
 `;
@@ -62,9 +70,13 @@ exports[`matches snapshot 3`] = `
         </h1>
       </a>
     </div>
-    <h1>
-      no byway by that name
-    </h1>
+    <div
+      class="byway-detail"
+    >
+      <h1>
+        no byway by that name
+      </h1>
+    </div>
   </div>
 </DocumentFragment>
 `;
@@ -85,9 +97,13 @@ exports[`matches snapshot 4`] = `
         </h1>
       </a>
     </div>
-    <h1>
-      no byway by that name
-    </h1>
+    <div
+      class="byway-detail"
+    >
+      <h1>
+        no byway by that name
+      </h1>
+    </div>
   </div>
 </DocumentFragment>
 `;

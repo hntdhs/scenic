@@ -18,6 +18,7 @@
     margin-bottom: 1em;
 }
 
-#users-list .float-child {
+#users-list-page .float-child {
     float: left;
+    width: 50%;
 }

@@ -6,6 +6,7 @@ exports[`matches snapshot 1`] = `
     <label>
       <input
         class="form-check-input"
+        id="flexCheckDefault"
         type="checkbox"
         value=""
       />

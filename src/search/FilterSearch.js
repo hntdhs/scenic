@@ -81,7 +81,7 @@ function FilterSearch() {
                     <div>
                         <div class="row">
                             {currentByWays.map(s => (
-                                <div class='state-card col-3'>
+                                <div class='card col-3'>
                                     <BywayCard
                                         key={s.name + s.state}
                                         name={s.name}
