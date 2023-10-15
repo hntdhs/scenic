@@ -37,7 +37,7 @@ function UsersList() {
                     )}
                 </div>
                 <div className="float-child w-50" id="user-list-gallery-container">
-                    <div className="gallery">
+                    <div className="user-list-gallery">
                         <figure class="gallery__item gallery__item--1">
                             <img src="" class="gallery__img" alt="" />
                         </figure>
