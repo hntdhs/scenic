@@ -15,40 +15,32 @@ exports[`matches snapshot 1`] = `
     <div
       class="form-check form-check-inline"
     >
-      <label
-        for="All-American Road"
-      >
-        All-American Road
-      </label>
       <div>
+        <input
+          class="form-check-input"
+          id="flexCheckDefault"
+          name="All-American Road"
+          type="checkbox"
+          value="All-American Road"
+        />
         <label>
-          <input
-            class="form-check-input"
-            id="flexCheckDefault"
-            name="All-American Road"
-            type="checkbox"
-            value="All-American Road"
-          />
+          All-American Road
         </label>
       </div>
     </div>
     <div
       class="form-check form-check-inline"
     >
-      <label
-        for="National Scenic Byway"
-      >
-        National Scenic Byway
-      </label>
       <div>
+        <input
+          class="form-check-input"
+          id="flexCheckDefault"
+          name="National Scenic Byway"
+          type="checkbox"
+          value="National Scenic Byway"
+        />
         <label>
-          <input
-            class="form-check-input"
-            id="flexCheckDefault"
-            name="National Scenic Byway"
-            type="checkbox"
-            value="National Scenic Byway"
-          />
+          National Scenic Byway
         </label>
       </div>
     </div>

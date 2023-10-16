@@ -33,7 +33,7 @@ function DesignationSearch({ onChange }) {
                 </div>
                 {categories.map((c, i) => (
                     <div key={i} className="form-check form-check-inline">
-                        <label key={c} htmlFor={c}>{c}</label>
+                        {/* <label key={c} htmlFor={c}>{c}</label> */}
                         <Checkbox onChange={changeHandler} name={c}/>
                     </div>
                 ))

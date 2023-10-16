@@ -1,3 +1,4 @@
 .float-container {
     float: left;
+    width: 100%;
 }

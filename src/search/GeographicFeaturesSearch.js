@@ -31,7 +31,7 @@ function GeographicFeaturesSearch({ onChange }) {
                 <div key={i} className="form-check form-check-inline">
                     <Checkbox onChange={changeHandler} name={c}/>
                     {/* <label key={c} htmlFor={c} class="form-check-label">{c}</label> */}
-                    <label key={c} htmlFor="flexCheckChecked" class="form-check-label">{c}</label>
+                    {/* <label key={c} htmlFor="flexCheckChecked" class="form-check-label">{c}</label> */}
                 </div>
             ))
     

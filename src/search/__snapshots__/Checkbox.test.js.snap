@@ -3,14 +3,13 @@
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <label>
-      <input
-        class="form-check-input"
-        id="flexCheckDefault"
-        type="checkbox"
-        value=""
-      />
-    </label>
+    <input
+      class="form-check-input"
+      id="flexCheckDefault"
+      type="checkbox"
+      value=""
+    />
+    <label />
   </div>
 </DocumentFragment>
 `;

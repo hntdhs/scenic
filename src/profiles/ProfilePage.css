@@ -69,6 +69,9 @@
     height: 100%;
     object-fit: cover;
 }
+figure.gallery__item {
+    margin-bottom: 0;
+}
 
 .profile-page-gallery .gallery__item--1 {
     grid-column-start: 1;

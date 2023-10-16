@@ -16,7 +16,7 @@ function FilterSearch() {
     const [errors, setErrors] = useState([]);
     const [currentByWays, setCurrentByWays] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [bywaysPerPage] = useState(10);
+    const [bywaysPerPage] = useState(12);
     
     const [nPages, setNPages] = useState(0); 
 
@@ -83,6 +83,7 @@ function FilterSearch() {
                             {currentByWays.map(s => (
                                 <div class='card col-3'>
                                     <BywayCard
+                                        id={s.id}
                                         key={s.name + s.state}
                                         name={s.name}
                                         image={s.image}

@@ -11,8 +11,7 @@ function Checkbox(props) {
 
     return (
         <div>
-            <label>
-                <input
+            <input
                     type="checkbox"
                     checked={checked}
                     onChange={handleChange}
@@ -21,6 +20,8 @@ function Checkbox(props) {
                     class="form-check-input"
                     id="flexCheckDefault"
                 />
+            <label>
+                {props.name}
             </label>
         </div>
     );
