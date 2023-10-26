@@ -105,22 +105,22 @@ function ShowUserProfile() {
                 <div className="float-child w-50" id="gallery-container">
                     <div className="profile-page-gallery">
                         <figure class="gallery__item gallery__item--1">
-                            <img src="https://th.bing.com/th/id/R.80048c94faacac8b7ff6af18efa3d92a?rik=Ac82coHKVHLVyg&riu=http%3a%2f%2fwonderfulengineering.com%2fwp-content%2fuploads%2f2016%2f01%2fnature-wallpapers-8.jpg&ehk=GoUR7nA3jNm0gIdWFJoMVL1iu%2bJuWOU7Nu7KkgKZzeQ%3d&risl=&pid=ImgRaw&r=0" class="gallery__img" alt="" />
+                            <img src="https://th.bing.com/th/id/R.80048c94faacac8b7ff6af18efa3d92a?rik=Ac82coHKVHLVyg&riu=http%3a%2f%2fwonderfulengineering.com%2fwp-content%2fuploads%2f2016%2f01%2fnature-wallpapers-8.jpg&ehk=GoUR7nA3jNm0gIdWFJoMVL1iu%2bJuWOU7Nu7KkgKZzeQ%3d&risl=&pid=ImgRaw&r=0" class="gallery__img" alt="nature image featuring green leaves" />
                         </figure>
                         <figure class="gallery__item gallery__item--2">
-                            <img src="https://th.bing.com/th/id/R.da8defe065b749e35e1977a7407cc186?rik=MIXMv8FY38SnZQ&riu=http%3a%2f%2f3.bp.blogspot.com%2f-r9RbdRcHK5w%2fUnkma7Ogu2I%2fAAAAAAAAIfQ%2fMB4f28judSs%2fs1600%2fplitvice_03.jpg&ehk=P9oYjaF7faaYRmw0snOEEdG1n24i8W2HJjKGnTFeawA%3d&risl=&pid=ImgRaw&r=0" class="gallery__img" alt="" />
+                            <img src="https://th.bing.com/th/id/R.da8defe065b749e35e1977a7407cc186?rik=MIXMv8FY38SnZQ&riu=http%3a%2f%2f3.bp.blogspot.com%2f-r9RbdRcHK5w%2fUnkma7Ogu2I%2fAAAAAAAAIfQ%2fMB4f28judSs%2fs1600%2fplitvice_03.jpg&ehk=P9oYjaF7faaYRmw0snOEEdG1n24i8W2HJjKGnTFeawA%3d&risl=&pid=ImgRaw&r=0" class="gallery__img" alt="nature image featuring green leaves" />
                         </figure>
                         <figure class="gallery__item gallery__item--3">
-                            <img src="https://getwallpapers.com/wallpaper/full/7/c/7/624165.jpg" class="gallery__img" alt="" />
+                            <img src="https://getwallpapers.com/wallpaper/full/7/c/7/624165.jpg" class="gallery__img" alt="nature image featuring green leaves" />
                         </figure>
                         <figure class="gallery__item gallery__item--4">
-                            <img src="https://th.bing.com/th/id/R.4eb01b6d1de8180fc16a7ea457df2dd0?rik=mDmVmiPWKjG19Q&riu=http%3a%2f%2fwallup.net%2fwp-content%2fuploads%2f2016%2f01%2f102787-nature-mountain-river-landscape.jpg&ehk=tKQDONLRX3EXEvzzdRuXB5UBE3a0IgFKug46zeMojOg%3d&risl=&pid=ImgRaw&r=0" class="gallery__img" alt="" />
+                            <img src="https://th.bing.com/th/id/R.4eb01b6d1de8180fc16a7ea457df2dd0?rik=mDmVmiPWKjG19Q&riu=http%3a%2f%2fwallup.net%2fwp-content%2fuploads%2f2016%2f01%2f102787-nature-mountain-river-landscape.jpg&ehk=tKQDONLRX3EXEvzzdRuXB5UBE3a0IgFKug46zeMojOg%3d&risl=&pid=ImgRaw&r=0" class="gallery__img" alt="nature image featuring green leaves" />
                         </figure>
                         <figure class="gallery__item gallery__item--5">
-                            <img src="https://th.bing.com/th/id/R.25e937083406c94e55da0de60a1cfcc1?rik=0HEyQ3ecPI9GZQ&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fc%2fc8%2fAltja_j%c3%b5gi_Lahemaal.jpg&ehk=BlRsLAc9eb%2fpuXQO2L6zTYRs1h5rFkNp2wDTWNv8%2fZY%3d&risl=1&pid=ImgRaw&r=0" class="gallery__img" alt="" />
+                            <img src="https://th.bing.com/th/id/R.25e937083406c94e55da0de60a1cfcc1?rik=0HEyQ3ecPI9GZQ&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fc%2fc8%2fAltja_j%c3%b5gi_Lahemaal.jpg&ehk=BlRsLAc9eb%2fpuXQO2L6zTYRs1h5rFkNp2wDTWNv8%2fZY%3d&risl=1&pid=ImgRaw&r=0" class="gallery__img" alt="nature image featuring green leaves" />
                         </figure>
                         <figure class="gallery__item gallery__item--6">
-                            <img src="https://i.pinimg.com/736x/8f/3c/e3/8f3ce342b2067fe72dd7f261296265de--serenity-lakes.jpg" class="gallery__img" alt="" />
+                            <img src="https://i.pinimg.com/736x/8f/3c/e3/8f3ce342b2067fe72dd7f261296265de--serenity-lakes.jpg" class="gallery__img" alt="nature image featuring green leaves" />
                         </figure>        
                     </div>
                 </div>
